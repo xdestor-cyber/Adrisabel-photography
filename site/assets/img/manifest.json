@@ -1,0 +1,197 @@
+{
+ "roses": {
+  "file": "newborn-girl-red-roses-mini-bed-mcallen-tx.webp",
+  "width": 1280,
+  "height": 1600,
+  "bytes": 163918,
+  "color": "#f0f0e7"
+ },
+ "crown": {
+  "file": "newborn-gold-crown-parents-hands.webp",
+  "width": 1600,
+  "height": 1471,
+  "bytes": 106048,
+  "color": "#f0f0f0"
+ },
+ "moonStars": {
+  "file": "baby-moon-and-stars-milestone-photos.webp",
+  "width": 1600,
+  "height": 1403,
+  "bytes": 69962,
+  "color": "#7e87a1"
+ },
+ "swingBoy": {
+  "file": "newborn-boy-wooden-swing-stars.webp",
+  "width": 1600,
+  "height": 1420,
+  "bytes": 150830,
+  "color": "#e7f0f0"
+ },
+ "swingGirl": {
+  "file": "baby-girl-flower-swing-sitter-session.webp",
+  "width": 1022,
+  "height": 1283,
+  "bytes": 96016,
+  "color": "#f0f0f0"
+ },
+ "bear": {
+  "file": "newborn-teddy-bear-costume-rattan-chair.webp",
+  "width": 1600,
+  "height": 1178,
+  "bytes": 271514,
+  "color": "#f0e7d6"
+ },
+ "lavender": {
+  "file": "newborn-lavender-roses-white-bed.webp",
+  "width": 1440,
+  "height": 1080,
+  "bytes": 106574,
+  "color": "#f0f0f0"
+ },
+ "dino": {
+  "file": "newborn-knit-bonnet-bed-crochet-dinosaur.webp",
+  "width": 1600,
+  "height": 1394,
+  "bytes": 145736,
+  "color": "#e7e7df"
+ },
+ "moonPink": {
+  "file": "newborn-girl-moon-pillow-pink-backdrop.webp",
+  "width": 1600,
+  "height": 1163,
+  "bytes": 47580,
+  "color": "#f0e7e7"
+ },
+ "closeup": {
+  "file": "newborn-closeup-cream-knit-blanket.webp",
+  "width": 1360,
+  "height": 907,
+  "bytes": 44262,
+  "color": "#e7e7e7"
+ },
+ "heartBasket": {
+  "file": "newborn-heart-wreath-blue-wrap.webp",
+  "width": 1068,
+  "height": 1020,
+  "bytes": 226870,
+  "color": "#b3988f"
+ },
+ "twins": {
+  "file": "twin-newborns-sleeping-side-by-side.webp",
+  "width": 1342,
+  "height": 1020,
+  "bytes": 124116,
+  "color": "#f0f0f0"
+ },
+ "family": {
+  "file": "newborn-family-portrait-parents-big-sister.webp",
+  "width": 1061,
+  "height": 1020,
+  "bytes": 57898,
+  "color": "#f0f0f0"
+ },
+ "santa": {
+  "file": "newborn-christmas-santa-moon-pillow.webp",
+  "width": 1269,
+  "height": 1020,
+  "bytes": 83848,
+  "color": "#bb878f"
+ },
+ "sister": {
+  "file": "big-sister-and-newborn-sibling-photo.webp",
+  "width": 1210,
+  "height": 1020,
+  "bytes": 48546,
+  "color": "#f9f9f9"
+ },
+ "holiday": {
+  "file": "one-year-old-holiday-portrait-lights.webp",
+  "width": 1360,
+  "height": 910,
+  "bytes": 59062,
+  "color": "#8f8775"
+ },
+ "handsFeet": {
+  "file": "newborn-feet-parents-hands-heart.webp",
+  "width": 1137,
+  "height": 1020,
+  "bytes": 50286,
+  "color": "#f0f0f0"
+ },
+ "cake": {
+  "file": "cake-smash-first-birthday-photography.webp",
+  "width": 1250,
+  "height": 1250,
+  "bytes": 44236,
+  "color": "#f0f0e7"
+ },
+ "logo": {
+  "file": "adrisabel-photography-logo.webp",
+  "width": 256,
+  "height": 256,
+  "png": "adrisabel-photography-logo.png"
+ },
+ "wash-butter": {
+  "file": "wash-butter.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 49904,
+  "art": true
+ },
+ "wash-lavender": {
+  "file": "wash-lavender.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 47450,
+  "art": true
+ },
+ "wash-sky": {
+  "file": "wash-sky.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 48370,
+  "art": true
+ },
+ "wash-strawberry": {
+  "file": "wash-strawberry.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 46636,
+  "art": true
+ },
+ "wash-aqua": {
+  "file": "wash-aqua.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 45524,
+  "art": true
+ },
+ "wash-blush": {
+  "file": "wash-blush.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 49402,
+  "art": true
+ },
+ "wash-sand": {
+  "file": "wash-sand.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 49732,
+  "art": true
+ },
+ "wash-gold": {
+  "file": "wash-gold.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 47914,
+  "art": true
+ },
+ "wash-peach": {
+  "file": "wash-peach.webp",
+  "width": 420,
+  "height": 420,
+  "bytes": 48562,
+  "art": true
+ }
+}

@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+// QA for the built preview: one <h1>, internal links resolve, images have
+// alt + size, no horizontal overflow, no console errors, heading order.
+// Usage: node site/tools/qa.mjs [baseUrl] [--shots dir]
+import { chromium } from 'playwright';
+import { PAGES } from '../src/pages/index.mjs';
+
+const base = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2].replace(/\/$/, '') : 'http://127.0.0.1:8090';
+const shotsIdx = process.argv.indexOf('--shots');
+const shots = shotsIdx > 0 ? process.argv[shotsIdx + 1] : null;
+const known = new Set(PAGES.map((p) => p.path));
+const browser = await chromium.launch();
+let problems = 0;
+for (const vp of [{ w: 390, h: 844, m: true }, { w: 1440, h: 900, m: false }]) {
+  const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, isMobile: vp.m, hasTouch: vp.m });
+  await ctx.route(/fonts\.(googleapis|gstatic)\.com|googletagmanager/, (r) => r.abort());
+  for (const page of PAGES) {
+    const p = await ctx.newPage();
+    const errors = [];
+    p.on('pageerror', (e) => errors.push('pageerror: ' + e.message));
+    p.on('console', (m) => { if (m.type() === 'error' && !/fonts\.g|ERR_FAILED/.test(m.text())) errors.push('console: ' + m.text()); });
+    await p.goto(base + page.path, { waitUntil: 'load' });
+    const r = await p.evaluate(() => {
+      const out = {};
+      out.h1 = [...document.querySelectorAll('h1')].map((h) => h.textContent.trim());
+      out.overflow = document.documentElement.scrollWidth - window.innerWidth;
+      out.links = [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'));
+      out.imgs = [...document.querySelectorAll('img')].filter((i) => !i.hasAttribute('alt') || !i.getAttribute('width') || !i.getAttribute('height')).map((i) => i.src);
+      const hs = [...document.querySelectorAll('main h1, main h2, main h3, main h4')].map((h) => +h.tagName[1]);
+      out.skips = hs.filter((l, i) => i && l > hs[i - 1] + 1).length;
+      out.ids = [...document.querySelectorAll('[id]')].map((e) => e.id).filter((id, i, a) => a.indexOf(id) !== i);
+      out.title = document.title;
+      return out;
+    });
+    const bad = [];
+    if (r.h1.length !== 1) bad.push(`h1 count ${r.h1.length}`);
+    if (r.overflow > 1) bad.push(`horizontal overflow ${r.overflow}px`);
+    const broken = r.links.filter((h) => h.startsWith('/') && !known.has(h.split(/[?#]/)[0]) && !/^\/(img|art)\//.test(h));
+    if (broken.length) bad.push('broken links: ' + [...new Set(broken)].join(', '));
+    if (r.imgs.length) bad.push('img missing alt/size: ' + r.imgs.length);
+    if (r.skips) bad.push(`heading level skips: ${r.skips}`);
+    if (r.ids.length) bad.push('duplicate ids: ' + [...new Set(r.ids)].join(', '));
+    if (errors.length) bad.push(...errors);
+    if (bad.length) { problems += bad.length; console.log(`✗ ${vp.w} ${page.path}\n   - ${bad.join('\n   - ')}`); }
+    if (shots) await p.screenshot({ path: `${shots}/${vp.w}${page.path.replace(/\//g, '_') || '_'}.png`, fullPage: false });
+    await p.close();
+  }
+  await ctx.close();
+}
+await browser.close();
+console.log(problems ? `\n${problems} problem(s)` : `\nall ${PAGES.length} pages OK at 390px and 1440px`);
+process.exit(problems ? 1 : 0);
