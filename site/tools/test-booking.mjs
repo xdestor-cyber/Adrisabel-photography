@@ -2,11 +2,13 @@
 // Walks through the booking widget and checks the Formspree payload + GTM event.
 // The Formspree request is intercepted — nothing is actually sent.
 import { chromium } from 'playwright';
+import { routeViaNode } from './proxy-route.mjs';
 const base = (process.argv[2] || 'http://127.0.0.1:8090').replace(/\/$/, '');
 const path = process.argv[3] || '/fast-online-booking/?session=wonderland';
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 let payload = null;
+if (process.env.QA_VIA_NODE) await routeViaNode(page.context(), { block: /fonts\.(googleapis|gstatic)\.com|googletagmanager|formspree/ });
 await page.route('https://formspree.io/**', async (route) => {
   payload = JSON.parse(route.request().postData());
   await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });

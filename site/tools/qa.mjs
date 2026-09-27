@@ -4,6 +4,7 @@
 // Usage: node site/tools/qa.mjs [baseUrl] [--shots dir]
 import { chromium } from 'playwright';
 import { PAGES } from '../src/pages/index.mjs';
+import { routeViaNode } from './proxy-route.mjs';
 
 const base = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2].replace(/\/$/, '') : 'http://127.0.0.1:8090';
 const shotsIdx = process.argv.indexOf('--shots');
@@ -13,7 +14,8 @@ const browser = await chromium.launch();
 let problems = 0;
 for (const vp of [{ w: 390, h: 844, m: true }, { w: 1440, h: 900, m: false }]) {
   const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, isMobile: vp.m, hasTouch: vp.m });
-  await ctx.route(/fonts\.(googleapis|gstatic)\.com|googletagmanager/, (r) => r.abort());
+  if (process.env.QA_VIA_NODE) await routeViaNode(ctx, { block: /fonts\.(googleapis|gstatic)\.com|googletagmanager/ });
+  else await ctx.route(/fonts\.(googleapis|gstatic)\.com|googletagmanager/, (r) => r.abort());
   for (const page of PAGES) {
     const p = await ctx.newPage();
     const errors = [];

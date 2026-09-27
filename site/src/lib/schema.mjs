@@ -81,26 +81,19 @@ export function jsonLd(nodes) {
 }
 
 // Rank Math's page-level schema is switched off (it defaults to "Article"),
-// so each inner page describes itself and its breadcrumb trail here.
+// so each inner page describes itself here. Rank Math still prints the
+// BreadcrumbList (@id <url>#breadcrumb), which this WebPage points to.
 export function pageNodes(page) {
   if (page.path === '/') return [];
   const url = `${SITE_URL}${page.path}`;
-  const trail = [{ name: 'Home', url: `${SITE_URL}/` }, ...(page.breadcrumbs || []).map((b) => ({ name: b.label, url: SITE_URL + b.href })), { name: page.crumbLabel || page.wpTitle, url }];
-  return [
-    {
-      '@type': 'WebPage',
-      '@id': `${url}#webpage`,
-      url,
-      name: page.seo.title,
-      description: page.seo.description,
-      inLanguage: 'en-US',
-      about: { '@id': BUSINESS_ID },
-      breadcrumb: { '@id': `${url}#breadcrumb` },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': `${url}#breadcrumb`,
-      itemListElement: trail.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name, item: t.url })),
-    },
-  ];
+  return [{
+    '@type': 'WebPage',
+    '@id': `${url}#webpage`,
+    url,
+    name: page.seo.title,
+    description: page.seo.description,
+    inLanguage: 'en-US',
+    about: { '@id': BUSINESS_ID },
+    breadcrumb: { '@id': `${url}#breadcrumb` },
+  }];
 }
