@@ -28,7 +28,7 @@ ${pageHero(ctx, {
   crumbs: [{ label: 'Newborn Photography' }],
   eyebrow: 'Newborn photography · McAllen, TX',
   title: 'Gentle newborn photography in <em>McAllen, TX</em>',
-  lede: 'Soft wraps, dreamy little setups and safe, supported posing for babies in their first weeks — in a warm private studio minutes from McAllen, Pharr, Edinburg and Mission.',
+  lede: 'Soft wraps, dreamy little setups and safe, supported posing for babies in their first weeks — for families across the Rio Grande Valley, from McAllen and Mission to Pharr and Brownsville.',
   photo: 'crown', photo2: 'closeup', chip: googleChip,
   trust: false,
 })}

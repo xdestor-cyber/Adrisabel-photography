@@ -92,13 +92,13 @@ export const FAQS = [
   },
   // ---- location
   {
-    q: 'Where is the studio?',
-    a: 'Our private studio is in the heart of the Rio Grande Valley, minutes from McAllen, Pharr, Edinburg and Mission. The exact address is shared after booking.',
+    q: 'Where are sessions held?',
+    a: 'We serve families across the whole Rio Grande Valley — especially McAllen, Mission, Pharr, Edinburg and Brownsville. The exact session location is shared after booking.',
     tags: ['home', 'contact', 'city-newborn', 'city-baby'], group: 'Location',
   },
   {
     q: 'What areas do you serve?',
-    a: 'Families come to us from all over the Valley — McAllen, Pharr, Edinburg, Mission, San Juan, Alamo, Donna, Weslaco, Mercedes, Harlingen, Brownsville and beyond — and our Seaside Beach sessions take place on South Padre Island.',
+    a: 'The whole Rio Grande Valley — McAllen, Mission, Pharr, Edinburg, Brownsville, Harlingen, Weslaco, San Juan, Alamo, Donna, Mercedes and beyond — and our Seaside Beach sessions take place on South Padre Island.',
     tags: ['home', 'contact'], group: 'Location',
   },
 ];

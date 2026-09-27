@@ -71,7 +71,7 @@ ${ctaBand()}
 
 <section class="sec" aria-labelledby="areas-title">
 <div class="wrap center">
-${secHead({ eyebrow: 'Serving the Rio Grande Valley', title: 'A newborn photographer <em>near you</em>', lede: 'Our private studio is minutes from McAllen, Pharr, Edinburg and Mission, and families visit from all over the Valley.', id: 'areas-title' })}
+${secHead({ eyebrow: 'Serving the Rio Grande Valley', title: 'A newborn photographer <em>near you</em>', lede: 'Adrisabel covers the whole Rio Grande Valley — especially McAllen, Mission, Pharr and Brownsville.', id: 'areas-title' })}
 ${areas()}
 </div>
 </section>

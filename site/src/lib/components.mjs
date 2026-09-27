@@ -61,7 +61,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <li>${ui.phone}<a href="${B.phoneHref}">${B.phone}</a> · <a href="${B.sms}">text</a></li>
 <li>${ui.mail}<a href="mailto:${B.email}">${B.email}</a></li>
 <li>${ui.instagram}<a href="${B.instagram.url}" target="_blank" rel="noopener">${B.instagram.handle}</a></li>
-<li>${ui.pin}<span>Private studio in the McAllen–Pharr area, Rio Grande Valley, TX</span></li>
+<li>${ui.pin}<span>Serving McAllen &amp; the whole Rio Grande Valley, TX</span></li>
 <li>${ui.clock}<span>${B.hours}</span></li>
 </ul></div>
 </div>
@@ -102,7 +102,7 @@ export function homeHero(ctx) {
 <p class="hero-badge">${spark()}<span><strong>5.0 ★ on Google</strong> · 15+ years</span></p>
 <div class="hero-reel-mobile">${reel(ctx, ['roses', 'closeup', 'heartBasket', 'moonStars', 'swingGirl', 'twins', 'family', 'bear'], { eager: 2 })}</div>
 <h1 class="h-hero" id="hero-title"><span class="kw">Newborn &amp; Baby Photographer in McAllen, TX</span>Soft, timeless portraits of your <em>tiny miracle</em></h1>
-<p class="lede">15+ years and hundreds of babies photographed with patience, safety and love. A warm private studio for newborns, babies and growing families across McAllen, Edinburg, Mission, Pharr and the Rio Grande Valley.</p>
+<p class="lede">15+ years and hundreds of babies photographed with patience, safety and love. Newborn, baby and family sessions across the whole Rio Grande Valley — especially McAllen, Mission, Pharr and Brownsville.</p>
 <div class="btn-stack"><a class="btn" href="${BOOK_URL}">Book your session ${ui.arrow}</a><a class="btn btn--ghost" href="${B.phoneHref}">${ui.phone} Call or text</a></div>
 ${trustLine(['Safe newborn posing', 'Props &amp; wardrobe included', 'Photos in 1 week'])}
 </div>
