@@ -24,6 +24,9 @@ const siteJs = (await esbuild.transform(read('src/scripts/site.js'), { loader: '
 const bookingJs = (await esbuild.transform(read('src/scripts/booking.js'), { loader: 'js', minify: true, target: 'es2018' })).code.trim();
 
 const deploy = WP ? JSON.parse(fs.readFileSync(STATE, 'utf8')) : null;
+// WordPress' content filters misread "<" inside inline <script> (turning "&&" into "&#038;&"),
+// so on WordPress the scripts are shipped as base64 data: URIs, which contain neither "<" nor "&".
+const scriptTag = (code, id) => `<script${id ? ` id="${id}"` : ''} src="data:text/javascript;base64,${Buffer.from(code).toString('base64')}"></script>`;
 const media = createMedia(WP ? 'wp' : 'preview', deploy);
 const ctx = { media, wp: WP };
 
@@ -73,7 +76,7 @@ if (!WP) {
       // wp:html blocks are output as-is (no wpautop); the shared CSS/JS live in synced patterns
       content: [
         '<!-- wp:block {"ref":__STYLES__} /-->',
-        `<!-- wp:html -->\n${parts}${page.booking ? `\n<script>${bookingJs}</script>` : ''}\n<!-- /wp:html -->`,
+        `<!-- wp:html -->\n${parts}${page.booking ? `\n${scriptTag(bookingJs, 'adr-booking-js')}` : ''}\n<!-- /wp:html -->`,
         '<!-- wp:block {"ref":__SCRIPTS__} /-->',
       ].join('\n\n'),
       excerpt: page.seo.description,
@@ -83,7 +86,7 @@ if (!WP) {
   });
   const patterns = {
     styles: { title: 'Adrisabel · Site styles', content: `<!-- wp:html -->\n${fontLinks()}<style id="adr-css">${css}</style>\n<!-- /wp:html -->` },
-    scripts: { title: 'Adrisabel · Site scripts', content: `<!-- wp:html -->\n<script id="adr-js">${siteJs}</script>\n<!-- /wp:html -->` },
+    scripts: { title: 'Adrisabel · Site scripts', content: `<!-- wp:html -->\n${scriptTag(siteJs, 'adr-js')}\n<!-- /wp:html -->` },
   };
   fs.writeFileSync(path.join(DIST, 'pages.json'), JSON.stringify(pages, null, 1));
   fs.writeFileSync(path.join(DIST, 'patterns.json'), JSON.stringify(patterns, null, 1));

@@ -3,7 +3,7 @@ import { html, ui, icon, art } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
 import {
   pageHero, secHead, chapters, chapterCard, pixieCard, gallery, reviews, areas, faq, finalCta, ctaBand,
-  trustBadges, infoCards, facts, bookHref, ctaButtons, eyebrow,
+  trustBadges, infoCards, facts, bookHref, ctaButtons, eyebrow, schedules,
 } from '../lib/components.mjs';
 import { faqsFor, FAQS } from '../data/faqs.mjs';
 import { byId, ADDONS } from '../data/packages.mjs';
@@ -131,14 +131,15 @@ ${pageHero(ctx, {
 <section class="sec sec--blush" aria-labelledby="bb-packages">
 <div class="wrap">
 ${secHead({ eyebrow: 'Baby packages', title: 'Pick a moment — or <em>the whole year</em>', id: 'bb-packages' })}
-<div class="chapters chapters--grid">${chapterCard(ctx, byId.fairytale, { more: false })}${pixieCard(ctx, byId['pixie-dust'], { wide: true, more: false })}</div>
+<div class="chapters chapters--grid chapters--pair">${chapterCard(ctx, byId.fairytale, { more: false })}${pixieCard(ctx, byId['pixie-dust'], { compact: true, more: false })}</div>
 </div>
 </section>
 
 <section class="sec sec--night" aria-labelledby="bb-milestones">
 <div class="wrap">
 ${secHead({ eyebrow: 'Pixie Dust schedules', title: 'Five little moons, <em>five milestones</em>', lede: 'Choose Option A (1, 3, 5, 7 and 9 months) or Option B (2, 4, 6, 8 and 10 months). Each session brings a new look, a new backdrop and lots of love — and siblings and parents are included.', id: 'bb-milestones' })}
-<ol class="steps">${MILESTONES.map(([m, t], i) => html`<li class="step reveal${i ? ' d' + Math.min(i, 3) : ''}" style="background:rgba(255,255,255,.05);border-color:rgba(235,203,139,.3)"><span class="si" style="background:rgba(235,203,139,.14)">${icon('star')}</span><div><h3 style="color:#FFF8EC">${m}</h3><p style="color:rgba(244,238,230,.8)">${t}</p></div></li>`)}</ol>
+${schedules()}
+<ol class="steps steps--5">${MILESTONES.map(([m, t], i) => html`<li class="step reveal${i ? ' d' + Math.min(i, 3) : ''}" style="background:rgba(255,255,255,.05);border-color:rgba(235,203,139,.3)"><span class="si" style="background:rgba(235,203,139,.14)">${icon('star')}</span><div><h3 style="color:#FFF8EC">${m}</h3><p style="color:rgba(244,238,230,.8)">${t}</p></div></li>`)}</ol>
 <p class="center mt" style="color:rgba(244,238,230,.8)">The 1-year Cake Smash is a separate session — <a class="text-link" style="color:#F3DEAA" href="/cake-smash-photography/">see Cake Smash</a>.</p>
 </div>
 </section>

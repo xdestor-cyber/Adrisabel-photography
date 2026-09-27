@@ -35,7 +35,8 @@ const dl = await page.evaluate(() => (window.dataLayer || []).find((e) => e.even
 const summary = await page.textContent('#bk-summary');
 console.log(JSON.stringify({ preselected: checked, next1Enabled, dueVisible, submitEnabled, payload, dataLayer: dl, summary, errors }, null, 1));
 await browser.close();
-const ok = checked === 'wonderland' && dueVisible && submitEnabled && payload?.session_type?.startsWith('Wonderland') &&
+const want = new URL(base + path).searchParams.get('session') || 'wonderland';
+const ok = checked === want && dueVisible && submitEnabled && payload?.session_type?.toLowerCase().startsWith(want.split('-')[0]) &&
   payload.phone === '(956) 555-0123' && payload.due_date === '2026-11-20' && dl?.form_name === 'booking_request' && dl.user_data.phone === '+19565550123' && !errors.length;
 console.log(ok ? 'BOOKING FLOW OK' : 'BOOKING FLOW FAILED');
 process.exit(ok ? 0 : 1);

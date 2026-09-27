@@ -14,14 +14,14 @@ export const bookHref = (id) => (id ? `${BOOK_URL}?session=${id}` : BOOK_URL);
 export function header(ctx, { current = '', minimal = false } = {}) {
   const logo = ctx.media.logo();
   const isCur = (href) => (href === current ? ' aria-current="page"' : '');
-  const brand = html`<a class="brand" href="/" aria-label="${esc(B.name)} — home"><img src="${logo.src}" width="38" height="38" alt="" decoding="async" fetchpriority="high"><span class="brand-text"><span class="brand-name">Adrisabel</span><span class="brand-sub">Photography</span></span></a>`;
+  const brand = html`<a class="brand" href="/" aria-label="${esc(B.name)} — home"><img src="${logo.src}" width="38" height="38" alt="" decoding="async" loading="eager"><span class="brand-text"><span class="brand-name">Adrisabel</span><span class="brand-sub">Photography</span></span></a>`;
   if (minimal) {
-    return html`<header class="adr adr-header minimal-header"><a class="skip-link" href="#main">Skip to content</a><div class="wrap bar">${brand}<div class="header-actions"><a class="btn btn--ghost btn--sm" href="${B.phoneHref}" aria-label="Call or text ${B.phone}">${ui.phone}<span class="show-sm">Call</span><span class="hide-sm">${B.phone}</span></a></div></div></header>`;
+    return html`<header class="adr adr-header minimal-header"><a class="skip-link" href="#adr-main">Skip to content</a><div class="wrap bar">${brand}<div class="header-actions"><a class="btn btn--ghost btn--sm" href="${B.phoneHref}" aria-label="Call or text ${B.phone}">${ui.phone}<span class="show-sm">Call</span><span class="hide-sm">${B.phone}</span></a></div></div></header>`;
   }
   const sessions = NAV[0].children;
   const navLinks = NAV.slice(1).filter((n) => n.href !== '/reviews/');
   return html`<header class="adr adr-header">
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#adr-main">Skip to content</a>
 <div class="wrap bar">
 ${brand}
 <nav class="nav" aria-label="Main">
@@ -91,7 +91,7 @@ export const ctaButtons = ({ label = 'Book your session', href = BOOK_URL, call 
 const REEL = ['roses', 'closeup', 'heartBasket', 'moonStars', 'swingGirl', 'twins', 'family', 'bear', 'moonPink', 'crown'];
 export function reel(ctx, keys = REEL, { eager = 0, sizes = '170px' } = {}) {
   const half = Math.ceil(keys.length / 2);
-  const track = (list, alt) => html`<div class="reel-track${alt ? ' alt' : ''}"${alt ? ' aria-hidden="true"' : ''}>${[...list, ...list].map((k, i) => html`<div class="reel-item"${!alt && i >= list.length ? ' aria-hidden="true"' : ''}>${img(ctx.media, k, { sizes, eager: !alt && i < eager, alt: alt || i >= list.length ? '' : null })}</div>`)}</div>`;
+  const track = (list, alt) => html`<div class="reel-track${alt ? ' alt' : ''}"${alt ? ' aria-hidden="true"' : ''}>${[...list, ...list].map((k, i) => html`<div class="reel-item"${!alt && i >= list.length ? ' aria-hidden="true"' : ''}>${img(ctx.media, k, { sizes, eager: !alt && i < eager, priority: !alt && eager > 0 && i === 0, alt: alt || i >= list.length ? '' : null })}</div>`)}</div>`;
   return html`<div class="reel" role="group" aria-label="Recent sessions"><div class="reel-mask">${track(keys, false)}${track([...keys.slice(half), ...keys.slice(0, half)], true)}</div></div>`;
 }
 

@@ -41,6 +41,7 @@
 }
 
 /* ---------- base / reset inside the theme ---------- */
+body { background: #FFFAF7; }
 .adr {
   font-family: var(--f-body);
   font-size: 16px;
@@ -609,6 +610,12 @@
 .adr .fact { padding: 16px; border-radius: 18px; background: rgba(255, 255, 255, .8); border: 1px solid var(--line); }
 .adr .fact b { display: block; font-family: var(--f-display); font-size: 1.5rem; font-weight: 600; line-height: 1.1; color: var(--rose-ink); }
 .adr .fact span { font-size: .8rem; color: var(--ink-2); }
+@media (min-width: 760px) { .adr .facts { grid-template-columns: repeat(4, 1fr); gap: 16px; } .adr .fact { padding: 20px; } .adr .fact b { font-size: 1.75rem; } }
+.adr .chapters--pair { max-width: 820px; margin: 0 auto; }
+@media (min-width: 900px) { .adr .chapters--pair { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1080px) { .adr .steps--5 { grid-template-columns: repeat(5, 1fr); } }
+.adr .sec--night .schedules { max-width: 760px; margin: 0 auto 40px; }
+@media (min-width: 900px) { .adr .sec--night .schedules { grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; } }
 
 /* ---------- footer ---------- */
 .adr-footer { background: #3F2D37; color: rgba(255, 255, 255, .78); padding: 60px 0 110px; font-size: .9rem; }

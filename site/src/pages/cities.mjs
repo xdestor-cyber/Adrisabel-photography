@@ -35,6 +35,8 @@ function cityPage(c, kind) {
     path,
     wpSlug: path.replace(/\//g, ''),
     wpTitle: `${service} Photographer ${c.name} TX`,
+    breadcrumbs: [{ label: nb ? 'Newborn Photography' : 'Baby & Milestone Photography', href: nb ? '/newborn-photography/' : '/baby-milestone-photography/' }],
+    crumbLabel: `${c.name}, TX`,
     seo: {
       title: `${service} Photographer ${c.name}, TX | Adrisabel Photography`,
       description: nb
@@ -74,8 +76,8 @@ ${eyebrow(`Why ${c.name} families choose Adrisabel`, 'eyebrow--left')}
 <div class="wrap">
 ${secHead({ eyebrow: `${service} sessions for ${c.name} families`, title: nb ? 'Choose your newborn <em>chapter</em>' : 'Pick a moment — or <em>the whole year</em>', id: 'pk-title' })}
 ${nb
-  ? html`<div class="chapters chapters--grid" style="max-width:820px;margin:0 auto">${chapterCard(ctx, byId.sunshine)}${chapterCard(ctx, byId.wonderland)}</div><p class="center mt"><span class="note" style="display:inline-block"><b>Twins?</b> Add $100 to any package — includes 4 extra photos.</span></p>`
-  : html`<div class="chapters chapters--grid">${chapterCard(ctx, byId.fairytale)}${pixieCard(ctx, byId['pixie-dust'], { wide: true })}${chapterCard(ctx, byId['cake-smash'])}</div>`}
+  ? html`<div class="chapters chapters--grid chapters--pair">${chapterCard(ctx, byId.sunshine)}${chapterCard(ctx, byId.wonderland)}</div><p class="center mt"><span class="note" style="display:inline-block"><b>Twins?</b> Add $100 to any package — includes 4 extra photos.</span></p>`
+  : html`<div class="chapters chapters--grid">${chapterCard(ctx, byId.fairytale)}${pixieCard(ctx, byId['pixie-dust'], { compact: true })}${chapterCard(ctx, byId['cake-smash'])}</div>`}
 </div>
 </section>
 
