@@ -1,7 +1,7 @@
 // Assembles a page: header + <main> + footer + JSON-LD, plus the <head> used
 // for the standalone preview (on WordPress, Rank Math prints the head).
 import { SITE_URL, BUSINESS } from '../data/business.mjs';
-import { header, footer } from './components.mjs';
+import { header, footer, setCurrentPage } from './components.mjs';
 import { jsonLd, businessNode, pageNodes } from './schema.mjs';
 import { esc } from './html.mjs';
 
@@ -12,6 +12,7 @@ export const fontLinks = () =>
   `<link rel="stylesheet" href="${esc(FONTS_URL)}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="${esc(FONTS_URL)}"></noscript>`;
 
 export function renderParts(ctx, page) {
+  setCurrentPage(page);
   const body = page.body(ctx);
   const nodes = [page.schemaBusiness === false ? null : businessNode(ctx), ...pageNodes(page), ...(page.schema ? page.schema(ctx) : [])];
   return [
