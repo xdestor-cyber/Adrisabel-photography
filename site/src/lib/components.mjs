@@ -265,9 +265,24 @@ ${when(more, html`<p class="mt"><a class="arrow-link" href="/about/">Get to know
 
 /* ---------------- reviews ---------------- */
 export const googleBadge = () => html`<a class="g-badge" href="${B.google.url}" target="_blank" rel="noopener">${googleG}<span>${B.google.rating}</span>${stars()}<span>${B.google.count} Google reviews</span></a>`;
-export function reviews({ list = REVIEWS, cta = true } = {}) {
+
+// Which page is being rendered — lets review blocks rotate so neighbouring
+// pages (e.g. the 14 city pages) don't all quote the same three reviews.
+let currentPath = '/';
+export const setCurrentPage = (page) => { currentPath = page.path; };
+function pickReviews(n = 3) {
+  if (currentPath === '/') return REVIEWS.slice(0, n);
+  let h = 0;
+  for (const ch of currentPath) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const start = h % REVIEWS.length;
+  return Array.from({ length: n }, (_, i) => REVIEWS[(start + i) % REVIEWS.length]);
+}
+const reviewCard = (r, i) => html`<figure class="review reveal${i % 3 ? ' d' + (i % 3) : ''}">${stars()}<blockquote><p>${esc(r.text)}</p></blockquote><footer><span class="avatar" aria-hidden="true">${esc(r.name[0])}</span><div><cite>${esc(r.name)}</cite><span class="rv-meta">${googleG} Google review${r.translated ? ' · translated from Spanish' : ''}</span></div></footer></figure>`;
+
+export function reviews({ all = false, cta = true } = {}) {
+  const list = all ? REVIEWS : pickReviews(3);
   return html`<div class="center reveal" style="margin:-10px 0 26px">${googleBadge()}</div>
-<div class="reviews">${list.map((r, i) => html`<figure class="review reveal${i ? ' d' + i : ''}">${stars()}<blockquote><p>${esc(r.text)}</p></blockquote><footer><span class="avatar" aria-hidden="true">${esc(r.name[0])}</span><div><cite>${esc(r.name)}</cite><span class="rv-meta">${googleG} Google review · ${esc(r.service)}</span></div></footer></figure>`)}</div>
+<div class="reviews${all ? ' reviews--all' : ''}">${list.map(reviewCard)}</div>
 ${when(cta, html`<p class="center mt"><a class="arrow-link" href="${B.google.url}" target="_blank" rel="noopener">Read all reviews on Google ${ui.arrow}</a></p>`)}`;
 }
 

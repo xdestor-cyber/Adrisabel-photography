@@ -151,7 +151,7 @@ ${pageHero(ctx, {
 })}
 <section class="sec sec--tight" aria-label="Google reviews" style="padding-top:0">
 <div class="wrap">
-${reviews({ cta: false })}
+${reviews({ all: true, cta: false })}
 <div class="center mt"><div class="btn-row center"><a class="btn" href="${B.google.url}" target="_blank" rel="noopener">Read all reviews on Google ${ui.arrow}</a><a class="btn btn--ghost" href="${B.google.writeReview}" target="_blank" rel="noopener">${googleG} Leave a review</a></div>
 <p class="small muted mt-s">Had a session with us? Your review helps other RGV families find us — thank you!</p></div>
 </div>
