@@ -1,0 +1,390 @@
+{
+ "timing": {
+  "BPM": 104,
+  "BAR": 2.3076923076923075,
+  "BEAT": 0.5769230769230769,
+  "SCENE_BARS": {
+   "hook": 0,
+   "cover": 4,
+   "invite": 6,
+   "sunshine": 8,
+   "wonderland": 13,
+   "fairytale": 18,
+   "pixie": 23,
+   "cake": 34,
+   "seaside": 39,
+   "extras": 43,
+   "how": 46,
+   "closing": 51,
+   "end": 55
+  },
+  "S": {
+   "hook": 0,
+   "cover": 9.23076923076923,
+   "invite": 13.846153846153845,
+   "sunshine": 18.46153846153846,
+   "wonderland": 29.999999999999996,
+   "fairytale": 41.53846153846153,
+   "pixie": 53.07692307692307,
+   "cake": 78.46153846153845,
+   "seaside": 89.99999999999999,
+   "extras": 99.23076923076923,
+   "how": 106.15384615384615,
+   "closing": 117.69230769230768,
+   "end": 126.9230769230769
+  },
+  "DURATION": 128.8230769230769
+ },
+ "cues": [
+  {
+   "name": "twinkle",
+   "t": 0.1,
+   "gain": 1
+  },
+  {
+   "name": "twinkle",
+   "t": 7.923,
+   "gain": 0.7
+  },
+  {
+   "name": "swell",
+   "t": 8.731,
+   "gain": 1
+  },
+  {
+   "name": "sparkle",
+   "t": 9.531,
+   "gain": 1
+  },
+  {
+   "name": "pageturn",
+   "t": 13.696,
+   "gain": 1
+  },
+  {
+   "name": "tick",
+   "t": 15.577,
+   "gain": 0.5
+  },
+  {
+   "name": "tick",
+   "t": 15.721,
+   "gain": 0.5
+  },
+  {
+   "name": "tick",
+   "t": 15.865,
+   "gain": 0.5
+  },
+  {
+   "name": "tick",
+   "t": 16.01,
+   "gain": 0.5
+  },
+  {
+   "name": "tick",
+   "t": 16.154,
+   "gain": 0.5
+  },
+  {
+   "name": "tick",
+   "t": 16.298,
+   "gain": 0.5
+  },
+  {
+   "name": "pageturn",
+   "t": 18.012,
+   "gain": 1
+  },
+  {
+   "name": "chime",
+   "t": 21.923,
+   "gain": 1
+  },
+  {
+   "name": "pop",
+   "t": 23.077,
+   "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "t": 24.231,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 24.808,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 25.385,
+   "gain": 0.55
+  },
+  {
+   "name": "pageturn",
+   "t": 29.55,
+   "gain": 1
+  },
+  {
+   "name": "chime",
+   "t": 33.462,
+   "gain": 1
+  },
+  {
+   "name": "pop",
+   "t": 34.615,
+   "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "t": 35.769,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 36.346,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 36.923,
+   "gain": 0.55
+  },
+  {
+   "name": "pageturn",
+   "t": 41.088,
+   "gain": 1
+  },
+  {
+   "name": "chime",
+   "t": 45,
+   "gain": 1
+  },
+  {
+   "name": "pop",
+   "t": 46.154,
+   "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "t": 47.308,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 47.885,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 48.462,
+   "gain": 0.55
+  },
+  {
+   "name": "magic",
+   "t": 52.327,
+   "gain": 1
+  },
+  {
+   "name": "twinkle",
+   "t": 53.877,
+   "gain": 0.8
+  },
+  {
+   "name": "chime",
+   "t": 55.385,
+   "gain": 1
+  },
+  {
+   "name": "chime",
+   "t": 61.404,
+   "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "t": 62.308,
+   "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "t": 63.462,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 64.038,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 64.615,
+   "gain": 0.55
+  },
+  {
+   "name": "tick",
+   "t": 68.527,
+   "gain": 0.45
+  },
+  {
+   "name": "tick",
+   "t": 68.815,
+   "gain": 0.45
+  },
+  {
+   "name": "tick",
+   "t": 69.104,
+   "gain": 0.45
+  },
+  {
+   "name": "chime",
+   "t": 69.231,
+   "gain": 0.8
+  },
+  {
+   "name": "tick",
+   "t": 69.392,
+   "gain": 0.45
+  },
+  {
+   "name": "tick",
+   "t": 69.681,
+   "gain": 0.45
+  },
+  {
+   "name": "tick",
+   "t": 70.835,
+   "gain": 0.45
+  },
+  {
+   "name": "tick",
+   "t": 71.123,
+   "gain": 0.45
+  },
+  {
+   "name": "tick",
+   "t": 71.412,
+   "gain": 0.45
+  },
+  {
+   "name": "chime",
+   "t": 71.538,
+   "gain": 0.8
+  },
+  {
+   "name": "tick",
+   "t": 71.7,
+   "gain": 0.45
+  },
+  {
+   "name": "tick",
+   "t": 71.988,
+   "gain": 0.45
+  },
+  {
+   "name": "confetti",
+   "t": 78.412,
+   "gain": 1
+  },
+  {
+   "name": "chime",
+   "t": 81.923,
+   "gain": 1
+  },
+  {
+   "name": "pop",
+   "t": 83.077,
+   "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "t": 84.231,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 84.808,
+   "gain": 0.55
+  },
+  {
+   "name": "pop",
+   "t": 85.385,
+   "gain": 0.55
+  },
+  {
+   "name": "wave",
+   "t": 89.3,
+   "gain": 1
+  },
+  {
+   "name": "chime",
+   "t": 93.462,
+   "gain": 1
+  },
+  {
+   "name": "pop",
+   "t": 94.615,
+   "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "t": 95.769,
+   "gain": 0.55
+  },
+  {
+   "name": "pageturn",
+   "t": 98.781,
+   "gain": 1
+  },
+  {
+   "name": "chime",
+   "t": 100.181,
+   "gain": 0.8
+  },
+  {
+   "name": "chime",
+   "t": 102.842,
+   "gain": 0.8
+  },
+  {
+   "name": "pageturn",
+   "t": 105.704,
+   "gain": 1
+  },
+  {
+   "name": "pop",
+   "t": 107.304,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "t": 109.304,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "t": 111.304,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "t": 113.304,
+   "gain": 0.6
+  },
+  {
+   "name": "pageturn",
+   "t": 117.192,
+   "gain": 1
+  },
+  {
+   "name": "sparkle",
+   "t": 118.792,
+   "gain": 0.8
+  },
+  {
+   "name": "bigchime",
+   "t": 119.95,
+   "gain": 1
+  }
+ ]
+}
