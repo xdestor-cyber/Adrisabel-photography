@@ -109,7 +109,7 @@ ${infoCards(VALUES.map(([ic, t, x]) => ({ icon: ic, title: t, text: x })), 'info
 ${eyebrow('The studio', 'eyebrow--left')}
 <h2 class="h-sec" id="ab-studio">Warm, calm &amp; <em>made for babies</em></h2>
 <div class="prose">
-<p>${B.studioLine} It’s a warm, clean and comfortable space designed for babies and families. ${B.addressNote}</p>
+<p>My studio is a warm, clean and comfortable space designed for babies and families, and I photograph families across the whole Rio Grande Valley — especially McAllen, Mission, Pharr, Edinburg and Brownsville. ${B.addressNote}</p>
 <p>The studio is stocked with wraps, blankets, props, headbands, bonnets, baskets, little beds and outfits in soft, timeless colors — you don’t need to bring anything but your baby (and maybe a bottle and a few diapers).</p>
 <p>I keep the room cozy for newborns, play soft music and keep the pace calm, so both baby and parents feel relaxed from the moment you walk in. This is your experience too, and I want you to remember it fondly.</p>
 </div>
@@ -205,7 +205,7 @@ export const contact = {
   booking: true,
   seo: {
     title: 'Contact & Book | Adrisabel Photography, McAllen TX',
-    description: 'Call or text (409) 354-3075, email, or send a booking request. Newborn, baby & family sessions in McAllen, Pharr, Edinburg and the Rio Grande Valley.',
+    description: 'Call or text (409) 354-3075, email, or send a booking request. Newborn, baby & family sessions in McAllen, Mission, Pharr, Brownsville & the whole RGV.',
     focus: 'contact newborn photographer mcallen',
     image: 'family',
   },
@@ -223,7 +223,7 @@ ${pageHero(ctx, {
 ${infoCards([
   { icon: 'heart', title: 'Call or text', html: `<p><a href="${B.phoneHref}">${B.phone}</a><br>Texting is perfect for quick questions.</p>` },
   { icon: 'photos', title: 'Email', html: `<p><a href="mailto:${B.email}">${B.email}</a><br>We reply within 24 hours.</p>` },
-  { icon: 'pin', title: 'Studio', html: `<p>Private studio in the McAllen–Pharr area, minutes from Edinburg &amp; Mission.<br>${B.addressNote}</p>` },
+  { icon: 'pin', title: 'Service area', html: `<p>The whole Rio Grande Valley — especially McAllen, Mission, Pharr, Edinburg &amp; Brownsville.<br>${B.addressNote}</p>` },
   { icon: 'calendar', title: 'Hours', html: `<p>${B.hours}.<br>Sessions are scheduled by availability.</p>` },
 ], 'info-grid--4')}
 <div class="center mt">${googleBadge()} <a class="g-badge" style="margin-left:6px" href="${B.instagram.url}" target="_blank" rel="noopener">${ui.instagram} ${B.instagram.handle}</a></div>

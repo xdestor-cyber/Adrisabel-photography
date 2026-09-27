@@ -54,16 +54,16 @@ export const CITIES = [
   {
     slug: 'pharr', name: 'Pharr', county: 'Hidalgo County',
     drive: 'just minutes',
-    route: 'Pharr families are closest of all — the studio is just a few minutes away.',
-    local: 'The studio is right here in the Pharr–McAllen area, so for Pharr and San Juan families it’s practically around the corner.',
+    route: 'Pharr is right in the heart of the Valley, next door to McAllen — getting to your session takes just minutes.',
+    local: 'Pharr and San Juan families are some of our closest neighbors in the Valley, so planning your session is quick and easy.',
     newborn: {
-      intro: 'Adrisabel is a newborn photographer right here in the Pharr area. With 15+ years of experience and hundreds of babies photographed, we create soft, timeless newborn portraits in a warm, baby-safe private studio.',
-      why: 'Being so close means less time in the car seat for your little one and a calmer start to your session. Everything is prepared before you arrive — wraps, outfits, little beds and backdrops.',
+      intro: 'Adrisabel photographs newborns for Pharr families. With 15+ years of experience and hundreds of babies photographed, we create soft, timeless newborn portraits in a warm, baby-safe setting.',
+      why: 'A short trip means less time in the car seat for your little one and a calmer start to your session. Everything is prepared before you arrive — wraps, outfits, little beds and backdrops.',
       photos: ['dino', 'crown', 'heartBasket', 'twins'],
     },
     baby: {
       intro: 'Looking for a baby photographer in Pharr? From first smiles to the first-birthday cake smash, Adrisabel captures each of your baby’s chapters with playful setups and endless patience.',
-      why: 'Being just minutes away makes it easy to come back for every milestone — which is exactly what our Pixie Dust plan is for: five sessions in baby’s first year for one total price.',
+      why: 'Pharr families love coming back for every milestone — which is exactly what our Pixie Dust plan is for: five sessions in baby’s first year for one total price.',
       photos: ['moonStars', 'cake', 'swingGirl', 'holiday'],
     },
   },

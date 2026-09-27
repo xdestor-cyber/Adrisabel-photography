@@ -22,15 +22,15 @@ export const BUSINESS = {
     rating: '5.0',
     count: 8,
   },
-  // The Google Business Profile lists the studio in Pharr; the site talks
-  // about the McAllen area, which is where most searches happen.
-  locality: 'Pharr',
+  // Adrisabel serves the whole Rio Grande Valley — especially McAllen,
+  // Mission, Pharr, Edinburg and Brownsville.
+  locality: 'McAllen',
   region: 'TX',
   regionName: 'Texas',
   country: 'US',
   geo: { lat: 26.1756, lng: -98.2309 },
-  studioLine: 'Our private studio sits in the heart of the Rio Grande Valley — minutes from McAllen, Pharr, Edinburg and Mission.',
-  addressNote: 'The exact studio address is shared after booking.',
+  studioLine: 'Adrisabel serves families across the whole Rio Grande Valley — especially McAllen, Mission, Pharr, Edinburg and Brownsville.',
+  addressNote: 'The exact session location is shared after booking.',
   hours: 'Monday – Saturday by appointment · Closed Sundays',
   responseTime: 'within 24 hours',
   serviceArea: ['McAllen', 'Pharr', 'Edinburg', 'Mission', 'San Juan', 'Alamo', 'Donna', 'Weslaco', 'Mercedes', 'Harlingen', 'Brownsville', 'South Padre Island'],

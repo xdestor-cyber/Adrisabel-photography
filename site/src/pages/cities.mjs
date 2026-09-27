@@ -86,7 +86,7 @@ ${nb
 ${secHead({ eyebrow: 'Planning your visit', title: `Coming from <em>${c.name}</em>`, id: 'visit-title' })}
 ${infoCards([
   { icon: 'pin', title: 'The drive', text: c.route },
-  { icon: 'heart', title: 'The studio', text: `${B.studioLine} ${B.addressNote}` },
+  { icon: 'heart', title: 'Service area', text: `${B.studioLine} ${B.addressNote}` },
   { icon: 'calendar', title: 'Scheduling', text: `${B.hours}. ${nb ? 'Book in your second or third trimester — newborn sessions happen 5–14 days after birth.' : 'Book a few weeks ahead so we can plan around naps.'}` },
   { icon: 'gift', title: 'Your photos', text: 'We help you choose your favorites at the end of the session. No proof gallery — every image is hand-edited and delivered within one week.' },
 ], 'info-grid--4')}

@@ -16,7 +16,7 @@ export function businessNode(ctx) {
     '@id': BUSINESS_ID,
     name: B.name,
     alternateName: B.gbpName,
-    description: 'Newborn, baby, milestone, cake smash and family photographer serving McAllen, Pharr, Edinburg, Mission and the Rio Grande Valley, Texas — 15+ years of experience and hundreds of babies photographed.',
+    description: 'Newborn, baby, milestone, cake smash and family photographer serving McAllen, Mission, Pharr, Edinburg, Brownsville and the whole Rio Grande Valley, Texas — 15+ years of experience and hundreds of babies photographed.',
     url: `${SITE_URL}/`,
     telephone: '+1-409-354-3075',
     email: B.email,
