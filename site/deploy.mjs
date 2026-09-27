@@ -191,9 +191,11 @@ async function rankMathSet(id, seo, imageFile) {
     rank_math_facebook_title: seo.title.replace(/ \| .*$/, ''),
     rank_math_facebook_description: seo.description,
     rank_math_twitter_use_facebook: 'on',
+    // pages aren't blog posts: drop Rank Math's default Article schema (our JSON-LD describes the business)
+    rank_math_rich_snippet: 'off',
   };
   const img = imageFile && state.media[imageFile];
-  if (img) { meta.rank_math_facebook_image = img.url; meta.rank_math_facebook_image_id = String(img.id); }
+  if (img) { meta.rank_math_facebook_image = img.url; meta.rank_math_facebook_image_id = img.id; }
   if (DRY) return;
   await wp('POST', '/rankmath/v1/updateMeta', { objectType: 'post', objectID: id, meta });
 }
@@ -245,7 +247,7 @@ if (!DRY) {
     const res = await fetch(url, { headers: { 'Cache-Control': 'no-cache' } });
     const html = await res.text();
     const okCss = html.includes('id="adr-css"');
-    const okMain = html.includes('<main class="adr" id="main">');
+    const okMain = html.includes('id="adr-main"');
     const h1 = (html.match(/<h1[\s>]/g) || []).length;
     if (res.status !== 200 || !okCss || !okMain || h1 !== 1) { bad++; log(`  ✗ ${r.path} status=${res.status} css=${okCss} main=${okMain} h1=${h1}`); }
   }

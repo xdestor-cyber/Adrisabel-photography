@@ -26,7 +26,7 @@ for (const vp of [{ w: 390, h: 844, m: true }, { w: 1440, h: 900, m: false }]) {
       out.overflow = document.documentElement.scrollWidth - window.innerWidth;
       out.links = [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'));
       out.imgs = [...document.querySelectorAll('img')].filter((i) => !i.hasAttribute('alt') || !i.getAttribute('width') || !i.getAttribute('height')).map((i) => i.src);
-      const hs = [...document.querySelectorAll('main h1, main h2, main h3, main h4')].map((h) => +h.tagName[1]);
+      const hs = [...document.querySelectorAll('#adr-main h1, #adr-main h2, #adr-main h3, #adr-main h4')].map((h) => +h.tagName[1]);
       out.skips = hs.filter((l, i) => i && l > hs[i - 1] + 1).length;
       out.ids = [...document.querySelectorAll('[id]')].map((e) => e.id).filter((id, i, a) => a.indexOf(id) !== i);
       out.title = document.title;

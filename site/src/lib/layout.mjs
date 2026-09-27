@@ -2,7 +2,7 @@
 // for the standalone preview (on WordPress, Rank Math prints the head).
 import { SITE_URL, BUSINESS } from '../data/business.mjs';
 import { header, footer } from './components.mjs';
-import { jsonLd, businessNode } from './schema.mjs';
+import { jsonLd, businessNode, pageNodes } from './schema.mjs';
 import { esc } from './html.mjs';
 
 export const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300..700&family=Great+Vibes&display=swap';
@@ -13,12 +13,13 @@ export const fontLinks = () =>
 
 export function renderParts(ctx, page) {
   const body = page.body(ctx);
-  const nodes = [page.schemaBusiness === false ? null : businessNode(ctx), ...(page.schema ? page.schema(ctx) : [])];
+  const nodes = [page.schemaBusiness === false ? null : businessNode(ctx), ...pageNodes(page), ...(page.schema ? page.schema(ctx) : [])];
   return [
     // mark JS early so scroll-reveal styles apply before first paint
     `<script>document.documentElement.classList.add('js')</script>`,
     header(ctx, { current: page.path, minimal: page.minimalHeader }),
-    `<main class="adr" id="main">${body}</main>`,
+    // Kadence already wraps content in <main id="main">; use a plain div there
+    ctx.wp ? `<div class="adr adr-main" id="adr-main">${body}</div>` : `<main class="adr adr-main" id="adr-main">${body}</main>`,
     footer(ctx, { sticky: page.sticky !== false, stickyLabel: page.stickyLabel, stickyHref: page.stickyHref }),
     jsonLd(nodes),
   ].join('\n');
