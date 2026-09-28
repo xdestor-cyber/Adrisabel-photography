@@ -57,7 +57,7 @@ export const PHOTOS = {
     src: GBP + 'AHRPTWk4-da3y0_i45hY9FLfkP0DUtcMhk3PRIpcBZScxaO1bMjmdPAN_tcjlRzH5qXuq-cWvb6EFkEYSV4z0Kk3D71Lgf22WDei9qw-VNoj0TaZgTGCoSn4i12BrvkbQz1IJvZjPQqQWjkv4oDd=w2400-h2400-k-no',
     crop: [0.2, 0.02, 0.6, 0.8],
     alt: 'Newborn girl in lavender lace sleeping on a white bed trimmed with pale purple roses',
-    focal: '50% 40%',
+    focal: '42% 45%',
   },
   dino: {
     file: 'newborn-knit-bonnet-bed-crochet-dinosaur',

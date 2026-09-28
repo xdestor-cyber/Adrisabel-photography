@@ -301,7 +301,6 @@ const OFFERS = [
     label: `${p.name} — ${p.type}`,
     newborn: p.id === 'sunshine' || p.id === 'wonderland', icon: { sunshine: 'heart', wonderland: 'family', fairytale: 'star', 'pixie-dust': 'sparkle', 'cake-smash': 'cake', 'seaside-beach': 'pin' }[p.id],
   })),
-  { id: 'maternity', name: 'Maternity', desc: 'Bump portraits before baby arrives', label: 'Maternity Session', newborn: true, icon: 'heart' },
   { id: 'not-sure', name: 'Not sure yet', desc: 'Help me choose the right session', label: 'Not sure yet — help me choose', newborn: false, icon: 'sparkle' },
 ];
 
