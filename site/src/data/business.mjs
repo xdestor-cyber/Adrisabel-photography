@@ -38,13 +38,13 @@ export const BUSINESS = {
 
 export const NAV = [
   { label: 'Sessions', children: [
-    { href: '/newborn-photography/', label: 'Newborn', note: 'Sunshine & Wonderland · from $230', icon: 'heart' },
-    { href: '/baby-milestone-photography/', label: 'Baby & Milestones', note: 'Fairytale & Pixie Dust · from $230', icon: 'star' },
-    { href: '/cake-smash-photography/', label: 'Cake Smash', note: 'First birthday · $280', icon: 'cake' },
-    { href: '/south-padre-island-family-photography/', label: 'Family Beach Session', note: 'South Padre Island · $370', icon: 'pin' },
+    { href: '/newborn-photography/', label: 'Newborn', note: 'Sunshine & Wonderland', icon: 'heart' },
+    { href: '/baby-milestone-photography/', label: 'Baby & Milestones', note: 'Fairytale & Pixie Dust', icon: 'star' },
+    { href: '/cake-smash-photography/', label: 'Cake Smash', note: 'First birthday celebration', icon: 'cake' },
+    { href: '/south-padre-island-family-photography/', label: 'Family Beach Session', note: 'South Padre Island', icon: 'pin' },
     { href: '/maternity-photography/', label: 'Maternity', note: 'Glowing bump portraits', icon: 'sparkle' },
   ] },
-  { href: '/pricing/', label: 'Pricing' },
+  { href: '/pricing/', label: 'Packages' },
   { href: '/portfolio/', label: 'Portfolio' },
   { href: '/about/', label: 'About' },
   { href: '/reviews/', label: 'Reviews' },

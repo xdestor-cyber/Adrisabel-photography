@@ -55,7 +55,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <p>Soft, timeless newborn, baby and family portraits from a warm private studio in the Rio Grande Valley — 15+ years of experience and hundreds of babies photographed with patience, safety and love.</p>
 <div class="f-social"><a href="${B.instagram.url}" target="_blank" rel="noopener" aria-label="Instagram ${B.instagram.handle}">${ui.instagram}</a><a href="${B.google.url}" target="_blank" rel="noopener" aria-label="Google reviews">${googleG}</a><a href="${B.phoneHref}" aria-label="Call ${B.phone}">${ui.phone}</a></div>
 </div>
-<div><h2>Sessions</h2><ul>${NAV[0].children.map((s) => html`<li><a href="${s.href}">${esc(s.label)}</a></li>`)}<li><a href="/pricing/">All packages &amp; prices</a></li></ul></div>
+<div><h2>Sessions</h2><ul>${NAV[0].children.map((s) => html`<li><a href="${s.href}">${esc(s.label)}</a></li>`)}<li><a href="/pricing/">All sessions &amp; packages</a></li></ul></div>
 <div><h2>Studio</h2><ul><li><a href="/about/">About Adrisabel</a></li><li><a href="/portfolio/">Portfolio</a></li><li><a href="/reviews/">Reviews</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li><li><a href="${BOOK_URL}">Book online</a></li></ul></div>
 <div><h2>Contact</h2><ul class="f-contact">
 <li>${ui.phone}<a href="${B.phoneHref}">${B.phone}</a> · <a href="${B.sms}">text</a></li>
@@ -147,85 +147,65 @@ ${[['heart', 'Trained in safe newborn posing'], ['sparkle', 'Warm, baby-safe pri
   .map(([ic, t], i) => html`<div class="badge-item reveal${i ? ' d' + Math.min(i, 3) : ''}"><span class="bi">${icon(ic)}</span><p>${t}</p></div>`)}
 </div>`;
 
-/* ---------------- storybook chapters ---------------- */
-const corners = `${['tl', 'tr', 'bl', 'br'].map((c) => spark(`corner ${c}`)).join('')}`;
-const stat = ([ic, n, l]) => html`<li>${icon(ic)}<b>${n}</b><span>${l}</span></li>`;
-
-export function chapterCard(ctx, p, { more = true, reveal = true, headingTag = 'h3' } = {}) {
-  if (p.night) return pixieCard(ctx, p, { more, reveal, headingTag });
-  const wash = p.wash ? ` style="--wash:url(${ctx.media.file('wash-' + p.wash)})"` : '';
-  return html`<article class="chapter${reveal ? ' reveal' : ''}" id="pkg-${p.id}"${wash}>
-${corners}
-<p class="chapter-kicker">${p.chapter}</p>
-<p class="chapter-headline">${p.headline}</p>
-<div class="chapter-art">${art(p.art, `${p.name} illustration`)}</div>
-<${headingTag} class="chapter-name">${p.name}</${headingTag}>
-<p class="chapter-price">${p.priceLabel}</p>
-<p class="chapter-type">${p.type}</p>
-<p class="chapter-badge">${icon(p.badge.icon)}${p.badge.text}</p>
-<ul class="chapter-stats">${p.stats.map(stat)}</ul>
+/* ---------------- session packages (photo cards, no prices) ---------------- */
+export function packageCard(ctx, p, { more = true, reveal = true, headingTag = 'h3' } = {}) {
+  const showMore = more && p.page && p.page !== currentPath;
+  return html`<article class="pcard${reveal ? ' reveal' : ''}" id="pkg-${p.id}">
+<a class="pcard-media" href="${bookHref(p.id)}" tabindex="-1" aria-hidden="true">${img(ctx.media, p.cardPhoto, { sizes: '(min-width:1080px) 370px, (min-width:760px) 45vw, 84vw' })}<span class="pcard-badge">${icon(p.badge.icon)}${p.badge.text}</span></a>
+<div class="pcard-body">
+<p class="pcard-kicker">${p.kicker}</p>
+<${headingTag} class="pcard-name">${p.name}</${headingTag}>
+<p class="pcard-desc">${p.desc}</p>
+<ul class="pcard-inc">${p.includes.map((t) => html`<li>${t}</li>`)}</ul>
 <div class="spacer"></div>
-<a class="btn btn--block" href="${bookHref(p.id)}">Reserve ${p.name}</a>
-${when(more, html`<a class="chapter-more" href="${p.page}">${p.id === 'seaside-beach' ? 'About beach sessions' : 'Session details'}</a>`)}
+<a class="btn btn--block" href="${bookHref(p.id)}">Book now ${ui.arrow}</a>
+${when(showMore, html`<a class="pcard-more" href="${p.page}">Learn more about ${p.id === 'seaside-beach' ? 'beach sessions' : p.id === 'cake-smash' ? 'cake smash' : p.page.includes('newborn') ? 'newborn sessions' : 'baby sessions'}</a>`)}
+</div>
 </article>`;
 }
 
+export function packages(ctx, ids, { scroll = false, more = true, cls = '' } = {}) {
+  const list = ids ? ids.map((id) => PACKAGES.find((p) => p.id === id)) : PACKAGES;
+  const layout = scroll ? 'pkgs--scroll' : list.length === 2 ? 'pkgs--2' : list.length === 1 ? 'pkgs--1' : 'pkgs--grid';
+  return html`<div class="pkgs ${layout} ${cls}">${list.map((p) => packageCard(ctx, p, { more, reveal: !scroll }))}</div>`;
+}
+// Older names kept so every page renders the new cards.
+export const chapterCard = (ctx, p, opts = {}) => packageCard(ctx, p, opts);
+export const pixieCard = (ctx, p, opts = {}) => packageCard(ctx, p, opts);
+export const chapters = (ctx, ids, opts = {}) => packages(ctx, ids, opts);
+
+// Pixie Dust schedules as simple text (no prices).
 export function schedules() {
   return html`<div class="schedules">
-<div class="schedule"><div class="schedule-top"><span>Option A</span><b>$1,000<small>total</small></b></div>${ART.moonsA}<p class="months">Months</p></div>
+<div class="schedule"><div class="schedule-top"><span>Option A</span></div><p class="months-list">1 · 3 · 5 · 7 · 9 <small>months</small></p></div>
 <p class="or">or</p>
-<div class="schedule"><div class="schedule-top"><span>Option B</span><b>$1,000<small>total</small></b></div>${ART.moonsB}<p class="months">Months</p></div>
+<div class="schedule"><div class="schedule-top"><span>Option B</span></div><p class="months-list">2 · 4 · 6 · 8 · 10 <small>months</small></p></div>
 </div>`;
 }
 
-export function pixieCard(ctx, p, { more = true, reveal = true, wide = false, compact = false, headingTag = 'h3' } = {}) {
-  const left = html`<p class="chapter-kicker">${p.chapter}</p>
-<p class="chapter-headline">${p.headline}</p>
-${ART.moonsHero}
-<${headingTag} class="chapter-name">${p.name}</${headingTag}>
-<p class="chapter-price">${p.priceLabel}<small>total</small></p>
-<p class="chapter-type">${p.type} · ${p.sessions} sessions</p>
-<p class="chapter-badge">${icon(p.badge.icon)}${p.badge.text}</p>
-<ul class="chapter-stats">${p.stats.map(stat)}</ul>`;
-  const right = html`${compact
-  ? html`<p class="chapter-notes"><b>Choose one schedule:</b><br>Option A · 1, 3, 5, 7 &amp; 9 months<br>Option B · 2, 4, 6, 8 &amp; 10 months</p><p class="chapter-notes">${p.fine.join('<br>')}</p>`
-  : html`${schedules()}<p class="chapter-notes">${p.fine.join('<br>')}</p>`}
-<div class="spacer"></div>
-<a class="btn btn--gold btn--block" href="${bookHref(p.id)}">Reserve Pixie Dust</a>
-${when(more, html`<a class="chapter-more" href="${p.page}">Milestone session details</a>`)}`;
-  return html`<article class="chapter chapter--night${wide ? ' chapter--wide' : ''}${reveal ? ' reveal' : ''}" id="pkg-${p.id}">
-${corners}
-${wide ? html`<div class="cw-left">${left}</div><div class="cw-right">${right}</div>` : html`${left}${right}`}
-</article>`;
-}
-
-export function chapters(ctx, ids, { scroll = false, wide = false, more = true } = {}) {
-  const list = ids ? ids.map((id) => PACKAGES.find((p) => p.id === id)) : PACKAGES;
-  return html`<div class="chapters ${scroll ? 'chapters--scroll' : 'chapters--grid'}">${list.map((p) => (p.night
-    ? pixieCard(ctx, p, { wide, compact: !wide, more, reveal: !scroll })
-    : chapterCard(ctx, p, { more, reveal: !scroll })))}</div>`;
-}
-
 export function extrasCard(ctx) {
-  const [tw, ex] = ADDONS;
-  return html`<article class="chapter reveal" id="pkg-extras" style="--wash:url(${ctx.media.file('wash-blush')})">
-${corners}
-<p class="chapter-kicker">Little extras</p>
-<p class="chapter-headline">${tw.kicker} ${tw.title}</p>
-<div class="chapter-art" style="aspect-ratio:760/420">${art('twins', 'Twin babies illustration')}</div>
-<h3 class="chapter-name" style="font-size:1.7rem">Twins</h3>
-<p class="chapter-price">${tw.price}</p>
-<p class="chapter-type">Added to any package</p>
-<p class="chapter-badge">${icon('camera')}Includes 4 extra photos</p>
-<div class="chapter-art" style="aspect-ratio:520/300;max-width:170px;margin-top:22px">${art('extraPhotos', 'Extra photos illustration')}</div>
-<p class="chapter-headline" style="font-size:1.15rem">${ex.kicker}</p>
-<p class="chapter-price" style="font-size:1.9rem">${ex.price}</p>
-<p class="chapter-type">Extra edited photos</p>
+  return html`<article class="pcard reveal" id="pkg-extras">
+<div class="pcard-media">${img(ctx.media, 'twins', { sizes: '(min-width:1080px) 370px, (min-width:760px) 45vw, 84vw' })}<span class="pcard-badge">${icon('heart')}Twins &amp; extras</span></div>
+<div class="pcard-body">
+<p class="pcard-kicker">Little extras</p>
+<h3 class="pcard-name">Twins &amp; extra photos</h3>
+<p class="pcard-desc">Twins? Double the love — twin sessions can be added to any package and include 4 extra photos. Can’t choose just a few? Extra edited photos can be added to any session.</p>
+<div class="spacer"></div>
+<a class="btn btn--block" href="${BOOK_URL}">Book now ${ui.arrow}</a>
+</div>
 </article>`;
 }
 
-export function addons() {
-  return html`<div class="addons">${ADDONS.map((a) => html`<div class="addon reveal"><div class="addon-art">${art(a.art, a.title)}</div><div><p class="eyebrow eyebrow--plain" style="margin-bottom:4px">${a.kicker}</p><h3>${a.title} <span class="price">${a.price}</span></h3><p>${a.text}</p></div></div>`)}</div>`;
+export function addons(ctx) {
+  return html`<div class="split">
+<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, 'twins', { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
+<div class="split-body reveal d1">
+${eyebrow('Little extras', 'eyebrow--left')}
+<h2 class="h-sec">Twins &amp; <em>extra photos</em></h2>
+<div class="prose"><p><b>Twins?</b> Double the love! Twin sessions can be added to any package and include 4 extra photos.</p><p><b>Can’t choose just a few?</b> Extra edited photos can be added to any session — just tell us when you pick your favorites.</p></div>
+<div class="mt">${ctaButtons({ label: 'Book now' })}</div>
+</div>
+</div>`;
 }
 
 /* ---------------- how it works ---------------- */
@@ -316,13 +296,13 @@ export function finalCta({ title = 'These moments won’t <em>last forever</em>'
 /* ---------------- booking widget ---------------- */
 const OFFERS = [
   ...PACKAGES.map((p) => ({
-    id: p.id, name: p.name, price: p.priceLabel, unit: p.unit,
+    id: p.id, name: p.name,
     desc: { sunshine: 'Newborn · baby only · 8 photos', wonderland: 'Newborn + siblings & parents · 15 photos', fairytale: 'Babies 2–11 months · 8 photos', 'pixie-dust': '5 milestone sessions in year one', 'cake-smash': 'First birthday · cake included', 'seaside-beach': 'Family beach session · South Padre Island' }[p.id],
-    label: `${p.name} — ${p.type} (${p.priceLabel}${p.unit ? ' ' + p.unit : ''})`,
+    label: `${p.name} — ${p.type}`,
     newborn: p.id === 'sunshine' || p.id === 'wonderland', icon: { sunshine: 'heart', wonderland: 'family', fairytale: 'star', 'pixie-dust': 'sparkle', 'cake-smash': 'cake', 'seaside-beach': 'pin' }[p.id],
   })),
-  { id: 'maternity', name: 'Maternity', price: 'Ask', desc: 'Bump portraits before baby arrives', label: 'Maternity Session', newborn: true, icon: 'heart' },
-  { id: 'not-sure', name: 'Not sure yet', price: '', desc: 'Help me choose the right session', label: 'Not sure yet — help me choose', newborn: false, icon: 'sparkle' },
+  { id: 'maternity', name: 'Maternity', desc: 'Bump portraits before baby arrives', label: 'Maternity Session', newborn: true, icon: 'heart' },
+  { id: 'not-sure', name: 'Not sure yet', desc: 'Help me choose the right session', label: 'Not sure yet — help me choose', newborn: false, icon: 'sparkle' },
 ];
 
 export function bookingWidget({ title = 'Choose your session' } = {}) {
@@ -332,9 +312,9 @@ export function bookingWidget({ title = 'Choose your session' } = {}) {
 <div class="bk-card">
 <div class="bk-panel is-on" data-panel="1">
 <h2 class="bk-title">${title}</h2>
-<p class="bk-sub">Pick the chapter that fits your little one — prices are per package.</p>
+<p class="bk-sub">Pick the session that fits your little one.</p>
 <div class="bk-offers" role="radiogroup" aria-label="Session type">
-${OFFERS.map((o, i) => html`<button type="button" class="bk-offer" role="radio" aria-checked="false" tabindex="${i ? -1 : 0}"${attrs({ 'data-id': o.id, 'data-offer': o.name, 'data-label': o.label, 'data-newborn': o.newborn ? '1' : '0' })}><span class="oi">${icon(o.icon)}</span><span><span class="on">${esc(o.name)}</span><span class="od">${esc(o.desc)}</span></span><span class="op">${esc(o.price)}${o.unit ? `<small>${o.unit}</small>` : ''}</span></button>`)}
+${OFFERS.map((o, i) => html`<button type="button" class="bk-offer" role="radio" aria-checked="false" tabindex="${i ? -1 : 0}"${attrs({ 'data-id': o.id, 'data-offer': o.name, 'data-label': o.label, 'data-newborn': o.newborn ? '1' : '0' })}><span class="oi">${icon(o.icon)}</span><span><span class="on">${esc(o.name)}</span><span class="od">${esc(o.desc)}</span></span><span class="op" aria-hidden="true">${ui.arrow}</span></button>`)}
 </div>
 <div class="bk-actions"><button class="btn" id="bk-next1" type="button" disabled>Continue ${ui.arrow}</button></div>
 </div>

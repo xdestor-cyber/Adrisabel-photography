@@ -14,7 +14,7 @@ export default {
   wpTitle: 'Home',
   seo: {
     title: 'Newborn Photographer McAllen, TX | Adrisabel Photography',
-    description: 'Soft, timeless newborn, baby & family portraits in McAllen and the RGV. 15+ years, hundreds of babies, safe posing. Sessions from $230 — book today.',
+    description: 'Soft, timeless newborn, baby & family portraits in McAllen and the RGV. 15+ years, hundreds of babies, safe posing. Book your session today.',
     focus: 'newborn photographer mcallen',
     image: 'roses',
   },
@@ -28,9 +28,9 @@ ${ribbon()}
 
 <section class="sec sec--blush" id="sessions" aria-labelledby="chapters-title">
 <div class="wrap">
-${secHead({ eyebrow: 'Sessions &amp; prices', title: 'Every baby is a story. Which <em>chapter</em> will you treasure forever?', lede: 'Six storybook sessions that follow your baby’s first year — from those sleepy newborn days to the big first birthday and a day at the beach.', id: 'chapters-title' })}
+${secHead({ eyebrow: 'Sessions', title: 'Every baby is a story. Which <em>chapter</em> will you treasure forever?', lede: 'Six storybook sessions that follow your baby’s first year — from those sleepy newborn days to the big first birthday and a day at the beach.', id: 'chapters-title' })}
 ${chapters(ctx, null, { scroll: true })}
-<div class="center mt">${ctaButtons({ label: 'Compare all packages', href: '/pricing/', call: false, center: true })}</div>
+<div class="center mt">${ctaButtons({ label: 'See all sessions', href: '/pricing/', call: false, center: true })}</div>
 </div>
 </section>
 
@@ -60,11 +60,8 @@ ${reviews()}
 </div>
 </section>
 
-<section class="sec sec--tight" aria-labelledby="extras-title">
-<div class="wrap">
-${secHead({ eyebrow: 'Little extras', title: 'Twins &amp; <em>extra photos</em>', id: 'extras-title' })}
-${addons()}
-</div>
+<section class="sec sec--tight" aria-label="Twins and extra photos">
+<div class="wrap">${addons(ctx)}</div>
 </section>
 
 ${ctaBand()}
