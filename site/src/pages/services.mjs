@@ -274,7 +274,7 @@ ${pageHero(ctx, {
   title: 'Maternity portraits in <em>McAllen, TX</em>',
   lede: 'Celebrate the chapter before your baby arrives — soft, elegant portraits of your bump, your partner and the little ones who are about to become big siblings.',
   photo: 'handsFeet', photo2: 'family', chip: googleChip,
-  ctaHref: bookHref('maternity'), ctaLabel: 'Ask about maternity',
+  ctaHref: bookHref('not-sure'), ctaLabel: 'Ask about maternity',
   trust: false,
 })}
 <section class="sec sec--blush" aria-labelledby="mt-plan">
