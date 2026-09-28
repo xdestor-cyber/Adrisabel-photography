@@ -1,7 +1,7 @@
 // schema.org JSON-LD. Rank Math already outputs WebSite/WebPage/BreadcrumbList;
-// these add the local business, its services and prices, and FAQs.
+// these add the local business, its services, and FAQs.
 import { BUSINESS, SITE_URL } from '../data/business.mjs';
-import { PACKAGES, PRICE_RANGE } from '../data/packages.mjs';
+import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
 
 const B = BUSINESS;
@@ -22,8 +22,6 @@ export function businessNode(ctx) {
     email: B.email,
     logo: abs(ctx.media.logo().png),
     image: photos,
-    priceRange: PRICE_RANGE,
-    currenciesAccepted: 'USD',
     address: { '@type': 'PostalAddress', addressLocality: B.locality, addressRegion: B.region, addressCountry: B.country },
     areaServed: [...CITIES.map((c) => ({ '@type': 'City', name: `${c.name}, TX` })), { '@type': 'City', name: 'South Padre Island, TX' }, { '@type': 'AdministrativeArea', name: 'Rio Grande Valley, Texas' }],
     hasMap: B.google.url,
@@ -42,10 +40,8 @@ export function offer(p) {
   return {
     '@type': 'Offer',
     name: `${p.name} — ${p.type}`,
-    price: String(p.price),
-    priceCurrency: 'USD',
-    url: `${SITE_URL}/pricing/#pkg-${p.id}`,
-    description: `${p.stats.map(([, n, l]) => `${n} ${l}`).join(', ')}. ${p.bestFor}.`,
+    url: `${SITE_URL}/fast-online-booking/?session=${p.id}`,
+    description: `${p.desc} Includes: ${p.includes.join(', ')}.`,
     itemOffered: { '@type': 'Service', name: `${p.name} ${p.type}`, provider: { '@id': BUSINESS_ID } },
   };
 }

@@ -1,7 +1,7 @@
 // 14 local landing pages (newborn + baby photographer × 7 RGV cities).
 import { html, ui, icon } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
-import { pageHero, secHead, chapterCard, pixieCard, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref } from '../lib/components.mjs';
+import { pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref } from '../lib/components.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { byId } from '../data/packages.mjs';
 import { BUSINESS as B } from '../data/business.mjs';
@@ -15,8 +15,8 @@ function cityFaq(c, kind) {
   const own = [
     { q: `How far is the studio from ${c.name}?`, a: `${c.route} ${B.addressNote}` },
     nb
-      ? { q: `How much does a newborn photographer cost in ${c.name}?`, a: 'Newborn sessions start at <b>$230</b> for Sunshine (baby only · 8 edited photos · 2 wardrobe changes · 2 backdrops). Wonderland is <b>$300</b> with siblings and parents (15 edited photos · 4 backdrops). Twins add $100 and include 4 extra photos.' }
-      : { q: `How much are baby photos in ${c.name}?`, a: 'A Fairytale baby session is <b>$230</b> (8 edited photos · 2 wardrobe changes · 2 backdrops). The Pixie Dust milestone plan is <b>$1,000 total</b> for 5 sessions in baby’s first year, and Cake Smash is <b>$280</b> with the cake included.' },
+      ? { q: `Which newborn sessions do you offer in ${c.name}?`, a: 'Two newborn packages: <b>Sunshine</b> (baby only · 8 edited photos · 2 outfits · 2 backdrops) and <b>Wonderland</b> with siblings and parents (15 edited photos · 2 outfits · 4 backdrops). Twins can be added to any package and include 4 extra photos. Send a booking request or call/text (409) 354-3075 for current details.' }
+      : { q: `Which baby sessions do you offer in ${c.name}?`, a: '<b>Fairytale</b> for babies 2–11 months (8 edited photos · 2 outfits · 2 backdrops), the <b>Pixie Dust</b> plan with 5 milestone sessions in baby’s first year, and <b>Cake Smash</b> for the first birthday with the cake included. Send a booking request or call/text (409) 354-3075 for current details.' },
     nb
       ? { q: `When should ${c.name} parents book a newborn session?`, a: 'Reach out during your second or third trimester. Newborn portraits are best 5–14 days after birth, and we’ll schedule your session as soon as your baby arrives.' }
       : { q: `What’s the best age for a baby session in ${c.name}?`, a: 'Any month is a milestone! Fairytale sessions are for babies 2–11 months, Pixie Dust follows five milestones from 1 to 10 months, and Cake Smash celebrates the first birthday.' },
@@ -40,8 +40,8 @@ function cityPage(c, kind) {
     seo: {
       title: `${service} Photographer ${c.name}, TX | Adrisabel Photography`,
       description: nb
-        ? `Newborn photographer for ${c.name}, TX families — gentle, safe posing, 15+ years’ experience, sessions from $230 and edited photos delivered in 1 week.`
-        : `Baby & milestone photographer for ${c.name}, TX: Fairytale sessions ($230), the Pixie Dust first-year plan ($1,000) and Cake Smash ($280).`,
+        ? `Newborn photographer for ${c.name}, TX families — gentle, safe posing, 15+ years’ experience, baby-led sessions and edited photos delivered in 1 week.`
+        : `Baby & milestone photographer for ${c.name}, TX: Fairytale baby sessions, the Pixie Dust first-year milestone plan and Cake Smash first birthdays.`,
       focus: `${kind} photographer ${c.name.toLowerCase()} tx`,
       image: d.photos[0],
     },
@@ -76,8 +76,8 @@ ${eyebrow(`Why ${c.name} families choose Adrisabel`, 'eyebrow--left')}
 <div class="wrap">
 ${secHead({ eyebrow: `${service} sessions for ${c.name} families`, title: nb ? 'Choose your newborn <em>chapter</em>' : 'Pick a moment — or <em>the whole year</em>', id: 'pk-title' })}
 ${nb
-  ? html`<div class="chapters chapters--grid chapters--pair">${chapterCard(ctx, byId.sunshine)}${chapterCard(ctx, byId.wonderland)}</div><p class="center mt"><span class="note" style="display:inline-block"><b>Twins?</b> Add $100 to any package — includes 4 extra photos.</span></p>`
-  : html`<div class="chapters chapters--grid">${chapterCard(ctx, byId.fairytale)}${pixieCard(ctx, byId['pixie-dust'], { compact: true })}${chapterCard(ctx, byId['cake-smash'])}</div>`}
+  ? html`${packages(ctx, ['sunshine', 'wonderland'])}<p class="center mt"><span class="note" style="display:inline-block"><b>Twins?</b> Twin sessions can be added to any package — includes 4 extra photos.</span></p>`
+  : html`${packages(ctx, ['fairytale', 'pixie-dust', 'cake-smash'])}`}
 </div>
 </section>
 

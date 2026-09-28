@@ -5,7 +5,7 @@ export const FAQS = [
   // ---- booking & pricing
   {
     q: 'How much does newborn photography cost?',
-    a: 'Newborn sessions start at <b>$230</b> for <b>Sunshine</b> (baby only · 8 edited photos · 2 wardrobe changes · 2 backdrops). <b>Wonderland</b> is <b>$300</b> and adds siblings and parents (15 edited photos · 2 wardrobe changes · 4 backdrops). See every package on the <a href="/pricing/">pricing page</a>.',
+    a: 'We offer two newborn packages: <b>Sunshine</b> (baby only · 8 edited photos · 2 outfits · 2 backdrops) and <b>Wonderland</b> with siblings and parents (15 edited photos · 2 outfits · 4 backdrops). Send a <a href="/fast-online-booking/">booking request</a> or call/text <a href="tel:+14093543075">(409) 354-3075</a> and we’ll share current package details. See all <a href="/pricing/">sessions</a>.',
     tags: ['home', 'booking', 'newborn', 'city-newborn', 'pricing'], group: 'Booking & pricing',
   },
   {
@@ -25,12 +25,12 @@ export const FAQS = [
   },
   {
     q: 'Do you photograph twins?',
-    a: 'Yes — double the love! Add <b>$100</b> to any package for twins, and it includes <b>4 extra photos</b>.',
+    a: 'Yes — double the love! Twin sessions can be added to any package and include <b>4 extra photos</b>.',
     tags: ['newborn', 'pricing', 'city-newborn'], group: 'Booking & pricing',
   },
   {
     q: 'Can I get more photos than my package includes?',
-    a: 'Of course. Extra edited photos are <b>$30 each</b>, so you never have to leave a favorite behind.',
+    a: 'Of course. Extra edited photos can be added to any session, so you never have to leave a favorite behind.',
     tags: ['pricing', 'booking'], group: 'Booking & pricing',
   },
   // ---- sessions
@@ -56,7 +56,7 @@ export const FAQS = [
   },
   {
     q: 'What is the Pixie Dust milestone package?',
-    a: '<b>Pixie Dust</b> is <b>$1,000 total</b> for <b>5 sessions</b> during baby’s first year (babies 1–11 months). Choose one schedule — <b>Option A</b>: 1, 3, 5, 7 and 9 months, or <b>Option B</b>: 2, 4, 6, 8 and 10 months. Each session includes 8 edited images, 1 outfit and 1 backdrop, and siblings and parents are included. The 1-year Cake Smash is not included.',
+    a: '<b>Pixie Dust</b> is <b>5 milestone sessions</b> during baby’s first year (babies 1–11 months). Choose one schedule — <b>Option A</b>: 1, 3, 5, 7 and 9 months, or <b>Option B</b>: 2, 4, 6, 8 and 10 months. Each session includes 8 edited images, 1 outfit and 1 backdrop, and siblings and parents are included. The 1-year Cake Smash is not included.',
     tags: ['baby', 'pricing', 'city-baby', 'home'], group: 'Your session',
   },
   {
@@ -66,12 +66,12 @@ export const FAQS = [
   },
   {
     q: 'What’s included in the Cake Smash session?',
-    a: '<b>Cake Smash</b> is <b>$280</b> and includes <b>1 timeless cake</b>, <b>8 edited photos</b> and <b>1 timeless backdrop</b>. Just bring your birthday baby (and maybe a change of clothes for the ride home).',
+    a: '<b>Cake Smash</b> includes <b>1 timeless cake</b>, <b>8 edited photos</b> and <b>1 timeless backdrop</b>. Just bring your birthday baby (and maybe a change of clothes for the ride home).',
     tags: ['cake', 'pricing', 'city-baby'], group: 'Your session',
   },
   {
     q: 'Do you offer beach sessions?',
-    a: 'Yes! Our <b>Seaside Beach</b> family session is <b>$370</b> at <b>South Padre Island</b> and includes <b>15 edited photos</b>. See the <a href="/south-padre-island-family-photography/">beach session page</a> for details.',
+    a: 'Yes! Our <b>Seaside Beach</b> family session takes place at <b>South Padre Island</b> and includes <b>15 edited photos</b>. See the <a href="/south-padre-island-family-photography/">beach session page</a> for details.',
     tags: ['beach', 'pricing', 'home'], group: 'Your session',
   },
   {

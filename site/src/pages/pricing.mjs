@@ -1,42 +1,39 @@
 import { html } from '../lib/html.mjs';
-import { pageHero, secHead, chapterCard, pixieCard, extrasCard, steps, faq, finalCta, infoCards, reviews } from '../lib/components.mjs';
+import { pageHero, secHead, packages, addons, steps, faq, finalCta, infoCards, reviews } from '../lib/components.mjs';
 import { faqsFor } from '../data/faqs.mjs';
 import { faqNode, serviceNode } from '../lib/schema.mjs';
-import { PACKAGES, byId } from '../data/packages.mjs';
+import { PACKAGES } from '../data/packages.mjs';
 
 const FAQ = faqsFor('pricing');
 
 export default {
   path: '/pricing/',
   wpSlug: 'pricing',
-  wpTitle: 'Pricing',
+  wpTitle: 'Sessions',
   seo: {
-    title: 'Newborn Photography Prices in McAllen, TX | Adrisabel',
-    description: 'Every package, clearly priced: newborn from $230, family $300, milestone plan $1,000, cake smash $280 & South Padre beach $370. 50% deposit books.',
-    focus: 'newborn photography prices mcallen',
+    title: 'Newborn & Baby Photography Sessions | McAllen, TX | Adrisabel',
+    description: 'Newborn, baby, milestone, cake smash and South Padre beach sessions with Adrisabel — safe, baby-led and delivered in one week. Book your date.',
+    focus: 'newborn photography sessions mcallen',
     image: 'moonStars',
   },
   body: (ctx) => html`
 ${pageHero(ctx, {
-  crumbs: [{ label: 'Pricing' }],
-  eyebrow: 'Sessions &amp; pricing',
+  crumbs: [{ label: 'Sessions' }],
+  eyebrow: 'Sessions',
   title: 'Every baby is a story — <em>choose your chapter</em>',
-  lede: 'Simple, transparent packages for every stage of your baby’s first year. Each one includes hand-edited photos, wardrobe and props from our studio collection, and delivery within one week.',
+  lede: 'Sessions for every stage of your baby’s first year — and the whole family. Each one includes hand-edited photos, wardrobe and props from our studio collection, and delivery within one week.',
   center: true,
-  ctaLabel: 'Request your date',
+  ctaLabel: 'Book now',
 })}
 
 <section class="sec sec--blush" aria-labelledby="packages-title" style="padding-top:40px">
 <div class="wrap">
-<h2 class="sr-only" id="packages-title">Photography packages</h2>
-<div class="chapters chapters--grid">
-${['sunshine', 'wonderland', 'fairytale'].map((id) => chapterCard(ctx, byId[id]))}
-${pixieCard(ctx, byId['pixie-dust'], { wide: true })}
-${['cake-smash', 'seaside-beach'].map((id) => chapterCard(ctx, byId[id]))}
-${extrasCard(ctx)}
-</div>
+<h2 class="sr-only" id="packages-title">Photography sessions</h2>
+${packages(ctx)}
 </div>
 </section>
+
+<section class="sec sec--tight" aria-label="Twins and extra photos"><div class="wrap">${addons(ctx)}</div></section>
 
 <section class="sec sec--paper" aria-labelledby="good-title">
 <div class="wrap">

@@ -3,7 +3,7 @@ import { html, ui, icon, art } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
 import {
   pageHero, secHead, chapters, chapterCard, pixieCard, gallery, reviews, areas, faq, finalCta, ctaBand,
-  trustBadges, infoCards, facts, bookHref, ctaButtons, eyebrow, schedules,
+  trustBadges, infoCards, facts, bookHref, ctaButtons, eyebrow, schedules, packages,
 } from '../lib/components.mjs';
 import { faqsFor, FAQS } from '../data/faqs.mjs';
 import { byId, ADDONS } from '../data/packages.mjs';
@@ -19,7 +19,7 @@ export const newborn = {
   wpTitle: 'Newborn Photography',
   seo: {
     title: 'Newborn Photography in McAllen, TX | Adrisabel Photography',
-    description: 'Gentle, safe newborn photography in a warm McAllen-area studio. Sunshine ($230) & Wonderland ($300) sessions, props included, photos in 1 week.',
+    description: 'Gentle, safe newborn photography for McAllen & RGV families. Baby-only or whole-family sessions, wraps and props included, photos in 1 week.',
     focus: 'newborn photography mcallen',
     image: 'crown',
   },
@@ -32,13 +32,13 @@ ${pageHero(ctx, {
   photo: 'crown', photo2: 'closeup', chip: googleChip,
   trust: false,
 })}
-<section class="sec sec--tight" aria-label="Newborn session at a glance"><div class="wrap">${facts([['5–14 days', 'the ideal newborn age'], ['2–3 hours', 'unhurried &amp; baby-led'], ['From $230', 'wraps &amp; props included'], ['1 week', 'edited photo delivery']])}</div></section>
+<section class="sec sec--tight" aria-label="Newborn session at a glance"><div class="wrap">${facts([['5–14 days', 'the ideal newborn age'], ['2–3 hours', 'unhurried &amp; baby-led'], ['Included', 'wraps, outfits &amp; props'], ['1 week', 'edited photo delivery']])}</div></section>
 
 <section class="sec sec--blush" aria-labelledby="nb-packages">
 <div class="wrap">
 ${secHead({ eyebrow: 'Newborn packages', title: 'Two newborn <em>chapters</em>', lede: 'Choose baby-only portraits with Sunshine, or bring the whole family into the story with Wonderland.', id: 'nb-packages' })}
-<div class="chapters chapters--grid" style="max-width:820px;margin:0 auto">${['sunshine', 'wonderland'].map((id) => chapterCard(ctx, byId[id], { more: false }))}</div>
-<p class="center mt"><span class="note" style="display:inline-block">${icon('heart', 'style="width:18px;height:18px;display:inline-block;vertical-align:-3px"')} <b>Twins?</b> Add $100 to any package — includes 4 extra photos.</span></p>
+${packages(ctx, ['sunshine', 'wonderland'])}
+<p class="center mt"><span class="note" style="display:inline-block">${icon('heart', 'style="width:18px;height:18px;display:inline-block;vertical-align:-3px"')} <b>Twins?</b> Twin sessions can be added to any package — includes 4 extra photos.</span></p>
 </div>
 </section>
 
@@ -113,7 +113,7 @@ export const baby = {
   wpTitle: 'Baby & Milestone Photography',
   seo: {
     title: 'Baby & Milestone Photography McAllen, TX | Adrisabel',
-    description: 'Baby photos for 2–11 months with Fairytale ($230), or the Pixie Dust plan: 5 milestone sessions in baby’s first year for $1,000. McAllen & the RGV.',
+    description: 'Baby photos for 2–11 months with Fairytale, or the Pixie Dust plan: 5 milestone sessions across baby’s first year. McAllen, Mission, Pharr & the RGV.',
     focus: 'baby photographer mcallen',
     image: 'moonStars',
   },
@@ -126,12 +126,12 @@ ${pageHero(ctx, {
   photo: 'moonStars', photo2: 'swingGirl', chip: googleChip,
   trust: false,
 })}
-<section class="sec sec--tight" aria-label="Baby sessions at a glance"><div class="wrap">${facts([['2–11 months', 'Fairytale session ages'], ['$230', 'Fairytale · 8 photos'], ['5 sessions', 'Pixie Dust · $1,000 total'], ['1 week', 'edited photo delivery']])}</div></section>
+<section class="sec sec--tight" aria-label="Baby sessions at a glance"><div class="wrap">${facts([['2–11 months', 'Fairytale session ages'], ['8 photos', 'per Fairytale session'], ['5 sessions', 'Pixie Dust milestone plan'], ['1 week', 'edited photo delivery']])}</div></section>
 
 <section class="sec sec--blush" aria-labelledby="bb-packages">
 <div class="wrap">
 ${secHead({ eyebrow: 'Baby packages', title: 'Pick a moment — or <em>the whole year</em>', id: 'bb-packages' })}
-<div class="chapters chapters--grid chapters--pair">${chapterCard(ctx, byId.fairytale, { more: false })}${pixieCard(ctx, byId['pixie-dust'], { compact: true, more: false })}</div>
+${packages(ctx, ['fairytale', 'pixie-dust'])}
 </div>
 </section>
 
@@ -197,7 +197,7 @@ export const cake = {
   wpTitle: 'Cake Smash Photography',
   seo: {
     title: 'Cake Smash Photography McAllen, TX | Adrisabel',
-    description: 'Celebrate the big ONE! First-birthday cake smash sessions in McAllen — $280 with a timeless cake, 8 edited photos and a timeless backdrop.',
+    description: 'Celebrate the big ONE! First-birthday cake smash sessions in McAllen & the RGV — cake included, 8 edited photos and a timeless backdrop.',
     focus: 'cake smash photography mcallen',
     image: 'cake',
   },
@@ -211,7 +211,7 @@ ${pageHero(ctx, {
   ctaHref: bookHref('cake-smash'), ctaLabel: 'Reserve Cake Smash',
   trust: false,
 })}
-<section class="sec sec--tight" aria-label="Cake smash at a glance"><div class="wrap">${facts([['$280', 'cake included'], ['8', 'edited photos'], ['1', 'timeless backdrop'], ['1 week', 'photo delivery']])}</div></section>
+<section class="sec sec--tight" aria-label="Cake smash at a glance"><div class="wrap">${facts([['Cake', 'included'], ['8', 'edited photos'], ['1', 'timeless backdrop'], ['1 week', 'photo delivery']])}</div></section>
 
 <section class="sec sec--blush" aria-labelledby="cs-package">
 <div class="wrap">
@@ -233,7 +233,7 @@ ${eyebrow('How it works', 'eyebrow--left')}
 <section class="sec" aria-labelledby="cs-pair">
 <div class="wrap">
 ${secHead({ eyebrow: 'Before the big day', title: 'Celebrate the <em>whole first year</em>', lede: 'Many families photograph the months leading up to the first birthday with our Pixie Dust milestone plan, then finish the story with Cake Smash (booked separately).', id: 'cs-pair' })}
-<div class="chapters chapters--grid" style="max-width:1000px;margin:0 auto">${pixieCard(ctx, byId['pixie-dust'], { wide: true })}</div>
+${packages(ctx, ['pixie-dust'])}
 </div>
 </section>
 
@@ -292,7 +292,7 @@ ${infoCards([
 <section class="sec" aria-labelledby="mt-newborn">
 <div class="wrap">
 ${secHead({ eyebrow: 'Continue the story', title: 'From bump to <em>baby</em>', lede: 'After your baby arrives, choose Sunshine for baby-only portraits or Wonderland to bring the whole family in.', id: 'mt-newborn' })}
-<div class="chapters chapters--grid" style="max-width:820px;margin:0 auto">${['sunshine', 'wonderland'].map((id) => chapterCard(ctx, byId[id]))}</div>
+${packages(ctx, ['sunshine', 'wonderland'])}
 </div>
 </section>
 
@@ -323,23 +323,22 @@ export const beach = {
   isNew: true,
   seo: {
     title: 'South Padre Island Family Photographer | Adrisabel',
-    description: 'Seaside Beach family sessions on South Padre Island — $370 with 15 edited photos. Sandy toes, salty kisses and ocean breeze with Adrisabel.',
+    description: 'Seaside Beach family sessions on South Padre Island with 15 edited photos. Sandy toes, salty kisses and ocean breeze with Adrisabel.',
     focus: 'south padre island family photographer',
     image: 'family',
   },
   body: (ctx) => html`
-<section class="page-hero page-hero--center">
-<div class="wrap wrap--narrow">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">South Padre Island Family Photography</span></nav>
-${eyebrow('Chapter Six · Seaside Beach')}
-<h1 class="h-page">Family beach photos on <em>South Padre Island</em></h1>
-<p class="lede">Sandy toes &amp; salty kisses. A relaxed family session on the beach at South Padre Island — babies, big kids, grandparents and all — with 15 edited photos to remember it by.</p>
-<div class="chapter-art reveal" style="max-width:420px;margin:26px auto 0;--wash:url(${ctx.media.file('wash-aqua')})">${art('seaside', 'Illustration of a family on the beach at South Padre Island')}</div>
-${ctaButtons({ label: 'Reserve Seaside Beach', href: bookHref('seaside-beach'), center: true })}
-</div>
-</section>
+${pageHero(ctx, {
+  crumbs: [{ label: 'South Padre Island Family Photography' }],
+  eyebrow: 'Seaside Beach family session',
+  title: 'Family beach photos on <em>South Padre Island</em>',
+  lede: 'Sandy toes &amp; salty kisses. A relaxed family session on the beach at South Padre Island — babies, big kids, grandparents and all — with 15 edited photos to remember it by.',
+  photo: 'family', photo2: 'handsFeet', chip: googleChip,
+  ctaHref: bookHref('seaside-beach'), ctaLabel: 'Book now',
+  trust: false,
+})}
 
-<section class="sec sec--tight" aria-label="Beach session at a glance"><div class="wrap">${facts([['$370', 'Seaside Beach session'], ['15', 'edited photos'], ['South Padre', 'Island location'], ['1 week', 'photo delivery']])}</div></section>
+<section class="sec sec--tight" aria-label="Beach session at a glance"><div class="wrap">${facts([['Family', 'all together on the beach'], ['15', 'edited photos'], ['South Padre', 'Island location'], ['1 week', 'photo delivery']])}</div></section>
 
 <section class="sec sec--blush" aria-labelledby="bc-package">
 <div class="wrap">
@@ -352,7 +351,7 @@ ${eyebrow('What to expect', 'eyebrow--left')}
 <p>Beach sessions are all about connection: walking hand in hand by the water, little feet in the sand, cuddles in the ocean breeze. We guide you gently the whole time, so even the littlest ones stay happy and relaxed.</p>
 <p>We’ll plan the date and time with you for the softest light of the day, and share the exact meeting spot on the island when you book. After the session you’ll choose your favorite images, and your 15 edited photos arrive within one week.</p>
 </div>
-<ul class="checks">${['Soft, coordinating colors look beautiful by the water', 'Bring a towel, water and a change of clothes for the kids', 'Grandparents and extended family are welcome', 'Twins? Add $100 — includes 4 extra photos'].map((t) => html`<li>${icon('heart')}<span>${t}</span></li>`)}</ul>
+<ul class="checks">${['Soft, coordinating colors look beautiful by the water', 'Bring a towel, water and a change of clothes for the kids', 'Grandparents and extended family are welcome', 'Twins? Just let us know — includes 4 extra photos'].map((t) => html`<li>${icon('heart')}<span>${t}</span></li>`)}</ul>
 </div>
 </div>
 </div>

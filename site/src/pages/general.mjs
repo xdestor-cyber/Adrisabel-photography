@@ -292,7 +292,7 @@ ${faq(BOOK_FAQ)}
 // compete with the home page in search).
 const landing = ({ path, wpSlug, wpTitle, title }) => ({
   path, wpSlug, wpTitle,
-  seo: { title, description: 'Soft, timeless newborn & baby photography in McAllen and the RGV — 15+ years, hundreds of babies, 5.0 ★ on Google. Sessions from $230.', focus: 'newborn photographer mcallen', robots: 'noindex', image: 'roses' },
+  seo: { title, description: 'Soft, timeless newborn & baby photography in McAllen and the RGV — 15+ years, hundreds of babies, 5.0 ★ on Google. Book your session today.', focus: 'newborn photographer mcallen', robots: 'noindex', image: 'roses' },
   body: (ctx) => html`
 ${homeHero(ctx)}
 ${ribbon()}

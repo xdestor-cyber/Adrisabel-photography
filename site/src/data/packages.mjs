@@ -4,6 +4,7 @@
 export const PACKAGES = [
   {
     id: 'sunshine', roman: 'I', chapter: 'Chapter One', name: 'Sunshine',
+    kicker: 'Newborn session', desc: 'All about your newborn — sleepy, curled-up portraits in soft wraps and dreamy little setups, best in the first 5–14 days.', includes: ['8 edited photos', '2 outfits', '2 backdrops'], cardPhoto: 'lavender',
     price: 230, priceLabel: '$230', type: 'Newborn Session',
     badge: { icon: 'heart', text: 'Baby only' },
     headline: 'Hello, little sunshine.',
@@ -15,6 +16,7 @@ export const PACKAGES = [
   },
   {
     id: 'wonderland', roman: 'II', chapter: 'Chapter Two', name: 'Wonderland',
+    kicker: 'Newborn & family session', desc: 'Your newborn plus the people who love them most — sweet portraits with big brothers and sisters, mom and dad.', includes: ['15 edited photos', '2 outfits', '4 backdrops'], cardPhoto: 'sister',
     price: 300, priceLabel: '$300', type: 'Newborn, Baby & Family Session',
     badge: { icon: 'family', text: 'Baby, siblings & parents' },
     headline: 'Welcome to the family.',
@@ -26,6 +28,7 @@ export const PACKAGES = [
   },
   {
     id: 'fairytale', roman: 'III', chapter: 'Chapter Three', name: 'Fairytale',
+    kicker: 'Baby session · 2–11 months', desc: 'First smiles, giggles and sitting up — playful portraits for the months when personality blooms.', includes: ['8 edited photos', '2 outfits', '2 backdrops'], cardPhoto: 'swingGirl',
     price: 230, priceLabel: '$230', type: 'Baby Session',
     badge: { icon: 'star', text: 'Babies 2–11 months old' },
     headline: 'Look who’s smiling now!',
@@ -37,6 +40,7 @@ export const PACKAGES = [
   },
   {
     id: 'pixie-dust', roman: 'IV', chapter: 'Chapter Four', name: 'Pixie Dust',
+    kicker: 'First-year milestone plan', desc: 'Five milestone sessions across baby’s first year — months 1, 3, 5, 7 & 9 or 2, 4, 6, 8 & 10. Siblings and parents included.', includes: ['5 sessions', '8 edited photos each', 'New outfit & backdrop each time'], cardPhoto: 'moonStars',
     price: 1000, priceLabel: '$1,000', unit: 'total', type: 'Milestone Package',
     badge: { icon: 'family', text: 'Siblings & parents included' },
     headline: 'Every little milestone of their first year…',
@@ -55,6 +59,7 @@ export const PACKAGES = [
   },
   {
     id: 'cake-smash', roman: 'V', chapter: 'Chapter Five', name: 'Cake Smash',
+    kicker: 'First birthday session', desc: 'Frosting, giggles and the sweetest mess — a timeless first-birthday session with the cake already taken care of.', includes: ['Cake included', '8 edited photos', '1 timeless backdrop'], cardPhoto: 'cake',
     price: 280, priceLabel: '$280', type: 'First Birthday Session',
     badge: { icon: 'cake', text: 'Cake included' },
     headline: 'Then comes the big ONE!',
@@ -66,6 +71,7 @@ export const PACKAGES = [
   },
   {
     id: 'seaside-beach', roman: 'VI', chapter: 'Chapter Six', name: 'Seaside Beach',
+    kicker: 'Family beach session', desc: 'The whole family barefoot on the sand at South Padre Island — sandy toes, salty kisses and ocean breeze.', includes: ['15 edited photos', 'South Padre Island'], cardPhoto: 'family',
     price: 370, priceLabel: '$370', type: 'Family Session',
     badge: { icon: 'pin', text: 'South Padre Island' },
     headline: 'Sandy toes & salty kisses.',
@@ -80,8 +86,8 @@ export const PACKAGES = [
 export const byId = Object.fromEntries(PACKAGES.map((p) => [p.id, p]));
 
 export const ADDONS = [
-  { id: 'twins', art: 'twins', kicker: 'Twins?', title: 'Double the love!', price: '+$100', text: 'Add $100 to any package — includes 4 extra photos.' },
-  { id: 'extras', art: 'extraPhotos', kicker: 'Can’t choose just a few?', title: 'Extra photos', price: '$30 each', text: 'Add more edited images to any session for $30 each.' },
+  { id: 'twins', art: 'twins', kicker: 'Twins?', title: 'Double the love!', price: '', text: 'Twin sessions can be added to any package and include 4 extra photos.' },
+  { id: 'extras', art: 'extraPhotos', kicker: 'Can’t choose just a few?', title: 'Extra photos', price: '', text: 'Extra edited photos can be added to any session.' },
 ];
 
 export const HOW = [
