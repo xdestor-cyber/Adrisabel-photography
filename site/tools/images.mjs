@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Builds the optimized photo masters in site/assets/img from the originals
-// (WordPress media library + the higher-resolution Google Business Profile
-// copies). Originals are cached in site/.cache/src. Run: node site/tools/images.mjs
+// (WordPress media library, the higher-resolution Google Business Profile copies,
+// and Instagram originals kept in site/assets/originals). Downloads are cached in
+// site/.cache/src. Run: node site/tools/images.mjs
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,6 +26,8 @@ function download(url, dst) {
 }
 
 function fetchOriginal(key, p) {
+  // `local:<file>` = an original kept in site/assets/originals (e.g. from her Instagram)
+  if (p.src.startsWith('local:')) return path.join(ROOT, 'assets/originals', p.src.slice(6));
   const ext = /\.(jpe?g|png|webp)$/i.exec(p.src)?.[0] || '.jpg';
   const dst = path.join(CACHE, `${key}${ext}`);
   try {
