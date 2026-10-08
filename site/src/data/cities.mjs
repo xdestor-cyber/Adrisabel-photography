@@ -8,10 +8,10 @@ export const CITIES = [
     newbornTitle: 'McAllen Newborn Photos · Safe, Gentle Sessions | Adrisabel',
     newbornFocus: 'newborn photos mcallen',
     drive: 'just minutes',
-    route: 'We’re a short drive from anywhere in McAllen — from most neighborhoods it’s about 10–15 minutes.',
-    local: 'From north McAllen neighborhoods near Trenton Road to homes close to downtown and Quinta Mazatlán, the studio is a short drive across town.',
+    route: 'We’re a short drive from anywhere in McAllen — about 10–15 minutes from most neighborhoods, or 20–25 from the far north side near Tres Lagos.',
+    local: 'Before long, the half-mile trail at Town Lake at Firemen’s Park and the picnic tables at Bill Schupp Park will be part of your baby’s world. For now, the studio is a short drive across town.',
     neighborhoods: ['North McAllen', 'Tres Lagos', 'Northridge Park', 'Woodhollow', 'Auburn Estates', 'Downtown McAllen', 'Uptown McAllen'],
-    areas: 'Home might be in North McAllen, among Tres Lagos, Northridge Park, Woodhollow and Auburn Estates, or in Downtown McAllen or Uptown McAllen. Either way, familiar stops like the International Museum of Art & Science, La Plaza Mall and the McAllen Nature Center are close to home, and so is our private studio in the McAllen area.',
+    areas: 'North McAllen is home to Tres Lagos, with its lakes and hike-and-bike trails, as well as Northridge Park, Woodhollow and Auburn Estates. Then there’s Downtown McAllen, with City Hall and the Cine El Rey, and Uptown McAllen. Wherever you live, the International Museum of Art & Science, La Plaza Mall and the McAllen Nature Center are never far.',
     newborn: {
       intro: 'Looking for a newborn photographer in McAllen who is patient, gentle and truly loves babies? With 15+ years of experience and hundreds of babies photographed, Adrisabel creates soft, timeless newborn portraits for McAllen families — in a warm private studio just minutes from home.',
       why: 'Those first fragile days call for someone calm and experienced. Every newborn session is baby-led and unhurried, with time built in for feeding and cuddles, and every pose is safely supported.',
@@ -47,7 +47,7 @@ export const CITIES = [
     route: 'From Mission, head east on Expressway 83 (I-2) — the drive takes about 10–20 minutes.',
     local: 'From Sharyland to the neighborhoods near Bentsen-Rio Grande Valley State Park, it’s a short trip east for newborn, baby and first-birthday sessions.',
     neighborhoods: ['Downtown Mission', 'Shary Heights', 'Sharyland', 'Sharyland Plantation', 'Cimarron', 'Tanglewood at Bentsen Palm'],
-    areas: 'Parents across Mission are welcome, from the Spanish Revival storefronts of downtown Mission and the mid-century ranch homes of Shary Heights to Cimarron, Sharyland Plantation and Tanglewood at Bentsen Palm. Home near La Lomita Chapel, Leo Peña Placita Park or Bentsen-Rio Grande Valley State Park? Expressway 83 brings you east to the studio.',
+    areas: 'Downtown Mission keeps its Spanish Revival storefronts, and Shary Heights, about a mile north, is lined with mid-century ranch homes. Cimarron, Sharyland Plantation and Tanglewood at Bentsen Palm are part of Mission too. From La Lomita Chapel, Leo Peña Placita Park or Bentsen-Rio Grande Valley State Park, Expressway 83 brings you east to the studio.',
     newborn: {
       intro: 'Searching for a newborn photographer near Mission, TX? Adrisabel creates calm, cozy newborn sessions with soft wraps, sweet props and safe, supported posing — an easy drive from home.',
       why: 'We move at your baby’s pace, pausing for feeding and soothing whenever needed. Big brothers and sisters are welcome in our Wonderland session, so the whole family can be part of the story.',
@@ -65,7 +65,7 @@ export const CITIES = [
     route: 'Pharr is right in the heart of the Valley, next door to McAllen — getting to your session takes just minutes.',
     local: 'Pharr sits right next door to McAllen, so planning your session around naps and feeds is quick and easy.',
     neighborhoods: ['Downtown Pharr', 'South Pharr', 'Las Milpas', 'Plantation South', 'Nolana Vista'],
-    areas: 'Whether home is in Downtown Pharr’s historic Main Street district, Nolana Vista, the golf-course community of Plantation South, or South Pharr and Las Milpas along US 281, our private studio in the McAllen area is a short drive away. Familiar local spots include the Pharr Aquatic Center, Jones Box Park and the Pharr/Vanguard Academy Nature & Birding Center.',
+    areas: 'Pharr runs from Downtown Pharr’s historic Main Street district south along US 281 to South Pharr and Las Milpas, and takes in neighborhoods like Nolana Vista and the golf-course community of Plantation South. Once your baby is a little older, the Pharr Aquatic Center, Jones Box Park and the Pharr/Vanguard Academy Nature & Birding Center make easy outings.',
     newborn: {
       intro: 'Adrisabel photographs newborns for Pharr families. With 15+ years of experience and hundreds of babies photographed, we create soft, timeless newborn portraits in a warm, baby-safe setting.',
       why: 'A short trip means less time in the car seat for your little one and a calmer start to your session. Everything is prepared before you arrive — wraps, outfits, little beds and backdrops.',
