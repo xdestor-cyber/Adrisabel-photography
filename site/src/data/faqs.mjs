@@ -98,7 +98,7 @@ export const FAQS = [
   },
   {
     q: 'What areas do you serve?',
-    a: 'The whole Rio Grande Valley — McAllen, Mission, Pharr, Edinburg, Brownsville, Harlingen, Weslaco, San Juan, Alamo, Donna, Mercedes and beyond — and our Seaside Beach sessions take place on South Padre Island.',
+    a: 'The whole Rio Grande Valley — McAllen, Mission, Pharr, Edinburg, Brownsville, Harlingen, Weslaco, San Juan, Alamo, Donna, Mercedes, Sharyland, Rio Grande City and beyond — and our Seaside Beach sessions take place on South Padre Island. See <a href="/areas-we-serve/">all the areas we serve</a>.',
     tags: ['home', 'contact'], group: 'Location',
   },
 ];
