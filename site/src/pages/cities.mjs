@@ -1,7 +1,7 @@
 // 14 local landing pages (newborn + baby photographer × 7 RGV cities).
 import { html, ui, icon } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
-import { pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref, hoods, moreAreas } from '../lib/components.mjs';
+import { pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref, hoods, moreAreas, galleryPick, fullRows, cardPhotos, NEWBORN_POOL, BABY_POOL } from '../lib/components.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { byId } from '../data/packages.mjs';
 import { BUSINESS as B } from '../data/business.mjs';
@@ -100,7 +100,7 @@ ${infoCards([
 <section class="sec sec--paper" aria-labelledby="gal-title">
 <div class="wrap">
 ${secHead({ eyebrow: 'Recent sessions', title: nb ? 'So tiny, so <em>fleeting</em>' : 'Look who’s <em>growing</em>', id: 'gal-title' })}
-${gallery(ctx, [...d.photos, ...(nb ? ['moonPink', 'dino', 'lavender', 'handsFeet'] : ['family', 'sister', 'santa', 'bear']).filter((k) => !d.photos.includes(k))].slice(0, 8))}
+${gallery(ctx, fullRows(galleryPick(nb ? NEWBORN_POOL : BABY_POOL, [...d.photos.slice(0, 3), ...cardPhotos(nb ? ['sunshine', 'wonderland'] : ['fairytale', 'pixie-dust', 'cake-smash'])], 8, CITIES.indexOf(c))))}
 <p class="center mt"><a class="arrow-link" href="${nb ? '/newborn-photography/' : '/baby-milestone-photography/'}">${nb ? 'All about newborn sessions' : 'All about baby & milestone sessions'} ${ui.arrow}</a></p>
 </div>
 </section>

@@ -125,6 +125,293 @@
   "bytes": 44236,
   "color": "#f0f0e7"
  },
+ "beachLift": {
+  "file": "mother-lifting-toddler-beach-blue-sky.webp",
+  "width": 1440,
+  "height": 964,
+  "bytes": 54736,
+  "color": "#cddff0"
+ },
+ "beachHug": {
+  "file": "mom-hugging-toddler-red-polo-beach.webp",
+  "width": 1600,
+  "height": 1070,
+  "bytes": 64384,
+  "color": "#f9f9f9"
+ },
+ "beachToddler": {
+  "file": "baby-sitting-beach-blanket-seashells-sand-toys.webp",
+  "width": 1440,
+  "height": 941,
+  "bytes": 123804,
+  "color": "#e7e7e7"
+ },
+ "cakePink": {
+  "file": "first-birthday-cake-smash-pink-floral-dress.webp",
+  "width": 1600,
+  "height": 1066,
+  "bytes": 22248,
+  "color": "#f9e7e7"
+ },
+ "cakePinkSit": {
+  "file": "cake-smash-girl-flower-crown-white-balloons.webp",
+  "width": 1600,
+  "height": 1600,
+  "bytes": 38124,
+  "color": "#f9e7e7"
+ },
+ "cakeChoc": {
+  "file": "cake-smash-chocolate-frosting-blue-sprinkle-cake.webp",
+  "width": 1600,
+  "height": 1149,
+  "bytes": 29648,
+  "color": "#d6e7e7"
+ },
+ "cakeBlue": {
+  "file": "first-birthday-baby-fish-print-balloon-aqua.webp",
+  "width": 1600,
+  "height": 1600,
+  "bytes": 41948,
+  "color": "#d6e7e7"
+ },
+ "brotherSweater": {
+  "file": "baby-and-big-brother-holding-hands-white-rug.webp",
+  "width": 1600,
+  "height": 934,
+  "bytes": 115418,
+  "color": "#f0f0f0"
+ },
+ "dadKiss": {
+  "file": "father-kissing-newborn-forehead-lace-headband.webp",
+  "width": 1296,
+  "height": 1600,
+  "bytes": 98204,
+  "color": "#f9f9f9"
+ },
+ "momWhite": {
+  "file": "mother-holding-newborn-butterfly-tulle-romper.webp",
+  "width": 1600,
+  "height": 1566,
+  "bytes": 45674,
+  "color": "#f9f9f9"
+ },
+ "woodBowlLace": {
+  "file": "newborn-wooden-bowl-cream-lace-peach-roses.webp",
+  "width": 1600,
+  "height": 1112,
+  "bytes": 127544,
+  "color": "#e7e7e7"
+ },
+ "feetHands": {
+  "file": "newborn-feet-in-parent-cupped-hands.webp",
+  "width": 1600,
+  "height": 1423,
+  "bytes": 52874,
+  "color": "#e7e7e7"
+ },
+ "momKissTeal": {
+  "file": "mother-kissing-newborn-forehead-teal-blouse.webp",
+  "width": 1600,
+  "height": 1379,
+  "bytes": 163644,
+  "color": "#f9f9f9"
+ },
+ "brotherDino": {
+  "file": "newborn-with-big-brother-white-blanket.webp",
+  "width": 1600,
+  "height": 1600,
+  "bytes": 75608,
+  "color": "#f9f9f9"
+ },
+ "laceAwake": {
+  "file": "baby-pink-swing-felt-hearts-mauve-backdrop.webp",
+  "width": 1600,
+  "height": 1199,
+  "bytes": 75162,
+  "color": "#dfc4cd"
+ },
+ "woodBowlCream": {
+  "file": "newborn-asleep-wooden-bowl-cream-wrap-eucalyptus.webp",
+  "width": 1600,
+  "height": 1066,
+  "bytes": 149520,
+  "color": "#e7e7df"
+ },
+ "knitRomper": {
+  "file": "baby-moon-pillow-stars-blue-backdrop.webp",
+  "width": 1600,
+  "height": 1286,
+  "bytes": 25956,
+  "color": "#d6e7e7"
+ },
+ "familyFour": {
+  "file": "family-of-four-studio-portrait-cream-khaki.webp",
+  "width": 1600,
+  "height": 1173,
+  "bytes": 64914,
+  "color": "#f9f9f9"
+ },
+ "basketSmile": {
+  "file": "smiling-baby-woven-basket-eucalyptus-brown-backdrop.webp",
+  "width": 1600,
+  "height": 1600,
+  "bytes": 154466,
+  "color": "#dfc4bb"
+ },
+ "laceSmile": {
+  "file": "baby-smiling-pink-swing-blossom-garland.webp",
+  "width": 1600,
+  "height": 1447,
+  "bytes": 94502,
+  "color": "#e7e7e7"
+ },
+ "parentsStanding": {
+  "file": "parents-holding-newborn-lace-headband-studio.webp",
+  "width": 1600,
+  "height": 1144,
+  "bytes": 81882,
+  "color": "#f0f0e7"
+ },
+ "momFloral": {
+  "file": "mom-and-baby-pampas-roses-backdrop.webp",
+  "width": 1600,
+  "height": 1600,
+  "bytes": 278368,
+  "color": "#f9f9f9"
+ },
+ "bearBonnetMoon": {
+  "file": "newborn-pink-bear-bonnet-moon-pillow-teddy.webp",
+  "width": 1440,
+  "height": 1130,
+  "bytes": 68064,
+  "color": "#f0e7f0"
+ },
+ "tongueBonnet": {
+  "file": "baby-pink-crochet-bonnet-tongue-out-box.webp",
+  "width": 1440,
+  "height": 964,
+  "bytes": 32756,
+  "color": "#e7e7df"
+ },
+ "whiteLaceAlert": {
+  "file": "baby-white-lace-veil-ruffled-blanket.webp",
+  "width": 1440,
+  "height": 960,
+  "bytes": 64972,
+  "color": "#f9f9f9"
+ },
+ "pinkFloralBed": {
+  "file": "newborn-white-bed-pink-flowers-cream-lace.webp",
+  "width": 1440,
+  "height": 1366,
+  "bytes": 66624,
+  "color": "#f9e7e7"
+ },
+ "handsRing": {
+  "file": "baby-and-adult-hands-ring-detail.webp",
+  "width": 1407,
+  "height": 1600,
+  "bytes": 68090,
+  "color": "#f0f0f0"
+ },
+ "redRoseSwing": {
+  "file": "newborn-red-lace-swing-red-roses.webp",
+  "width": 1440,
+  "height": 1264,
+  "bytes": 115110,
+  "color": "#f0f0e7"
+ },
+ "momOverheadRed": {
+  "file": "woman-with-newborn-red-lace-bow-overhead.webp",
+  "width": 1440,
+  "height": 1151,
+  "bytes": 118378,
+  "color": "#e7e7e7"
+ },
+ "bearBonnetChair": {
+  "file": "newborn-beige-bear-bonnet-rattan-bench-teddy.webp",
+  "width": 1280,
+  "height": 1600,
+  "bytes": 126090,
+  "color": "#f9f9e7"
+ },
+ "navySwing": {
+  "file": "newborn-swing-navy-gold-stars-knit-overalls.webp",
+  "width": 1200,
+  "height": 1600,
+  "bytes": 152002,
+  "color": "#7e87aa"
+ },
+ "moonClasped": {
+  "file": "baby-white-moon-pillow-felt-stars-navy.webp",
+  "width": 1440,
+  "height": 1440,
+  "bytes": 45868,
+  "color": "#757e8f"
+ },
+ "momNavyKiss": {
+  "file": "mother-kissing-baby-green-knit-hat.webp",
+  "width": 1440,
+  "height": 1449,
+  "bytes": 97512,
+  "color": "#f9f9f9"
+ },
+ "greenHat": {
+  "file": "sleeping-newborn-green-hat-parents-hands.webp",
+  "width": 1440,
+  "height": 1075,
+  "bytes": 60486,
+  "color": "#e7e7e7"
+ },
+ "feetRings": {
+  "file": "newborn-feet-parents-wedding-rings-white-blanket.webp",
+  "width": 1440,
+  "height": 1330,
+  "bytes": 68432,
+  "color": "#f0f0f0"
+ },
+ "turtleSleep": {
+  "file": "sleeping-newborn-crochet-dinosaur-white-blanket.webp",
+  "width": 1440,
+  "height": 960,
+  "bytes": 68282,
+  "color": "#f0f0f0"
+ },
+ "pinkHatSleep": {
+  "file": "sleeping-newborn-pink-knit-hat-tulle-flower.webp",
+  "width": 1440,
+  "height": 1108,
+  "bytes": 57168,
+  "color": "#f0f0f0"
+ },
+ "santaMoonRed": {
+  "file": "newborn-santa-hat-moon-pillow-reindeer-plush.webp",
+  "width": 1440,
+  "height": 1440,
+  "bytes": 176042,
+  "color": "#a17e7e"
+ },
+ "santaBedNavy": {
+  "file": "baby-first-christmas-santa-outfit-white-bed.webp",
+  "width": 1440,
+  "height": 1440,
+  "bytes": 124666,
+  "color": "#7e7e87"
+ },
+ "santaWreath": {
+  "file": "newborn-santa-hat-christmas-wreath-reindeer.webp",
+  "width": 1421,
+  "height": 1600,
+  "bytes": 268776,
+  "color": "#f9f9f9"
+ },
+ "heartBowl": {
+  "file": "newborn-heart-bowl-dusty-rose-wrap.webp",
+  "width": 1440,
+  "height": 1179,
+  "bytes": 288518,
+  "color": "#98877e"
+ },
  "logo": {
   "file": "adrisabel-photography-logo.webp",
   "width": 256,

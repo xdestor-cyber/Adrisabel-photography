@@ -11,7 +11,7 @@ const abs = (u) => (u.startsWith('http') ? u : SITE_URL + u);
 const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
 
 export function businessNode(ctx) {
-  const photos = ['roses', 'crown', 'moonStars', 'family', 'cake'].map((k) => abs(ctx.media.photo(k).src));
+  const photos = ['roses', 'momKissTeal', 'moonStars', 'familyFour', 'cakeBlue', 'beachLift'].map((k) => abs(ctx.media.photo(k).src));
   return {
     '@type': ['LocalBusiness', 'ProfessionalService'],
     '@id': BUSINESS_ID,

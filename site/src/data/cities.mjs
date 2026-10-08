@@ -20,7 +20,7 @@ export const CITIES = [
     baby: {
       intro: 'McAllen babies grow up fast — first smiles, first giggles, sitting up, crawling, that first birthday cake. As a McAllen-area baby photographer with 15+ years of experience, Adrisabel captures each stage with playful setups and a whole lot of patience.',
       why: 'Want to capture every chapter after the newborn days? Our Pixie Dust plan makes it easy: five milestone sessions across the first year, with siblings and parents included.',
-      photos: ['moonStars', 'swingGirl', 'cake', 'holiday'],
+      photos: ['tongueBonnet', 'laceSmile', 'momFloral', 'cakeBlue'],
     },
   },
   {
@@ -33,12 +33,12 @@ export const CITIES = [
     newborn: {
       intro: 'Edinburg parents: those sleepy first two weeks go by in a blink. Adrisabel photographs newborns for Edinburg families with gentle, safe posing and soft, timeless styling — so you can hold on to how tiny they were, forever.',
       why: 'Our studio is kept warm and quiet for newborns, and everything is ready before you arrive: wraps, bonnets, little beds and backdrops. You just bring your baby — we’ll take care of the rest.',
-      photos: ['lavender', 'moonPink', 'crown', 'closeup'],
+      photos: ['woodBowlLace', 'moonPink', 'dadKiss', 'closeup'],
     },
     baby: {
       intro: 'From gummy smiles to first steps, Edinburg babies change every month. Adrisabel’s baby and milestone sessions turn those little chapters into playful, beautiful portraits you’ll treasure for years.',
       why: 'Sessions are built around your baby’s mood — play breaks, snacks and silly songs included. With 15+ years of photographing little ones, we know how to get real smiles without the stress.',
-      photos: ['swingBoy', 'moonStars', 'swingGirl', 'cake'],
+      photos: ['knitRomper', 'laceSmile', 'cakePink', 'basketSmile'],
     },
   },
   {
@@ -51,12 +51,12 @@ export const CITIES = [
     newborn: {
       intro: 'Searching for a newborn photographer near Mission, TX? Adrisabel creates calm, cozy newborn sessions with soft wraps, sweet props and safe, supported posing — an easy drive from home.',
       why: 'We move at your baby’s pace, pausing for feeding and soothing whenever needed. Big brothers and sisters are welcome in our Wonderland session, so the whole family can be part of the story.',
-      photos: ['bear', 'roses', 'handsFeet', 'family'],
+      photos: ['bearBonnetMoon', 'roses', 'feetHands', 'brotherDino'],
     },
     baby: {
       intro: 'Mission babies have so much personality to show off! Adrisabel’s baby sessions capture smiles, curious little faces and those chunky milestones with fun, colorful setups.',
       why: 'Our Fairytale session is made for babies 2–11 months, and the Pixie Dust plan follows your baby through five milestones in the first year — perfect if you want to see how much they grow.',
-      photos: ['swingGirl', 'holiday', 'moonStars', 'swingBoy'],
+      photos: ['basketSmile', 'cakeChoc', 'laceSmile', 'holiday'],
     },
   },
   {
@@ -69,12 +69,12 @@ export const CITIES = [
     newborn: {
       intro: 'Adrisabel photographs newborns for Pharr families. With 15+ years of experience and hundreds of babies photographed, we create soft, timeless newborn portraits in a warm, baby-safe setting.',
       why: 'A short trip means less time in the car seat for your little one and a calmer start to your session. Everything is prepared before you arrive — wraps, outfits, little beds and backdrops.',
-      photos: ['dino', 'crown', 'heartBasket', 'twins'],
+      photos: ['heartBowl', 'crown', 'turtleSleep', 'twins'],
     },
     baby: {
       intro: 'Looking for a baby photographer in Pharr? From first smiles to the first-birthday cake smash, Adrisabel captures each of your baby’s chapters with playful setups and endless patience.',
       why: 'Want to see every milestone? That’s exactly what our Pixie Dust plan is for: five sessions in baby’s first year, with siblings and parents included.',
-      photos: ['moonStars', 'cake', 'swingGirl', 'holiday'],
+      photos: ['cakeBlue', 'tongueBonnet', 'momFloral', 'knitRomper'],
     },
   },
   {
@@ -87,12 +87,12 @@ export const CITIES = [
     newborn: {
       intro: 'Weslaco parents: your baby will only be this tiny for a few short weeks. Adrisabel photographs newborns with gentle, safe posing and soft, timeless styling in a cozy private studio about 20–25 minutes from Weslaco.',
       why: 'The drive is worth it — we plan every session so your baby stays warm, fed and comfortable, and you can simply relax and enjoy watching the magic happen.',
-      photos: ['moonPink', 'lavender', 'closeup', 'sister'],
+      photos: ['pinkFloralBed', 'whiteLaceAlert', 'momKissTeal', 'sister'],
     },
     baby: {
       intro: 'After the newborn days come first smiles, sitting up and the big first birthday. Adrisabel’s baby sessions capture each of those milestones for Weslaco families, with playful setups and plenty of patience.',
       why: 'We know how to work with every baby temperament — the shy ones, the busy ones and the ones who want to taste every prop. 15+ years of experience means calm, happy sessions.',
-      photos: ['swingBoy', 'cake', 'moonStars', 'swingGirl'],
+      photos: ['laceSmile', 'cakePink', 'knitRomper', 'holiday'],
     },
   },
   {
@@ -105,12 +105,12 @@ export const CITIES = [
     newborn: {
       intro: 'Looking for a newborn photographer near Harlingen, TX? Adrisabel’s calm, safe and beautifully styled newborn sessions are about a 40-minute drive away — a short trip for portraits that last a lifetime.',
       why: 'We schedule newborn sessions so the drive fits around feeding times, and the studio is warm and ready when you arrive. Everything is provided, from wraps and bonnets to little beds and backdrops.',
-      photos: ['roses', 'bear', 'handsFeet', 'crown'],
+      photos: ['redRoseSwing', 'bear', 'feetRings', 'parentsStanding'],
     },
     baby: {
       intro: 'Harlingen babies deserve beautiful milestone portraits too. Adrisabel’s baby sessions capture your little one’s growing personality — smiles, curiosity and that first-birthday cake — with playful, timeless setups.',
       why: 'Want to celebrate the whole family by the ocean? Our Seaside Beach session on South Padre Island is a short drive from Harlingen and includes 15 edited photos.',
-      photos: ['holiday', 'swingGirl', 'cake', 'moonStars'],
+      photos: ['momFloral', 'tongueBonnet', 'cakeChoc', 'basketSmile'],
     },
   },
   {
@@ -123,12 +123,12 @@ export const CITIES = [
     newborn: {
       intro: 'Brownsville parents looking for a newborn photographer with real experience: Adrisabel has photographed hundreds of babies over 15+ years, with gentle, safe posing and soft, timeless styling.',
       why: 'We plan the session around your baby’s feeding schedule so the drive is easy, and our studio is fully stocked — wraps, outfits, bonnets, little beds and backdrops — so you don’t need to pack a thing but the diaper bag.',
-      photos: ['twins', 'moonPink', 'roses', 'family'],
+      photos: ['navySwing', 'twins', 'momOverheadRed', 'familyFour'],
     },
     baby: {
       intro: 'Brownsville families: capture every chapter of your baby’s first year — smiles, sitting up, crawling and the big cake smash — with Adrisabel’s playful, beautifully styled baby sessions.',
       why: 'You’re also close to South Padre Island, home of our Seaside Beach family session — sandy toes, salty kisses and 15 edited photos of the whole family.',
-      photos: ['swingBoy', 'cake', 'holiday', 'swingGirl'],
+      photos: ['cakePinkSit', 'laceSmile', 'basketSmile', 'cakeChoc'],
     },
   },
 ];

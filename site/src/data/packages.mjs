@@ -16,7 +16,7 @@ export const PACKAGES = [
   },
   {
     id: 'wonderland', roman: 'II', chapter: 'Chapter Two', name: 'Wonderland',
-    kicker: 'Newborn & family session', desc: 'Your newborn plus the people who love them most — sweet portraits with big brothers and sisters, mom and dad.', includes: ['15 edited photos', '2 outfits', '4 backdrops'], cardPhoto: 'sister',
+    kicker: 'Newborn & family session', desc: 'Your newborn plus the people who love them most — sweet portraits with big brothers and sisters, mom and dad.', includes: ['15 edited photos', '2 outfits', '4 backdrops'], cardPhoto: 'brotherSweater',
     price: 300, priceLabel: '$300', type: 'Newborn, Baby & Family Session',
     badge: { icon: 'family', text: 'Baby, siblings & parents' },
     headline: 'Welcome to the family.',
@@ -71,7 +71,7 @@ export const PACKAGES = [
   },
   {
     id: 'seaside-beach', roman: 'VI', chapter: 'Chapter Six', name: 'Seaside Beach',
-    kicker: 'Family beach session', desc: 'The whole family barefoot on the sand at South Padre Island — sandy toes, salty kisses and ocean breeze.', includes: ['15 edited photos', 'South Padre Island'], cardPhoto: 'family',
+    kicker: 'Family beach session', desc: 'The whole family barefoot on the sand at South Padre Island — sandy toes, salty kisses and ocean breeze.', includes: ['15 edited photos', 'South Padre Island'], cardPhoto: 'beachHug',
     price: 370, priceLabel: '$370', type: 'Family Session',
     badge: { icon: 'pin', text: 'South Padre Island' },
     headline: 'Sandy toes & salty kisses.',
