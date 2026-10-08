@@ -62,7 +62,7 @@ ${pageHero(ctx, {
 <div class="split">
 <div class="split-media reveal"><div class="frame-photo">${img(ctx.media, d.photos[2], { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
 <div class="split-body reveal d1">
-${eyebrow(`Why ${c.name} families choose Adrisabel`, 'eyebrow--left')}
+${eyebrow(`Gentle sessions near ${c.name}`, 'eyebrow--left')}
 <h2 class="h-sec" id="why-title">${nb ? 'Gentle hands for <em>tiny days</em>' : 'Every chapter of <em>year one</em>'}</h2>
 <div class="prose"><p>${d.why}</p><p>${c.local}</p></div>
 <ul class="checks">${(nb
