@@ -10,6 +10,8 @@ export const CITIES = [
     drive: 'just minutes',
     route: 'We’re a short drive from anywhere in McAllen — from most neighborhoods it’s about 10–15 minutes.',
     local: 'From north McAllen neighborhoods near Trenton Road to homes close to downtown and Quinta Mazatlán, the studio is a short drive across town.',
+    neighborhoods: ['North McAllen', 'Tres Lagos', 'Northridge Park', 'Woodhollow', 'Auburn Estates', 'Downtown McAllen', 'Uptown McAllen'],
+    areas: 'Home might be in North McAllen, among Tres Lagos, Northridge Park, Woodhollow and Auburn Estates, or in Downtown McAllen or Uptown McAllen. Either way, familiar stops like the International Museum of Art & Science, La Plaza Mall and the McAllen Nature Center are close to home, and so is our private studio in the McAllen area.',
     newborn: {
       intro: 'Looking for a newborn photographer in McAllen who is patient, gentle and truly loves babies? With 15+ years of experience and hundreds of babies photographed, Adrisabel creates soft, timeless newborn portraits for McAllen families — in a warm private studio just minutes from home.',
       why: 'Those first fragile days call for someone calm and experienced. Every newborn session is baby-led and unhurried, with time built in for feeding and cuddles, and every pose is safely supported.',
@@ -26,6 +28,8 @@ export const CITIES = [
     drive: 'about 15–20 minutes',
     route: 'Coming from Edinburg, it’s an easy 15–20 minute drive south on I-69C / US-281.',
     local: 'Whether you live near UTRGV, around the Edinburg Scenic Wetlands or out toward the north side of town, the studio is an easy trip for a newborn, milestone or cake smash session.',
+    neighborhoods: ['Downtown Edinburg', 'UTRGV area', 'Los Lagos', 'The Heights on Trenton', 'Municipal Park area'],
+    areas: 'From the historic town square and the Museum of South Texas History to the UTRGV campus area, the homes around Los Lagos Golf Course and The Heights on Trenton, all of Edinburg is welcome. Parents near Edinburg Municipal Park and the Scenic Wetlands, or up in north Edinburg, have a simple drive south to the studio.',
     newborn: {
       intro: 'Edinburg parents: those sleepy first two weeks go by in a blink. Adrisabel photographs newborns for Edinburg families with gentle, safe posing and soft, timeless styling — so you can hold on to how tiny they were, forever.',
       why: 'Our studio is kept warm and quiet for newborns, and everything is ready before you arrive: wraps, bonnets, little beds and backdrops. You just bring your baby — we’ll take care of the rest.',
@@ -42,6 +46,8 @@ export const CITIES = [
     drive: 'about 10–20 minutes',
     route: 'From Mission, head east on Expressway 83 (I-2) — the drive takes about 10–20 minutes.',
     local: 'From Sharyland to the neighborhoods near Bentsen-Rio Grande Valley State Park, it’s a short trip east for newborn, baby and first-birthday sessions.',
+    neighborhoods: ['Downtown Mission', 'Shary Heights', 'Sharyland', 'Sharyland Plantation', 'Cimarron', 'Tanglewood at Bentsen Palm'],
+    areas: 'Parents across Mission are welcome, from the Spanish Revival storefronts of downtown Mission and the mid-century ranch homes of Shary Heights to Cimarron, Sharyland Plantation and Tanglewood at Bentsen Palm. Home near La Lomita Chapel, Leo Peña Placita Park or Bentsen-Rio Grande Valley State Park? Expressway 83 brings you east to the studio.',
     newborn: {
       intro: 'Searching for a newborn photographer near Mission, TX? Adrisabel creates calm, cozy newborn sessions with soft wraps, sweet props and safe, supported posing — an easy drive from home.',
       why: 'We move at your baby’s pace, pausing for feeding and soothing whenever needed. Big brothers and sisters are welcome in our Wonderland session, so the whole family can be part of the story.',
@@ -58,6 +64,8 @@ export const CITIES = [
     drive: 'just minutes',
     route: 'Pharr is right in the heart of the Valley, next door to McAllen — getting to your session takes just minutes.',
     local: 'Pharr sits right next door to McAllen, so planning your session around naps and feeds is quick and easy.',
+    neighborhoods: ['Downtown Pharr', 'South Pharr', 'Las Milpas', 'Plantation South', 'Nolana Vista'],
+    areas: 'Whether home is in Downtown Pharr’s historic Main Street district, Nolana Vista, the golf-course community of Plantation South, or South Pharr and Las Milpas along US 281, our private studio in the McAllen area is a short drive away. Familiar local spots include the Pharr Aquatic Center, Jones Box Park and the Pharr/Vanguard Academy Nature & Birding Center.',
     newborn: {
       intro: 'Adrisabel photographs newborns for Pharr families. With 15+ years of experience and hundreds of babies photographed, we create soft, timeless newborn portraits in a warm, baby-safe setting.',
       why: 'A short trip means less time in the car seat for your little one and a calmer start to your session. Everything is prepared before you arrive — wraps, outfits, little beds and backdrops.',
@@ -74,6 +82,8 @@ export const CITIES = [
     drive: 'about 20–25 minutes',
     route: 'From Weslaco it’s about 20–25 minutes west on I-2 / US 83 — an easy, straight drive.',
     local: 'From the neighborhoods around Estero Llano Grande State Park to the homes off I-2, it’s an easy trip for newborn, family and milestone portraits.',
+    neighborhoods: ['Historic Downtown (Texas Blvd)', 'Tierra Santa', 'Mid Valley Estates', 'Quail Hollow', 'Northside'],
+    areas: 'From Historic Downtown along Texas Boulevard to Tierra Santa, Mid Valley Estates, Quail Hollow and the Northside near Judge Gilbert Garza Park, Weslaco is about 20–25 minutes east of our private studio in the McAllen area. Closer to home, you have the trails at Estero Llano Grande State Park and the boardwalk at the Valley Nature Center.',
     newborn: {
       intro: 'Weslaco parents: your baby will only be this tiny for a few short weeks. Adrisabel photographs newborns with gentle, safe posing and soft, timeless styling in a cozy private studio about 20–25 minutes from Weslaco.',
       why: 'The drive is worth it — we plan every session so your baby stays warm, fed and comfortable, and you can simply relax and enjoy watching the magic happen.',
@@ -90,6 +100,8 @@ export const CITIES = [
     drive: 'about 40–45 minutes',
     route: 'From Harlingen, take I-2 west — the drive is about 40–45 minutes.',
     local: 'Harlingen is in Cameron County, about 40–45 minutes from the studio — and our Seaside Beach sessions on South Padre Island are close to home for you.',
+    neighborhoods: ['Downtown (Jackson Street)', 'Treasure Hills', 'Parkwood', 'Westside', 'Dixieland Road area'],
+    areas: 'Harlingen stretches from downtown along Jackson Street to Treasure Hills, Parkwood, the growing Westside and the Dixieland Road area near Dixieland Park. Around town, Hugh Ramsey Nature Park follows the Arroyo Colorado, and the Iwo Jima Memorial at the Marine Military Academy is the original model used to cast the Marine Corps War Memorial.',
     newborn: {
       intro: 'Looking for a newborn photographer near Harlingen, TX? Adrisabel’s calm, safe and beautifully styled newborn sessions are about a 40-minute drive away — a short trip for portraits that last a lifetime.',
       why: 'We schedule newborn sessions so the drive fits around feeding times, and the studio is warm and ready when you arrive. Everything is provided, from wraps and bonnets to little beds and backdrops.',
@@ -106,6 +118,8 @@ export const CITIES = [
     drive: 'about 60–70 minutes',
     route: 'From Brownsville, it’s about 60–70 minutes on I-69E and I-2 — and South Padre Island, where we photograph beach sessions, is even closer to you.',
     local: 'Whether you live in Los Ebanos, near the Gladys Porter Zoo in the Mitte Cultural District or in north Brownsville, our private studio in the McAllen area is about 60–70 minutes away — and we can meet you on South Padre Island for a Seaside Beach session.',
+    neighborhoods: ['Downtown Brownsville', 'Mitte Cultural District', 'Los Ebanos', 'Palm Boulevard', 'Southmost', 'Brownsville Country Club', 'North Brownsville'],
+    areas: 'We welcome parents from Downtown Brownsville and the Mitte Cultural District, where Dean Porter Park sits across from the Gladys Porter Zoo, and from Los Ebanos, Palm Boulevard and Southmost. Farther north, the Brownsville Country Club neighborhood and North Brownsville are close to Sunrise Mall and Valley Regional Medical Center.',
     newborn: {
       intro: 'Brownsville parents looking for a newborn photographer with real experience: Adrisabel has photographed hundreds of babies over 15+ years, with gentle, safe posing and soft, timeless styling.',
       why: 'We plan the session around your baby’s feeding schedule so the drive is easy, and our studio is fully stocked — wraps, outfits, bonnets, little beds and backdrops — so you don’t need to pack a thing but the diaper bag.',
