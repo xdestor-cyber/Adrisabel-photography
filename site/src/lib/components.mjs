@@ -3,6 +3,7 @@ import { BUSINESS, NAV, BOOK_URL } from '../data/business.mjs';
 import { PACKAGES, ADDONS, HOW } from '../data/packages.mjs';
 import { REVIEWS } from '../data/reviews.mjs';
 import { CITIES } from '../data/cities.mjs';
+import { AREAS } from '../data/areas.mjs';
 import { ART } from './art.generated.mjs';
 import { html, esc, attrs, icon, art, spark, ui, googleG, stars, when } from './html.mjs';
 import { img } from './media.mjs';
@@ -19,7 +20,7 @@ export function header(ctx, { current = '', minimal = false } = {}) {
     return html`<header class="adr adr-header minimal-header"><a class="skip-link" href="#adr-main">Skip to content</a><div class="wrap bar">${brand}<div class="header-actions"><a class="btn btn--ghost btn--sm" href="${B.phoneHref}" aria-label="Call or text ${B.phone}">${ui.phone}<span class="show-sm">Call</span><span class="hide-sm">${B.phone}</span></a></div></div></header>`;
   }
   const sessions = NAV[0].children;
-  const navLinks = NAV.slice(1).filter((n) => n.href !== '/reviews/');
+  const navLinks = NAV.slice(1).filter((n) => !n.mobileOnly);
   return html`<header class="adr adr-header">
 <a class="skip-link" href="#adr-main">Skip to content</a>
 <div class="wrap bar">
@@ -56,7 +57,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <div class="f-social"><a href="${B.instagram.url}" target="_blank" rel="noopener" aria-label="Instagram ${B.instagram.handle}">${ui.instagram}</a><a href="${B.google.url}" target="_blank" rel="noopener" aria-label="Google reviews">${googleG}</a><a href="${B.phoneHref}" aria-label="Call ${B.phone}">${ui.phone}</a></div>
 </div>
 <div><h2>Sessions</h2><ul>${NAV[0].children.map((s) => html`<li><a href="${s.href}">${esc(s.label)}</a></li>`)}<li><a href="/pricing/">All sessions &amp; packages</a></li></ul></div>
-<div><h2>Studio</h2><ul><li><a href="/about/">About Adrisabel</a></li><li><a href="/portfolio/">Portfolio</a></li><li><a href="/reviews/">Reviews</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li><li><a href="${BOOK_URL}">Book online</a></li></ul></div>
+<div><h2>Studio</h2><ul><li><a href="/about/">About Adrisabel</a></li><li><a href="/portfolio/">Portfolio</a></li><li><a href="/reviews/">Reviews</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li><li><a href="/areas-we-serve/">Areas we serve</a></li><li><a href="${BOOK_URL}">Book online</a></li></ul></div>
 <div><h2>Contact</h2><ul class="f-contact">
 <li>${ui.phone}<a href="${B.phoneHref}">${B.phone}</a> · <a href="${B.sms}">text</a></li>
 <li>${ui.mail}<a href="mailto:${B.email}">${B.email}</a></li>
@@ -68,6 +69,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <div class="f-near">
 <div><h2>Newborn photographer</h2><p class="f-areas">${CITIES.map((c) => html`<a href="/newborn-photographer-${c.slug}-tx/">${c.name}</a>`)}</p></div>
 <div><h2>Baby photographer</h2><p class="f-areas">${CITIES.map((c) => html`<a href="/baby-photographer-${c.slug}-tx/">${c.name}</a>`)}</p></div>
+<div><h2>More RGV cities</h2><p class="f-areas">${AREAS.map((a) => html`<a href="${areaHref(a)}">${a.name}</a>`)}<a href="/areas-we-serve/">All areas</a></p></div>
 <div><h2>Family beach sessions</h2><p class="f-areas"><a href="/south-padre-island-family-photography/">South Padre Island</a></p></div>
 </div>
 <div class="f-bottom"><span>© ${year} ${B.name} · Newborn, baby &amp; family photographer in McAllen, TX</span><span><a href="/sitemap/">Site map</a> · <a href="/privacy-policy/">Privacy policy</a></span></div>
@@ -267,9 +269,17 @@ ${when(cta, html`<p class="center mt"><a class="arrow-link" href="${B.google.url
 }
 
 /* ---------------- areas ---------------- */
+export const areaHref = (a) => `/newborn-photographer-${a.slug}-tx/`;
 export function areas({ kind = 'newborn' } = {}) {
-  return html`<div class="areas reveal">${CITIES.map((c) => html`<a href="/${kind === 'baby' ? 'baby' : 'newborn'}-photographer-${c.slug}-tx/">${ui.pin}${c.name}</a>`)}<a href="/south-padre-island-family-photography/">${ui.pin}South Padre Island</a><span>${ui.pin}San Juan</span><span>${ui.pin}Alamo</span><span>${ui.pin}Donna</span><span>${ui.pin}Mercedes</span></div>`;
+  return html`<div class="areas reveal">${CITIES.map((c) => html`<a href="/${kind === 'baby' ? 'baby' : 'newborn'}-photographer-${c.slug}-tx/">${ui.pin}${c.name}</a>`)}${AREAS.map((a) => html`<a href="${areaHref(a)}">${ui.pin}${a.name}</a>`)}<a href="/south-padre-island-family-photography/">${ui.pin}South Padre Island</a></div>
+<p class="center mt"><a class="arrow-link" href="/areas-we-serve/">All areas we serve ${ui.arrow}</a></p>`;
 }
+// the extra cities (one newborn & baby page each), as a compact chip row
+export function moreAreas(exclude = null) {
+  return html`<div class="areas areas--more reveal">${AREAS.filter((a) => a.slug !== exclude).map((a) => html`<a href="${areaHref(a)}">${ui.pin}${a.name}</a>`)}<a href="/areas-we-serve/">All areas we serve ${ui.arrow}</a></div>`;
+}
+// neighborhoods / parts of town (not links)
+export const hoods = (list = []) => (list.length ? html`<ul class="hoods reveal">${list.map((n) => html`<li>${ui.pin}${esc(n)}</li>`)}</ul>` : '');
 export function cityGrid(exclude = null) {
   return html`<div class="city-grid">${CITIES.filter((c) => c.slug !== exclude).map((c) => html`<div class="city-card"><h3>${c.name}</h3><p>${c.county} · ${c.drive}</p><p class="links"><a href="/newborn-photographer-${c.slug}-tx/">Newborn photographer</a><a href="/baby-photographer-${c.slug}-tx/">Baby photographer</a></p></div>`)}</div>`;
 }

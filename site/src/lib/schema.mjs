@@ -3,6 +3,7 @@
 import { BUSINESS, SITE_URL } from '../data/business.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
+import { AREAS } from '../data/areas.mjs';
 
 const B = BUSINESS;
 export const BUSINESS_ID = `${SITE_URL}/#business`;
@@ -23,7 +24,7 @@ export function businessNode(ctx) {
     logo: abs(ctx.media.logo().png),
     image: photos,
     address: { '@type': 'PostalAddress', addressLocality: B.locality, addressRegion: B.region, addressCountry: B.country },
-    areaServed: [...CITIES.map((c) => ({ '@type': 'City', name: `${c.name}, TX` })), { '@type': 'City', name: 'South Padre Island, TX' }, { '@type': 'AdministrativeArea', name: 'Rio Grande Valley, Texas' }],
+    areaServed: [...[...CITIES, ...AREAS].map((c) => ({ '@type': 'City', name: `${c.name}, TX` })), { '@type': 'City', name: 'South Padre Island, TX' }, { '@type': 'AdministrativeArea', name: 'Rio Grande Valley, Texas' }],
     hasMap: B.google.url,
     sameAs: [B.instagram.url, B.google.url],
     founder: { '@type': 'Person', name: B.photographer, jobTitle: 'Newborn & baby photographer' },

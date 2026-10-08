@@ -1,7 +1,7 @@
 // 14 local landing pages (newborn + baby photographer × 7 RGV cities).
 import { html, ui, icon } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
-import { pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref } from '../lib/components.mjs';
+import { pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref, hoods, moreAreas } from '../lib/components.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { byId } from '../data/packages.mjs';
 import { BUSINESS as B } from '../data/business.mjs';
@@ -84,13 +84,16 @@ ${nb
 
 <section class="sec" aria-labelledby="visit-title">
 <div class="wrap">
-${secHead({ eyebrow: 'Planning your visit', title: `Coming from <em>${c.name}</em>`, id: 'visit-title' })}
+${secHead({ eyebrow: `${c.name} neighborhoods we serve`, title: `Coming from <em>${c.name}</em>`, lede: c.areas, id: 'visit-title' })}
+${hoods(c.neighborhoods)}
+<div class="mt">
 ${infoCards([
   { icon: 'pin', title: 'The drive', text: c.route },
   { icon: 'heart', title: 'Service area', text: `${B.studioLine} ${B.addressNote}` },
   { icon: 'calendar', title: 'Scheduling', text: `${B.hours}. ${nb ? 'Book in your second or third trimester — newborn sessions happen 5–14 days after birth.' : 'Book a few weeks ahead so we can plan around naps.'}` },
   { icon: 'gift', title: 'Your photos', text: 'We help you choose your favorites at the end of the session. No proof gallery — every image is hand-edited and delivered within one week.' },
 ], 'info-grid--4')}
+</div>
 </div>
 </section>
 
@@ -115,6 +118,7 @@ ${faq(FAQ)}
 <section class="sec sec--paper" aria-labelledby="near-title"><div class="wrap">
 ${secHead({ eyebrow: 'Also serving', title: 'Across the <em>Rio Grande Valley</em>', id: 'near-title' })}
 ${cityGrid(c.slug)}
+${moreAreas()}
 <div class="center mt">${ctaButtons({ label: nb ? 'Reserve your newborn session' : 'Reserve your baby session', href: bookHref(nb ? 'sunshine' : 'fairytale'), center: true })}</div>
 </div></section>
 

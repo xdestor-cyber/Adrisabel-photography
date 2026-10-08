@@ -3,6 +3,7 @@ import pricing from './pricing.mjs';
 import { newborn, baby, cake, maternity, beach } from './services.mjs';
 import { portfolio, about, reviewsPage, faqPage, contact, booking, landingBook, landingSessions, privacy } from './general.mjs';
 import { CITY_PAGES } from './cities.mjs';
+import { AREA_PAGES, areasHub } from './areas.mjs';
 import { sitemapPage } from './sitemap.mjs';
 
 export const PAGES = [
@@ -10,6 +11,7 @@ export const PAGES = [
   portfolio, about, reviewsPage, faqPage, contact, booking,
   landingBook, landingSessions, privacy,
   ...CITY_PAGES,
+  areasHub, ...AREA_PAGES,
 ];
 // the HTML site map lists (and checks) every page above
 PAGES.push(sitemapPage(PAGES));

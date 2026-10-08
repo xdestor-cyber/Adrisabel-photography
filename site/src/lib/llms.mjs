@@ -3,6 +3,7 @@
 import { BUSINESS as B, BOOK_URL } from '../data/business.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
+import { AREAS } from '../data/areas.mjs';
 import { faqsFor } from '../data/faqs.mjs';
 
 const text = (h) => h.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
@@ -22,7 +23,7 @@ export function llmsContent(pages, base) {
     '## About the business',
     `- Name: ${B.name} (on Google: "${B.gbpName}"), photographer ${B.photographer}.`,
     `- Experience: ${B.years} years; ${B.babies} of babies photographed; trained in safe newborn posing.`,
-    `- Service area: the whole Rio Grande Valley, Texas, especially McAllen, Mission, Pharr, Edinburg and Brownsville; also Weslaco, Harlingen and South Padre Island. ${B.addressNote}`,
+    `- Service area: the whole Rio Grande Valley, Texas, especially McAllen, Mission, Pharr, Edinburg and Brownsville; also ${[...CITIES, ...AREAS].map((c) => c.name).filter((n) => !/^(McAllen|Mission|Pharr|Edinburg|Brownsville)$/.test(n)).join(', ')} and South Padre Island. ${B.addressNote}`,
     `- Google rating: ${B.google.rating} stars (${B.google.url})`,
     `- Contact: call or text ${B.phone} · ${B.email} · Instagram ${B.instagram.handle} (${B.instagram.url})`,
     `- Hours: ${B.hours}`,
@@ -45,6 +46,10 @@ export function llmsContent(pages, base) {
     '',
     '## Baby photographer by city',
     ...cities('baby'),
+    '',
+    '## Newborn & baby photographer in more Rio Grande Valley cities',
+    ...AREAS.map((a) => link(`/newborn-photographer-${a.slug}-tx/`, `Newborn & baby photographer in ${a.name}, TX`)),
+    link('/areas-we-serve/', 'All areas we serve, by county'),
     '',
     '## About, reviews and booking',
     link('/about/', 'About Adrisabel'),
