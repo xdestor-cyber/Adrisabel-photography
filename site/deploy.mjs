@@ -363,7 +363,8 @@ if (!DRY && !ONLY) {
     // newest first; one entry per changed, indexable page saved above
     const recent = (data?.data || []).slice(0, results.filter((r) => r.changed && r.index).length);
     const by = recent.reduce((o, e) => ({ ...o, [e.status]: (o[e.status] || 0) + 1 }), {});
-    if (recent.length) log(`✓ IndexNow: ${recent.length} recent submission(s), HTTP status ${Object.entries(by).map(([s, n]) => `${s}×${n}`).join(', ')}`);
+    const okAll = recent.every((e) => e.status === 200 || e.status === 202);
+    if (recent.length) log(`${okAll ? '✓' : '!'} IndexNow: ${recent.length} recent submission(s), HTTP status ${Object.entries(by).map(([s, n]) => `${s}×${n}`).join(', ')}`);
   } catch { /* module off */ }
 
   log(problems.length ? `! sitemap/llms checks:\n  - ${problems.join('\n  - ')}` : '✓ sitemap, llms.txt and robots.txt verified');
