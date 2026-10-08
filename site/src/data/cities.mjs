@@ -39,8 +39,8 @@ export const CITIES = [
   },
   {
     slug: 'mission', name: 'Mission', county: 'Hidalgo County',
-    drive: 'about 15–20 minutes',
-    route: 'From Mission, head east on Expressway 83 (I-2) — the drive takes about 15–20 minutes.',
+    drive: 'about 10–20 minutes',
+    route: 'From Mission, head east on Expressway 83 (I-2) — the drive takes about 10–20 minutes.',
     local: 'From Sharyland to the neighborhoods near Bentsen-Rio Grande Valley State Park, it’s a short trip east for newborn, baby and first-birthday sessions.',
     newborn: {
       intro: 'Searching for a newborn photographer near Mission, TX? Adrisabel creates calm, cozy newborn sessions with soft wraps, sweet props and safe, supported posing — an easy drive from home.',
