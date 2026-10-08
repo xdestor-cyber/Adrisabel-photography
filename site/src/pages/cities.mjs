@@ -38,11 +38,12 @@ function cityPage(c, kind) {
     breadcrumbs: [{ label: nb ? 'Newborn Photography' : 'Baby & Milestone Photography', href: nb ? '/newborn-photography/' : '/baby-milestone-photography/' }],
     crumbLabel: `${c.name}, TX`,
     seo: {
-      title: `${service} Photographer ${c.name}, TX | Adrisabel Photography`,
+      // the home page already owns "Newborn Photographer McAllen, TX"; city pages can override their title
+      title: (nb ? c.newbornTitle : c.babyTitle) || `${service} Photographer ${c.name}, TX | Adrisabel Photography`,
       description: nb
         ? `Newborn photographer for ${c.name}, TX families — gentle, safe posing, 15+ years’ experience, baby-led sessions and edited photos delivered in 1 week.`
         : `Baby & milestone photographer for ${c.name}, TX: Fairytale baby sessions, the Pixie Dust first-year milestone plan and Cake Smash first birthdays.`,
-      focus: `${kind} photographer ${c.name.toLowerCase()} tx`,
+      focus: (nb ? c.newbornFocus : c.babyFocus) || `${kind} photographer ${c.name.toLowerCase()} tx`,
       image: d.photos[0],
     },
     body: (ctx) => html`

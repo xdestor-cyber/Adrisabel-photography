@@ -5,6 +5,8 @@
 export const CITIES = [
   {
     slug: 'mcallen', name: 'McAllen', county: 'Hidalgo County',
+    newbornTitle: 'McAllen Newborn Photos · Safe, Gentle Sessions | Adrisabel',
+    newbornFocus: 'newborn photos mcallen',
     drive: 'just minutes',
     route: 'We’re a short drive from anywhere in McAllen — most families are here in 10–15 minutes.',
     local: 'From north McAllen neighborhoods near Trenton Road to homes close to downtown and Quinta Mazatlán, McAllen families make up a big part of our Adrisabel family.',
