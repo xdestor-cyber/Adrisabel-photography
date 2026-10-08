@@ -226,19 +226,6 @@ const fetchText = async (url) => {
   return { status: res.status, type: res.headers.get('content-type') || '', text: await res.text() };
 };
 
-// Rank Math flushes WordPress' rewrite rules on the next wp-admin load after a save that lists a
-// "flush field" as updated; re-save one of those with its current value (no actual change).
-async function scheduleRewriteFlush() {
-  const g = await rankMathExport('general');
-  const on = (v) => v === 'on' || v === true;
-  const settings = { strip_category_base: on(g.strip_category_base) };
-  const fieldTypes = { strip_category_base: 'toggle' };
-  if ('console_email_reports' in g) { settings.console_email_reports = on(g.console_email_reports); fieldTypes.console_email_reports = 'toggle'; }
-  if ('console_email_frequency' in g) { settings.console_email_frequency = g.console_email_frequency; fieldTypes.console_email_frequency = 'select'; }
-  const { data } = await wp('POST', '/rankmath/v1/updateSettings', { type: 'general', settings, fieldTypes, updated: ['strip_category_base'], isReset: false });
-  if (typeof data === 'string') throw new Error(`Rank Math general settings: ${data}`);
-}
-
 // ------------------------------------------------------------------ Rank Math modules
 // XML sitemap, llms.txt (a site map for AI assistants) and Instant Indexing (IndexNow:
 // tells Bing, Yandex & co. right away when a page is published or changed).
@@ -252,9 +239,6 @@ if (!DRY && !ONLY) {
     if (module === 'sitemap' || !on) await wp('POST', '/rankmath/v1/saveModule', { module, state: 'on' });
     if (!on) log(`✓ Rank Math module "${module}" switched on`);
   }
-  // /llms.txt needs WordPress' rewrite rules refreshed. REST saves don't always manage it on
-  // this host, so also ask Rank Math to flush them on the next wp-admin page load.
-  if (!llmsOn) await scheduleRewriteFlush();
   // submit pages (and future posts) automatically whenever they are published or updated
   await wp('POST', '/rankmath/v1/updateSettings', { type: 'instant-indexing', settings: { bing_post_types: ['post', 'page'] }, isReset: false });
   log('✓ Rank Math modules: sitemap, llms.txt, instant indexing (IndexNow on publish/update)');
@@ -362,13 +346,14 @@ if (!DRY && !ONLY) {
   const newest = [...urls.values()].sort().pop();
   log(`✓ XML sitemap: ${maps.length} sitemap(s), ${urls.size} URLs, ${images} images, newest lastmod ${newest}`);
 
-  // cache-busting query, so this check never leaves a stale response in the CDN
-  const llms = await fetchText(`${BASE}/llms.txt?v=${Date.now()}`);
-  if (llms.status === 200 && llms.text.includes('## Sessions')) log(`✓ llms.txt: ${(llms.text.match(/^- \[/gm) || []).length} links`);
-  else if ((await fetchText(`${BASE}/?llms_txt=1&v=${Date.now()}`)).text.includes('## Sessions')) {
-    await scheduleRewriteFlush();
-    problems.push(`llms.txt content is ready but /llms.txt -> ${llms.status}: open any wp-admin page once (Rank Math then refreshes the rewrite rules), then use "Flush Cache"`);
-  } else problems.push(`llms.txt -> ${llms.status}`);
+  // Rank Math's llms.txt. On GoDaddy the /llms.txt address itself belongs to the host's own
+  // llms.txt feature (wpaas "toggle-llms"), so read Rank Math's copy through its query var.
+  const llms = await fetchText(`${BASE}/?llms_txt=1&v=${Date.now()}`);
+  if (!llms.text.includes('## Sessions')) problems.push(`llms.txt content missing (?llms_txt=1 -> ${llms.status})`);
+  else {
+    const root = await fetchText(`${BASE}/llms.txt?v=${Date.now()}`);
+    log(`✓ llms.txt: ${(llms.text.match(/^- \[/gm) || []).length} links${root.text.includes('## Sessions') ? '' : ` (at /?llms_txt=1 — /llms.txt answers ${root.status}: GoDaddy's own llms.txt feature owns that address)`}`);
+  }
 
   const robots = await fetchText(`${BASE}/robots.txt`);
   if (!robots.text.includes(`Sitemap: ${BASE}/sitemap_index.xml`)) problems.push('robots.txt does not point to sitemap_index.xml');
