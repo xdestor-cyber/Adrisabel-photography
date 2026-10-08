@@ -35,11 +35,15 @@ ${pageHero(ctx, {
 <section class="sec sec--tight" aria-label="Photo gallery" style="padding-top:10px">
 <div class="wrap">
 ${masonry(ctx, [
-  ['roses', 'Newborn · Sunshine'], ['moonStars', 'Baby milestone'], ['heartBasket', 'Newborn'], ['family', 'Family · Wonderland'],
-  ['swingGirl', 'Baby · Fairytale'], ['crown', 'Newborn with parents'], ['bear', 'Newborn'], ['cake', 'Cake Smash'],
-  ['lavender', 'Newborn'], ['twins', 'Twins'], ['swingBoy', 'Newborn'], ['sister', 'Siblings'],
-  ['moonPink', 'Newborn'], ['holiday', 'Holiday portrait'], ['dino', 'Newborn'], ['handsFeet', 'Newborn details'],
-  ['santa', 'Holiday newborn'], ['closeup', 'Newborn'],
+  ['roses', 'Newborn · Sunshine'], ['momKissTeal', 'Newborn with mom'], ['moonClasped', 'Baby milestone'], ['familyFour', 'Family · Wonderland'],
+  ['cakeBlue', 'Cake Smash'], ['woodBowlLace', 'Newborn'], ['laceAwake', 'Newborn'], ['sister', 'Siblings'],
+  ['beachLift', 'Seaside Beach'], ['heartBowl', 'Newborn'], ['dadKiss', 'Newborn with dad'], ['knitRomper', 'Baby milestone'],
+  ['bearBonnetMoon', 'Newborn'], ['cakePink', 'Cake Smash'], ['twins', 'Twins'], ['redRoseSwing', 'Newborn'],
+  ['parentsStanding', 'Newborn with parents'], ['basketSmile', 'Baby · Fairytale'], ['navySwing', 'Newborn'], ['beachToddler', 'Seaside Beach'],
+  ['momOverheadRed', 'Newborn with mom'], ['pinkFloralBed', 'Newborn'], ['laceSmile', 'Baby'], ['santaMoonRed', 'Holiday newborn'],
+  ['santaWreath', 'Holiday newborn'], ['brotherDino', 'Siblings'], ['tongueBonnet', 'Baby'], ['feetHands', 'Newborn details'],
+  ['turtleSleep', 'Newborn'], ['cakeChoc', 'Cake Smash'], ['momFloral', 'Baby with mom'], ['crown', 'Newborn with parents'],
+  ['family', 'Newborn with family'], ['bear', 'Newborn'], ['holiday', 'Holiday portrait'], ['handsRing', 'Newborn details'], ['santaBedNavy', 'Holiday baby'], ['handsFeet', 'Newborn details'],
 ])}
 <p class="center mt"><a class="arrow-link" href="${B.instagram.url}" target="_blank" rel="noopener">See recent sessions on Instagram ${B.instagram.handle} ${ui.arrow}</a></p>
 </div>
@@ -79,7 +83,7 @@ ${pageHero(ctx, {
   eyebrow: 'Meet your photographer',
   title: 'Hi, I’m <em>Adrisabel</em>',
   lede: 'Newborn and baby photographer, baby lover, and the person who will treat your child like the most important little human in the world — because to me, they are.',
-  photo: 'crown', photo2: 'family', chip: googleChip,
+  photo: 'dadKiss', photo2: 'feetHands', chip: googleChip,
 })}
 <section class="sec" aria-labelledby="ab-story">
 <div class="wrap wrap--text">
@@ -104,7 +108,7 @@ ${infoCards(VALUES.map(([ic, t, x]) => ({ icon: ic, title: t, text: x })), 'info
 <section class="sec" aria-labelledby="ab-studio">
 <div class="wrap">
 <div class="split split--rev">
-<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, 'bear', { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
+<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, 'familyFour', { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
 <div class="split-body reveal d1">
 ${eyebrow('The studio', 'eyebrow--left')}
 <h2 class="h-sec" id="ab-studio">Warm, calm &amp; <em>made for babies</em></h2>
@@ -207,7 +211,7 @@ export const contact = {
     title: 'Contact & Book | Adrisabel Photography, McAllen TX',
     description: 'Call or text (409) 354-3075, email, or send a booking request. Newborn, baby & family sessions in McAllen, Mission, Pharr, Brownsville & the whole RGV.',
     focus: 'contact newborn photographer mcallen',
-    image: 'family',
+    image: 'familyFour',
   },
   body: (ctx) => html`
 ${pageHero(ctx, {
@@ -301,7 +305,7 @@ ${ribbon()}
 ${secHead({ eyebrow: 'How it works', title: 'A simple, gentle <em>experience</em>', lede: 'From the moment you reach out to the day your photos arrive — here’s what to expect.', id: 'lp-how' })}
 ${steps()}
 </div></section>
-${filmstrip(ctx, ['closeup', 'heartBasket', 'moonStars', 'swingGirl', 'twins', 'family', 'lavender', 'dino'])}
+${filmstrip(ctx, ['woodBowlLace', 'momKissTeal', 'moonClasped', 'cakeBlue', 'brotherSweater', 'heartBowl', 'swingGirl', 'beachLift'])}
 <section class="sec" aria-labelledby="lp-sessions"><div class="wrap">
 ${secHead({ eyebrow: 'What we offer', title: 'Photography <em>sessions</em>', lede: 'Every session is designed with patience, safety and your baby’s comfort as the top priority.', id: 'lp-sessions' })}
 ${chapters(ctx, null, { scroll: true })}

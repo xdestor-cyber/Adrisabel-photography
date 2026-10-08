@@ -20,7 +20,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer San Juan, TX | Adrisabel',
     description: 'From San Juan, it’s about 10–15 minutes west to a private studio for gentle newborn portraits, first-year milestones and a birthday cake smash.',
     focus: 'newborn photographer san juan tx',
-    photos: ['heartBasket', 'dino', 'handsFeet', 'moonStars'],
+    photos: ['turtleSleep', 'dino', 'momKissTeal', 'basketSmile'],
   },
   {
     slug: 'alamo', name: 'Alamo', county: 'Hidalgo County',
@@ -40,7 +40,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Alamo, TX | Adrisabel',
     description: 'Gentle newborn and baby photography for Alamo, TX: safe newborn posing, milestone and cake smash sessions, about 10–15 minutes west on Expressway 83.',
     focus: 'newborn photographer alamo tx',
-    photos: ['swingBoy', 'heartBasket', 'family', 'swingGirl'],
+    photos: ['woodBowlCream', 'heartBasket', 'parentsStanding', 'cakePinkSit'],
   },
   {
     slug: 'donna', name: 'Donna', county: 'Hidalgo County',
@@ -60,7 +60,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Donna, TX | Adrisabel',
     description: 'Newborn and baby photos for Donna, TX parents: safe, baby-led newborn sessions, Pixie Dust milestones and cake smash, about 15–20 minutes west on I-2.',
     focus: 'newborn photographer donna tx',
-    photos: ['bear', 'dino', 'sister', 'cake'],
+    photos: ['pinkHatSleep', 'bear', 'brotherDino', 'cakeBlue'],
   },
   {
     slug: 'mercedes', name: 'Mercedes', county: 'Hidalgo County',
@@ -80,7 +80,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Mercedes, TX | Adrisabel',
     description: 'Newborn, milestone and cake smash photos for Mercedes, TX parents, from the Missouri Historic District to Valley Ranch Estates, about 25–30 minutes away.',
     focus: 'newborn photographer mercedes tx',
-    photos: ['heartBasket', 'bear', 'handsFeet', 'cake'],
+    photos: ['laceAwake', 'swingBoy', 'momOverheadRed', 'knitRomper'],
   },
   {
     slug: 'hidalgo', name: 'Hidalgo', county: 'Hidalgo County',
@@ -100,7 +100,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Hidalgo, TX | Adrisabel',
     description: 'Hidalgo, TX parents: gentle newborn and baby photography, from safe newborn posing to milestones and cake smash, 15–20 minutes up International Blvd.',
     focus: 'newborn photographer hidalgo tx',
-    photos: ['crown', 'closeup', 'twins', 'holiday'],
+    photos: ['whiteLaceAlert', 'crown', 'familyFour', 'cakePink'],
   },
   {
     slug: 'sharyland', name: 'Sharyland', county: 'Hidalgo County',
@@ -120,7 +120,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Sharyland, TX | Adrisabel',
     description: 'For Sharyland-area parents: newborn portraits, milestone sessions and first-birthday cake smash photos in our studio, about 10–15 minutes east of Shary Road.',
     focus: 'newborn photographer sharyland tx',
-    photos: ['handsFeet', 'roses', 'twins', 'swingGirl'],
+    photos: ['heartBowl', 'navySwing', 'dadKiss', 'knitRomper'],
   },
   {
     slug: 'palmview', name: 'Palmview', county: 'Hidalgo County',
@@ -140,7 +140,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Palmview, TX | Adrisabel',
     description: 'In Palmview, just west of Mission? Our private studio is about 15–20 minutes away for gentle newborn photos, baby milestones and a one-year cake smash.',
     focus: 'newborn photographer palmview tx',
-    photos: ['moonPink', 'dino', 'family', 'cake'],
+    photos: ['moonPink', 'woodBowlLace', 'momFloral', 'basketSmile'],
   },
   {
     slug: 'alton', name: 'Alton', county: 'Hidalgo County',
@@ -160,7 +160,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Alton, TX | Adrisabel',
     description: 'Newborn and baby photography for Alton, TX, from Shary Estates to 5 Mile: soft newborn portraits, baby milestones and a first-birthday cake smash.',
     focus: 'newborn photographer alton tx',
-    photos: ['moonPink', 'roses', 'family', 'moonStars'],
+    photos: ['bearBonnetChair', 'redRoseSwing', 'familyFour', 'cakeBlue'],
   },
   {
     slug: 'la-joya', name: 'La Joya', county: 'Hidalgo County',
@@ -180,7 +180,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer La Joya, TX | Adrisabel',
     description: 'Safe, gentle newborn and baby photos for La Joya, TX, plus Pixie Dust milestones and cake smash sessions, about 20–25 minutes east on Expressway 83.',
     focus: 'newborn photographer la joya tx',
-    photos: ['lavender', 'swingBoy', 'handsFeet', 'moonStars'],
+    photos: ['greenHat', 'pinkFloralBed', 'feetHands', 'tongueBonnet'],
   },
   {
     slug: 'san-benito', name: 'San Benito', county: 'Cameron County',
@@ -200,7 +200,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer San Benito, TX | Adrisabel',
     description: 'San Benito, TX newborn and baby photographer: gentle newborn sessions and first-year milestones, 40–50 minutes from the Resaca City via I-69E and I-2.',
     focus: 'newborn photographer san benito tx',
-    photos: ['dino', 'moonPink', 'closeup', 'swingGirl'],
+    photos: ['dino', 'turtleSleep', 'momWhite', 'cakeChoc'],
   },
   {
     slug: 'los-fresnos', name: 'Los Fresnos', county: 'Cameron County',
@@ -220,7 +220,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Los Fresnos, TX | Adrisabel',
     description: 'Los Fresnos newborn and baby photos, from sleepy first-week portraits to the first-birthday cake smash, about an hour away via SH 100 and I-2.',
     focus: 'newborn photographer los fresnos tx',
-    photos: ['roses', 'swingBoy', 'sister', 'cake'],
+    photos: ['closeup', 'bearBonnetMoon', 'beachHug', 'laceSmile'],
   },
   {
     slug: 'rio-grande-city', name: 'Rio Grande City', county: 'Starr County',
@@ -240,7 +240,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Rio Grande City, TX | Adrisabel',
     description: 'Rio Grande City newborn and baby photographer: baby-led newborn sessions, milestone portraits and cake smash sessions, about 45–50 minutes east on US 83.',
     focus: 'newborn photographer rio grande city tx',
-    photos: ['twins', 'dino', 'family', 'moonStars'],
+    photos: ['bear', 'roses', 'parentsStanding', 'tongueBonnet'],
   },
 ];
 

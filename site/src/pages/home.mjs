@@ -37,7 +37,7 @@ ${chapters(ctx, null, { scroll: true })}
 <section class="sec" aria-labelledby="portfolio-title">
 <div class="wrap">
 ${secHead({ eyebrow: 'Portfolio', title: 'Soft, timeless &amp; <em>so tiny</em>', lede: 'A glimpse of recent newborn, milestone and family sessions from our Rio Grande Valley studio.', id: 'portfolio-title' })}
-${gallery(ctx, ['roses', 'moonStars', 'heartBasket', 'swingGirl', 'crown', 'bear', 'twins', 'cake', 'moonPink'], { cls: 'gallery--home' })}
+${gallery(ctx, ['woodBowlLace', 'momOverheadRed', 'knitRomper', 'navySwing', 'cakePink', 'parentsStanding', 'pinkFloralBed', 'momFloral', 'brotherDino'], { cls: 'gallery--home' })}
 <p class="center mt"><a class="arrow-link" href="/portfolio/">View the full portfolio ${ui.arrow}</a></p>
 </div>
 </section>

@@ -70,7 +70,7 @@ ${trustBadges()}
 <section class="sec" aria-labelledby="nb-gallery">
 <div class="wrap">
 ${secHead({ eyebrow: 'Newborn portfolio', title: 'So tiny, so <em>fleeting</em>', id: 'nb-gallery' })}
-${gallery(ctx, ['roses', 'closeup', 'lavender', 'bear', 'dino', 'moonPink', 'twins', 'handsFeet'])}
+${gallery(ctx, ['roses', 'woodBowlLace', 'bearBonnetMoon', 'heartBowl', 'navySwing', 'pinkFloralBed', 'turtleSleep', 'twins'])}
 <p class="center mt"><a class="arrow-link" href="/portfolio/">See the full portfolio ${ui.arrow}</a></p>
 </div>
 </section>
@@ -123,7 +123,7 @@ ${pageHero(ctx, {
   eyebrow: 'Baby &amp; milestone photography',
   title: 'Baby &amp; milestone photos in <em>McAllen, TX</em>',
   lede: 'First smiles, sitting up, crawling, standing — babies change every month. Capture a chapter with a Fairytale session, or follow the whole first year with our Pixie Dust milestone plan.',
-  photo: 'moonStars', photo2: 'swingGirl', chip: googleChip,
+  photo: 'knitRomper', photo2: 'laceSmile', chip: googleChip,
   trust: false,
 })}
 <section class="sec sec--tight" aria-label="Baby sessions at a glance"><div class="wrap">${facts([['2–11 months', 'Fairytale session ages'], ['8 photos', 'per Fairytale session'], ['5 sessions', 'Pixie Dust milestone plan'], ['1 week', 'edited photo delivery']])}</div></section>
@@ -147,7 +147,7 @@ ${schedules()}
 <section class="sec" aria-labelledby="bb-expect">
 <div class="wrap">
 <div class="split split--rev">
-<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, 'swingBoy', { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
+<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, 'momFloral', { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
 <div class="split-body reveal d1">
 ${eyebrow('Your baby session', 'eyebrow--left')}
 <h2 class="h-sec" id="bb-expect">Real smiles, <em>zero pressure</em></h2>
@@ -163,7 +163,7 @@ ${eyebrow('Your baby session', 'eyebrow--left')}
 
 <section class="sec sec--paper" aria-labelledby="bb-gallery"><div class="wrap">
 ${secHead({ eyebrow: 'Baby portfolio', title: 'Look who’s <em>smiling now</em>', id: 'bb-gallery' })}
-${gallery(ctx, ['moonStars', 'swingGirl', 'swingBoy', 'holiday', 'cake', 'family', 'sister', 'santa'])}
+${gallery(ctx, ['basketSmile', 'tongueBonnet', 'cakeBlue', 'brotherSweater', 'holiday', 'cakePink', 'santaBedNavy', 'cake'])}
 </div></section>
 
 <section class="sec sec--blush" aria-labelledby="bb-reviews"><div class="wrap">
@@ -199,7 +199,7 @@ export const cake = {
     title: 'Cake Smash Photography McAllen, TX | Adrisabel',
     description: 'Celebrate the big ONE! First-birthday cake smash sessions in McAllen & the RGV — cake included, 8 edited photos and a timeless backdrop.',
     focus: 'cake smash photography mcallen',
-    image: 'cake',
+    image: 'cakePink',
   },
   body: (ctx) => html`
 ${pageHero(ctx, {
@@ -207,7 +207,7 @@ ${pageHero(ctx, {
   eyebrow: 'First birthday · Cake smash',
   title: 'Cake smash photography in <em>McAllen, TX</em>',
   lede: 'Then comes the big ONE! Frosting on the nose, giggles and the sweetest mess — a timeless first-birthday session with the cake already taken care of.',
-  photo: 'cake', photo2: 'holiday', chip: googleChip,
+  photo: 'cakePink', photo2: 'cakeChoc', chip: googleChip,
   ctaHref: bookHref('cake-smash'), ctaLabel: 'Reserve Cake Smash',
   trust: false,
 })}
@@ -230,7 +230,14 @@ ${eyebrow('How it works', 'eyebrow--left')}
 </div>
 </section>
 
-<section class="sec" aria-labelledby="cs-pair">
+<section class="sec" aria-labelledby="cs-gallery">
+<div class="wrap">
+${secHead({ eyebrow: 'Recent cake smash sessions', title: 'Frosting, giggles &amp; <em>the big ONE</em>', id: 'cs-gallery' })}
+${gallery(ctx, ['cakeBlue', 'cakePinkSit'], { cls: 'gallery--2', sizes: '(min-width:900px) 560px, 50vw' })}
+</div>
+</section>
+
+<section class="sec sec--paper" aria-labelledby="cs-pair">
 <div class="wrap">
 ${secHead({ eyebrow: 'Before the big day', title: 'Celebrate the <em>whole first year</em>', lede: 'Many families photograph the months leading up to the first birthday with our Pixie Dust milestone plan, then finish the story with Cake Smash (booked separately).', id: 'cs-pair' })}
 ${packages(ctx, ['pixie-dust'])}
@@ -265,7 +272,7 @@ export const maternity = {
     title: 'Maternity Photographer McAllen, TX | Adrisabel Photography',
     description: 'Elegant maternity portraits in McAllen and the Rio Grande Valley. Celebrate your bump, then plan your newborn session with the same photographer.',
     focus: 'maternity photographer mcallen',
-    image: 'handsFeet',
+    image: 'momWhite',
   },
   body: (ctx) => html`
 ${pageHero(ctx, {
@@ -273,7 +280,7 @@ ${pageHero(ctx, {
   eyebrow: 'Maternity photography',
   title: 'Maternity portraits in <em>McAllen, TX</em>',
   lede: 'Celebrate the chapter before your baby arrives — soft, elegant portraits of your bump, your partner and the little ones who are about to become big siblings.',
-  photo: 'handsFeet', photo2: 'family', chip: googleChip,
+  photo: 'momWhite', photo2: 'handsRing', chip: googleChip,
   ctaHref: bookHref('not-sure'), ctaLabel: 'Ask about maternity',
   trust: false,
 })}
@@ -325,7 +332,7 @@ export const beach = {
     title: 'South Padre Island Family Photographer | Adrisabel',
     description: 'Seaside Beach family sessions on South Padre Island with 15 edited photos. Sandy toes, salty kisses and ocean breeze with Adrisabel.',
     focus: 'south padre island family photographer',
-    image: 'family',
+    image: 'beachLift',
   },
   body: (ctx) => html`
 ${pageHero(ctx, {
@@ -333,7 +340,7 @@ ${pageHero(ctx, {
   eyebrow: 'Seaside Beach family session',
   title: 'Family beach photos on <em>South Padre Island</em>',
   lede: 'Sandy toes &amp; salty kisses. A relaxed family session on the beach at South Padre Island — babies, big kids, grandparents and all — with 15 edited photos to remember it by.',
-  photo: 'family', photo2: 'handsFeet', chip: googleChip,
+  photo: 'beachLift', photo2: 'beachToddler', chip: googleChip,
   ctaHref: bookHref('seaside-beach'), ctaLabel: 'Book now',
   trust: false,
 })}

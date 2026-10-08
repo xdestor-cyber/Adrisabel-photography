@@ -1,6 +1,6 @@
 // Page building blocks. Every function returns an HTML string.
 import { BUSINESS, NAV, BOOK_URL } from '../data/business.mjs';
-import { PACKAGES, ADDONS, HOW } from '../data/packages.mjs';
+import { PACKAGES, ADDONS, HOW, byId } from '../data/packages.mjs';
 import { REVIEWS } from '../data/reviews.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { AREAS } from '../data/areas.mjs';
@@ -90,7 +90,8 @@ export const ctaButtons = ({ label = 'Book your session', href = BOOK_URL, call 
   html`<div class="${stack ? 'btn-stack' : 'btn-row'}${center ? ' center' : ''}"><a class="btn" href="${href}">${label} ${ui.arrow}</a>${when(call, html`<a class="btn btn--ghost" href="${B.phoneHref}">${ui.phone} Call or text</a>`)}</div>`;
 
 /* ---------------- heroes ---------------- */
-const REEL = ['roses', 'closeup', 'heartBasket', 'moonStars', 'swingGirl', 'twins', 'family', 'bear', 'moonPink', 'crown'];
+// hero reel: none of the session-card photos, so the home page shows more of her work
+const REEL = ['roses', 'dadKiss', 'heartBowl', 'tongueBonnet', 'bearBonnetMoon', 'cakeBlue', 'familyFour', 'whiteLaceAlert', 'laceSmile', 'crown'];
 export function reel(ctx, keys = REEL, { eager = 0, sizes = '170px' } = {}) {
   const half = Math.ceil(keys.length / 2);
   const track = (list, alt) => html`<div class="reel-track${alt ? ' alt' : ''}"${alt ? ' aria-hidden="true"' : ''}>${[...list, ...list].map((k, i) => html`<div class="reel-item"${!alt && i >= list.length ? ' aria-hidden="true"' : ''}>${img(ctx.media, k, { sizes, eager: !alt && i < eager, priority: !alt && eager > 0 && i === 0, alt: alt || i >= list.length ? '' : null })}</div>`)}</div>`;
@@ -102,7 +103,7 @@ export function homeHero(ctx) {
 <div class="hero-grid">
 <div class="hero-copy">
 <p class="hero-badge">${spark()}<span><strong>5.0 ★ on Google</strong> · 15+ years</span></p>
-<div class="hero-reel-mobile">${reel(ctx, ['roses', 'closeup', 'heartBasket', 'moonStars', 'swingGirl', 'twins', 'family', 'bear'], { eager: 2 })}</div>
+<div class="hero-reel-mobile">${reel(ctx, ['roses', 'dadKiss', 'heartBowl', 'tongueBonnet', 'bearBonnetMoon', 'cakeBlue', 'familyFour', 'laceSmile'], { eager: 2 })}</div>
 <h1 class="h-hero" id="hero-title"><span class="kw">Newborn &amp; Baby Photographer in McAllen, TX</span>Soft, timeless portraits of your <em>tiny miracle</em></h1>
 <p class="lede">15+ years and hundreds of babies photographed with patience, safety and love. Newborn, baby and family sessions across the whole Rio Grande Valley — especially McAllen, Mission, Pharr and Brownsville.</p>
 <div class="btn-stack"><a class="btn" href="${BOOK_URL}">Book your session ${ui.arrow}</a><a class="btn btn--ghost" href="${B.phoneHref}">${ui.phone} Call or text</a></div>
@@ -219,6 +220,33 @@ export function steps(list = HOW) {
 export function gallery(ctx, keys, { cls = '', sizes = '(min-width:900px) 25vw, 50vw', wideFirst = false } = {}) {
   return html`<div class="gallery ${cls}">${keys.map((k, i) => html`<figure class="reveal${i % 4 ? ' d' + (i % 4) : ''}${wideFirst && i === 0 ? '' : ''}">${img(ctx.media, k, { sizes: i === 0 && cls.includes('home') ? '(min-width:900px) 50vw, 50vw' : sizes })}</figure>`)}</div>`;
 }
+// Gallery photos for the town pages: never repeat a photo the page already shows (hero, splits,
+// package cards), and start each town at a different point in the pool so neighbors differ.
+export const NEWBORN_POOL = [
+  'roses', 'woodBowlLace', 'heartBowl', 'bearBonnetMoon', 'closeup', 'navySwing', 'pinkFloralBed', 'twins', 'redRoseSwing',
+  'moonPink', 'turtleSleep', 'heartBasket', 'dadKiss', 'whiteLaceAlert', 'bear', 'momKissTeal', 'feetHands', 'crown', 'dino',
+  'greenHat', 'handsFeet', 'woodBowlCream', 'bearBonnetChair', 'swingBoy', 'laceAwake', 'parentsStanding', 'feetRings',
+  'momOverheadRed', 'sister', 'brotherDino', 'momNavyKiss', 'pinkHatSleep', 'family', 'familyFour',
+];
+export const BABY_POOL = ['moonClasped', 'basketSmile', 'laceSmile', 'tongueBonnet', 'knitRomper', 'cakeBlue', 'momFloral', 'cakePink', 'holiday', 'cakeChoc', 'cakePinkSit'];
+// Frames from the same set read as repeats on one page, so a page shows one of each pair.
+export const LOOKALIKE = [['cakePink', 'cakePinkSit'], ['cakeBlue', 'cakeChoc'], ['moonStars', 'moonClasped'], ['santa', 'santaMoonRed'], ['laceAwake', 'laceSmile'], ['roses', 'redRoseSwing']];
+const lookalikes = (k) => LOOKALIKE.find((g) => g.includes(k)) || [k];
+export function galleryPick(pool, shown, n, seed = 0) {
+  const taken = new Set(shown.flatMap(lookalikes));
+  const avail = pool.filter((k) => !taken.has(k));
+  const start = avail.length ? (seed * 7) % avail.length : 0;
+  const out = [];
+  for (const k of [...avail.slice(start), ...avail.slice(0, start)]) {
+    if (out.length === n || taken.has(k)) continue;
+    out.push(k);
+    lookalikes(k).forEach((t) => taken.add(t));
+  }
+  return out;
+}
+// galleries are 4 across on desktop: drop a ragged last row
+export const fullRows = (keys) => (keys.length > 4 ? keys.slice(0, keys.length - (keys.length % 4)) : keys);
+export const cardPhotos = (ids) => ids.map((id) => byId[id].cardPhoto);
 export function masonry(ctx, items) {
   return html`<div class="masonry">${items.map(([k, cap]) => html`<figure>${img(ctx.media, k, { sizes: '(min-width:1180px) 25vw, (min-width:760px) 33vw, 50vw' })}${when(cap, `<figcaption>${cap}</figcaption>`)}</figure>`)}</div>`;
 }
@@ -227,7 +255,7 @@ export function filmstrip(ctx, keys) {
 }
 
 /* ---------------- about split ---------------- */
-export function aboutSplit(ctx, { photo = 'crown', title = 'I don’t just photograph babies — <em>I adore them</em>', more = true, reverse = false } = {}) {
+export function aboutSplit(ctx, { photo = 'momKissTeal', title = 'I don’t just photograph babies — <em>I adore them</em>', more = true, reverse = false } = {}) {
   return html`<div class="split${reverse ? ' split--rev' : ''}">
 <div class="split-media reveal"><div class="frame-photo">${img(ctx.media, photo, { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
 <div class="split-body reveal d1">

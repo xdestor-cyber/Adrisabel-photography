@@ -483,12 +483,14 @@ body { background: #FFFAF7; }
 .adr .gallery figure { position: relative; border-radius: 16px; overflow: hidden; background: var(--blush-2); aspect-ratio: 4 / 5; }
 .adr .gallery figure.wide { grid-column: span 2; aspect-ratio: 16 / 10; }
 .adr .gallery--home figure:first-child { grid-column: span 2; aspect-ratio: 4 / 3.4; }
+.adr .gallery--2 figure { aspect-ratio: 1; }
 .adr .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .adr .gallery figure:hover img { transform: scale(1.04); }
 @media (min-width: 900px) {
   .adr .gallery { grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .adr .gallery figure { border-radius: 20px; }
   .adr .gallery--home figure:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  .adr .gallery--2 { grid-template-columns: repeat(2, 1fr); max-width: 1000px; margin-inline: auto; }
   .adr .gallery figure.wide { aspect-ratio: auto; }
 }
 .adr .masonry { columns: 2; column-gap: 10px; }

@@ -12,8 +12,8 @@ const SESSIONS = [
   { path: '/newborn-photography/', name: 'Newborn Photography', photo: 'roses', note: 'Sleepy, curled-up portraits in the first 5–14 days, posed safely and gently.' },
   { path: '/baby-milestone-photography/', name: 'Baby & Milestones', photo: 'moonStars', note: 'First smiles, sitting up and crawling — playful sessions through the first year.' },
   { path: '/cake-smash-photography/', name: 'Cake Smash', photo: 'cake', note: 'A first-birthday celebration, with the cake already taken care of.' },
-  { path: '/south-padre-island-family-photography/', name: 'Family Beach Session', photo: 'family', note: 'The whole family barefoot on the sand at South Padre Island.' },
-  { path: '/maternity-photography/', name: 'Maternity', photo: 'handsFeet', note: 'Glowing bump portraits to remember the months of waiting.' },
+  { path: '/south-padre-island-family-photography/', name: 'Family Beach Session', photo: 'beachLift', note: 'The whole family barefoot on the sand at South Padre Island.' },
+  { path: '/maternity-photography/', name: 'Maternity', photo: 'momWhite', note: 'Glowing bump portraits to remember the months of waiting.' },
   { path: '/pricing/', name: 'All Sessions & Packages', photo: 'swingGirl', note: 'Every session side by side, so you can choose the right one.' },
 ];
 

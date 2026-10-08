@@ -4,6 +4,7 @@ import { html, ui, icon, esc } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
 import {
   pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref, hoods, moreAreas, areaHref,
+  galleryPick, fullRows, cardPhotos, NEWBORN_POOL, BABY_POOL,
 } from '../lib/components.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { AREAS, COUNTIES } from '../data/areas.mjs';
@@ -12,7 +13,6 @@ import { faqsFor } from '../data/faqs.mjs';
 import { faqNode, serviceNode } from '../lib/schema.mjs';
 
 const googleChip = '<span class="stars" aria-hidden="true">★★★★★</span> 5.0 on Google';
-const GALLERY_FILL = ['moonPink', 'dino', 'lavender', 'handsFeet', 'family', 'sister', 'swingBoy', 'bear'];
 
 function areaFaq(a) {
   const general = [...faqsFor('city-newborn'), ...faqsFor('city-baby')]
@@ -23,6 +23,15 @@ function areaFaq(a) {
     ...a.faq,
     ...general,
   ];
+}
+
+const AREA_PACKAGES = ['sunshine', 'wonderland', 'fairytale', 'pixie-dust', 'cake-smash'];
+// newborn photos plus up to three baby photos, none already on the page
+function areaGallery(a) {
+  const shown = [...a.photos, ...cardPhotos(AREA_PACKAGES)];
+  const seed = CITIES.length + AREAS.indexOf(a);
+  const baby = galleryPick(BABY_POOL, shown, 3, seed);
+  return fullRows([...galleryPick(NEWBORN_POOL, [...shown, ...baby], 8 - baby.length, seed), ...baby]);
 }
 
 function areaPage(a) {
@@ -62,7 +71,7 @@ ${eyebrow(`Newborn photos · ${a.name}`, 'eyebrow--left')}
 <section class="sec sec--blush" aria-labelledby="pk-title">
 <div class="wrap">
 ${secHead({ eyebrow: `Sessions for ${a.name} families`, title: 'Choose your <em>chapter</em>', id: 'pk-title' })}
-${packages(ctx, ['sunshine', 'wonderland', 'fairytale', 'pixie-dust', 'cake-smash'])}
+${packages(ctx, AREA_PACKAGES)}
 <p class="center mt"><span class="note" style="display:inline-block"><b>Twins?</b> Twin sessions can be added to any newborn package — includes 4 extra photos.</span></p>
 </div>
 </section>
@@ -100,7 +109,7 @@ ${infoCards([
 <section class="sec" aria-labelledby="gal-title">
 <div class="wrap">
 ${secHead({ eyebrow: 'Recent sessions', title: 'So tiny, so <em>fleeting</em>', id: 'gal-title' })}
-${gallery(ctx, [...a.photos, ...GALLERY_FILL.filter((k) => !a.photos.includes(k))].slice(0, 8))}
+${gallery(ctx, areaGallery(a))}
 </div>
 </section>
 
@@ -157,7 +166,7 @@ export const areasHub = {
     title: 'Areas We Serve · Newborn & Baby Photographer RGV | Adrisabel',
     description: 'Newborn and baby photography for families in McAllen, Mission, Pharr, Edinburg, Brownsville and every corner of the Rio Grande Valley — find your city.',
     focus: 'newborn photographer rio grande valley',
-    image: 'family',
+    image: 'familyFour',
   },
   body: (ctx) => {
     const all = [...CITIES, ...AREAS.map((a) => ({ ...a, page: areaHref(a) }))];
@@ -185,7 +194,7 @@ ${k.towns?.length ? html`<p class="area-also"><b>Also serving:</b> ${k.towns.joi
 })}
 <section class="sec sec--paper" aria-labelledby="spi-title"><div class="wrap">
 <div class="split">
-<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, 'family', { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
+<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, 'beachHug', { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
 <div class="split-body reveal d1">
 ${eyebrow('Family beach sessions', 'eyebrow--left')}
 <h2 class="h-sec" id="spi-title">Sandy toes on <em>South Padre Island</em></h2>
