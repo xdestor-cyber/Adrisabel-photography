@@ -10,11 +10,14 @@
 //   --skip-media     don't upload/check media
 //   --no-flush       don't flush the GoDaddy cache at the end
 //   --no-backup      skip the backup of current page content
+//   --force          re-save pages even when nothing changed (bumps their sitemap lastmod)
 //
 // Steps: backup pages -> upload/update media (alt text, titles) -> build with
-// real media URLs -> upsert synced patterns (CSS/JS) -> upsert pages (content,
-// Kadence layout meta, featured image) -> Rank Math SEO meta -> site settings
-// -> flush cache -> verify live pages.
+// real media URLs -> upsert synced patterns (CSS/JS) -> Rank Math modules
+// (sitemap, llms.txt, IndexNow) -> upsert changed pages (content, Kadence
+// layout meta, featured image) -> Rank Math SEO meta -> site settings ->
+// XML sitemap + llms.txt settings (this also clears Rank Math's sitemap cache)
+// -> flush cache -> verify live pages, sitemap, llms.txt and robots.txt.
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -22,6 +25,8 @@ import { fileURLToPath } from 'node:url';
 import { IMG_MANIFEST } from './src/lib/media.mjs';
 import { PHOTOS, LOGO } from './src/data/images.mjs';
 import { BUSINESS } from './src/data/business.mjs';
+import { PAGES } from './src/pages/index.mjs';
+import { llmsContent } from './src/lib/llms.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const argv = process.argv.slice(2);
@@ -101,6 +106,11 @@ if (!flag('--no-backup')) {
       const rm = {};
       for (const p of existing) rm[p.id] = await rankMathGet(p.id);
       fs.writeFileSync(path.join(dir, 'rankmath.json'), JSON.stringify(rm, null, 1));
+    } catch { /* optional */ }
+    // Rank Math's own settings (sitemap, llms.txt…) — kept locally, not committed (see .gitignore)
+    try {
+      const { data } = await wp('POST', '/rankmath/v1/status/exportSettings', { panels: ['general', 'titles', 'sitemap'] });
+      fs.writeFileSync(path.join(dir, 'rankmath-settings.json'), typeof data === 'string' ? data : JSON.stringify(data));
     } catch { /* optional */ }
   }
   log(`✓ backup of ${existing.length} pages -> ${path.relative(process.cwd(), dir)}`);
@@ -199,6 +209,38 @@ async function rankMathSet(id, seo, imageFile) {
   if (DRY) return;
   await wp('POST', '/rankmath/v1/updateMeta', { objectType: 'post', objectID: id, meta });
 }
+// Rank Math's settings screen endpoint. Every save fires `rank_math/settings/after_save`,
+// which is the only hook that clears its XML sitemap cache outside wp-admin: REST page
+// updates don't (its cache watcher only loads in admin/cron), so the sitemap went stale.
+async function rankMathSettings(type, settings, fieldTypes = {}) {
+  const { data } = await wp('POST', '/rankmath/v1/updateSettings', { type, settings, fieldTypes, updated: [], isReset: false });
+  if (typeof data === 'string') throw new Error(`Rank Math ${type} settings: ${data}`);
+  return data;
+}
+async function rankMathExport(panel) {
+  const { data } = await wp('POST', '/rankmath/v1/status/exportSettings', { panels: [panel] });
+  return (typeof data === 'string' ? JSON.parse(data) : data)[panel] || {};
+}
+const fetchText = async (url) => {
+  const res = await fetch(url, { headers: { 'Cache-Control': 'no-cache' }, redirect: 'manual' });
+  return { status: res.status, type: res.headers.get('content-type') || '', text: await res.text() };
+};
+
+// ------------------------------------------------------------------ Rank Math modules
+// XML sitemap, llms.txt (a site map for AI assistants) and Instant Indexing (IndexNow:
+// tells Bing, Yandex & co. right away when a page is published or changed).
+if (!DRY && !ONLY) {
+  const llmsOn = (await fetchText(`${BASE}/llms.txt`)).status === 200;
+  let indexNowOn = true;
+  try { await wp('POST', '/rankmath/v1/in/getLog', { filter: 'all' }); } catch { indexNowOn = false; }
+  for (const [module, on] of [['sitemap', true], ['llms-txt', llmsOn], ['instant-indexing', indexNowOn]]) {
+    if (module === 'sitemap' || !on) await wp('POST', '/rankmath/v1/saveModule', { module, state: 'on' });
+    if (!on) log(`✓ Rank Math module "${module}" switched on`);
+  }
+  // submit pages (and future posts) automatically whenever they are published or updated
+  await wp('POST', '/rankmath/v1/updateSettings', { type: 'instant-indexing', settings: { bing_post_types: ['post', 'page'] }, isReset: false });
+  log('✓ Rank Math modules: sitemap, llms.txt, instant indexing (IndexNow on publish/update)');
+}
 
 // ------------------------------------------------------------------ pages
 const KADENCE = {
@@ -216,15 +258,19 @@ for (const p of built) {
     meta: KADENCE, featured_media: p.featuredImage && state.media[p.featuredImage] ? state.media[p.featuredImage].id : 0,
     comment_status: 'closed', ping_status: 'closed',
   };
-  if (DRY) { log(`  would ${cur ? 'update' : 'create'} ${p.path} (${(content.length / 1024).toFixed(0)} KB)`); continue; }
-  const { data } = cur ? await wp('POST', `/wp/v2/pages/${cur.id}`, body) : await wp('POST', '/wp/v2/pages', body);
+  // Untouched pages aren't re-saved, so their "last modified" (the sitemap <lastmod>) stays
+  // honest and IndexNow is only pinged for pages that really changed.
+  const unchanged = cur && !flag('--force') && cur.status === 'publish' && cur.content.raw === content && cur.title.raw === body.title
+    && cur.featured_media === body.featured_media && Object.entries(KADENCE).every(([k, v]) => cur.meta?.[k] === v);
+  if (DRY) { log(`  would ${unchanged ? 'keep' : cur ? 'update' : 'create'} ${p.path} (${(content.length / 1024).toFixed(0)} KB)`); continue; }
+  const data = unchanged ? cur : (cur ? await wp('POST', `/wp/v2/pages/${cur.id}`, body) : await wp('POST', '/wp/v2/pages', body)).data;
   state.pages[p.path] = data.id;
   await rankMathSet(data.id, p.seo, p.featuredImage);
-  results.push({ path: p.path, id: data.id, link: data.link, created: !cur });
-  log(`  ${cur ? '↻' : '+'} ${p.path} #${data.id}`);
+  results.push({ path: p.path, id: data.id, link: data.link, created: !cur, changed: !unchanged, index: p.seo.robots !== 'noindex' });
+  log(`  ${unchanged ? '=' : cur ? '↻' : '+'} ${p.path} #${data.id}`);
 }
 saveState();
-log(`✓ pages: ${results.length} deployed`);
+log(`✓ pages: ${results.filter((r) => r.changed).length} updated, ${results.filter((r) => !r.changed).length} unchanged`);
 
 // ------------------------------------------------------------------ settings
 if (!DRY && !ONLY) {
@@ -233,6 +279,26 @@ if (!DRY && !ONLY) {
   if (home) settings.page_on_front = home;
   await wp('POST', '/wp/v2/settings', settings);
   log('✓ settings (title, tagline, front page)');
+}
+
+// ------------------------------------------------------------------ XML sitemap + llms.txt
+const noindexIds = built.filter((p) => p.seo.robots === 'noindex').map((p) => state.pages[p.path]).filter(Boolean);
+if (!DRY && !ONLY) {
+  // pages with their photos (image sitemap); noindex landing/privacy pages left out
+  await rankMathSettings('sitemap', {
+    include_images: 'on', include_featured_image: 'on', pt_page_sitemap: 'on', pt_attachment_sitemap: 'off',
+    exclude_posts: noindexIds.join(','),
+  });
+  // llms.txt: a curated list instead of Rank Math's auto-generated page excerpts
+  const llms = llmsContent(PAGES, BASE);
+  const general = await rankMathExport('general');
+  const settings = { llms_post_types: [], llms_taxonomies: [], llms_summary: llms.summary, llms_extra_content: llms.extra };
+  const fieldTypes = { llms_post_types: 'checkbox', llms_taxonomies: 'checkbox', llms_summary: 'textarea', llms_extra_content: 'textarea' };
+  // echo the analytics e-mail report options so Rank Math doesn't reschedule those reports
+  if ('console_email_reports' in general) { settings.console_email_reports = general.console_email_reports === 'on' || general.console_email_reports === true; fieldTypes.console_email_reports = 'toggle'; }
+  if ('console_email_frequency' in general) { settings.console_email_frequency = general.console_email_frequency; fieldTypes.console_email_frequency = 'select'; }
+  await rankMathSettings('general', settings, fieldTypes);
+  log(`✓ Rank Math: image sitemap for pages (${noindexIds.length} noindex pages excluded), llms.txt (${(llms.extra.length / 1024).toFixed(1)} KB), sitemap cache cleared`);
 }
 
 // ------------------------------------------------------------------ cache flush + verify
@@ -252,4 +318,46 @@ if (!DRY) {
     if (res.status !== 200 || !okCss || !okMain || h1 !== 1) { bad++; log(`  ✗ ${r.path} status=${res.status} css=${okCss} main=${okMain} h1=${h1}`); }
   }
   log(bad ? `! ${bad} page(s) need attention` : `✓ verified ${results.length} live pages`);
+}
+
+// ------------------------------------------------------------------ verify sitemap, llms.txt, robots.txt
+if (!DRY && !ONLY) {
+  const problems = [];
+  const index = await fetchText(`${BASE}/sitemap_index.xml`);
+  const maps = [...index.text.matchAll(/<sitemap>\s*<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  if (index.status !== 200 || !maps.length) problems.push(`sitemap_index.xml -> ${index.status}, ${maps.length} sitemaps`);
+  const urls = new Map();
+  let images = 0;
+  for (const m of maps) {
+    const { text } = await fetchText(m);
+    for (const u of text.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+      const loc = u[1].match(/<loc>([^<]+)<\/loc>/)?.[1];
+      urls.set(loc, u[1].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] || '');
+      images += (u[1].match(/<image:image>/g) || []).length;
+    }
+  }
+  const expected = built.filter((p) => p.seo.robots !== 'noindex').map((p) => BASE + p.path);
+  const missing = expected.filter((u) => !urls.has(u));
+  const extra = [...urls.keys()].filter((u) => !expected.includes(u));
+  if (missing.length) problems.push(`missing from sitemap: ${missing.join(', ')}`);
+  if (extra.length) problems.push(`unexpected in sitemap: ${extra.join(', ')}`);
+  const newest = [...urls.values()].sort().pop();
+  log(`✓ XML sitemap: ${maps.length} sitemap(s), ${urls.size} URLs, ${images} images, newest lastmod ${newest}`);
+
+  const llms = await fetchText(`${BASE}/llms.txt`);
+  if (llms.status !== 200 || !llms.text.includes('## Sessions')) problems.push(`llms.txt -> ${llms.status}`);
+  else log(`✓ llms.txt: ${(llms.text.match(/^- \[/gm) || []).length} links`);
+
+  const robots = await fetchText(`${BASE}/robots.txt`);
+  if (!robots.text.includes(`Sitemap: ${BASE}/sitemap_index.xml`)) problems.push('robots.txt does not point to sitemap_index.xml');
+
+  try {
+    const { data } = await wp('POST', '/rankmath/v1/in/getLog', { filter: 'all' });
+    // newest first; one entry per changed, indexable page saved above
+    const recent = (data?.data || []).slice(0, results.filter((r) => r.changed && r.index).length);
+    const by = recent.reduce((o, e) => ({ ...o, [e.status]: (o[e.status] || 0) + 1 }), {});
+    if (recent.length) log(`✓ IndexNow: ${recent.length} recent submission(s), HTTP status ${Object.entries(by).map(([s, n]) => `${s}×${n}`).join(', ')}`);
+  } catch { /* module off */ }
+
+  log(problems.length ? `! sitemap/llms checks:\n  - ${problems.join('\n  - ')}` : '✓ sitemap, llms.txt and robots.txt verified');
 }

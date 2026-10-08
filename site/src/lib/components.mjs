@@ -70,7 +70,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <div><h2>Baby photographer</h2><p class="f-areas">${CITIES.map((c) => html`<a href="/baby-photographer-${c.slug}-tx/">${c.name}</a>`)}</p></div>
 <div><h2>Family beach sessions</h2><p class="f-areas"><a href="/south-padre-island-family-photography/">South Padre Island</a></p></div>
 </div>
-<div class="f-bottom"><span>© ${year} ${B.name} · Newborn, baby &amp; family photographer in McAllen, TX</span><span><a href="/privacy-policy/">Privacy policy</a></span></div>
+<div class="f-bottom"><span>© ${year} ${B.name} · Newborn, baby &amp; family photographer in McAllen, TX</span><span><a href="/sitemap/">Site map</a> · <a href="/privacy-policy/">Privacy policy</a></span></div>
 </div>
 ${when(sticky, html`<div class="sticky-cta" aria-label="Quick actions"><a class="call" href="${B.phoneHref}">${ui.phone}Call</a><a class="btn" href="${stickyHref}">${stickyLabel}</a></div>`)}
 </footer>`;
@@ -262,7 +262,7 @@ const reviewCard = (r, i) => html`<figure class="review reveal${i % 3 ? ' d' + (
 export function reviews({ all = false, cta = true } = {}) {
   const list = all ? REVIEWS : pickReviews(3);
   return html`<div class="center reveal" style="margin:-10px 0 26px">${googleBadge()}</div>
-<div class="reviews${all ? ' reviews--all' : ''}">${list.map(reviewCard)}</div>
+<div class="reviews${all ? ' reviews--all' : ''}"${all ? '' : ' role="region" aria-label="Google reviews — swipe for more" tabindex="0"'}>${list.map(reviewCard)}</div>
 ${when(cta, html`<p class="center mt"><a class="arrow-link" href="${B.google.url}" target="_blank" rel="noopener">Read all reviews on Google ${ui.arrow}</a></p>`)}`;
 }
 

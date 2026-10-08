@@ -174,7 +174,7 @@ export const faqPage = {
   wpTitle: 'FAQ',
   seo: {
     title: 'Newborn Photography FAQ | Adrisabel Photography McAllen',
-    description: 'Answers about prices, booking, deposits, safety, what to bring and when you’ll receive your photos — everything to know before your session.',
+    description: 'Answers about booking, deposits, safety, what to bring, outfits and when you’ll receive your photos — everything to know before your newborn or baby session.',
     focus: 'newborn photography faq',
     image: 'closeup',
   },
@@ -290,9 +290,9 @@ ${faq(BOOK_FAQ)}
 /* ------------------------------------------------------------------ */
 // Paid-ads landing pages (kept at their existing URLs, noindex so they don't
 // compete with the home page in search).
-const landing = ({ path, wpSlug, wpTitle, title }) => ({
+const landing = ({ path, wpSlug, wpTitle, title, description }) => ({
   path, wpSlug, wpTitle,
-  seo: { title, description: 'Soft, timeless newborn & baby photography in McAllen and the RGV — 15+ years, hundreds of babies, 5.0 ★ on Google. Book your session today.', focus: 'newborn photographer mcallen', robots: 'noindex', image: 'roses' },
+  seo: { title, description, focus: 'newborn photographer mcallen', robots: 'noindex', image: 'roses' },
   body: (ctx) => html`
 ${homeHero(ctx)}
 ${ribbon()}
@@ -323,8 +323,8 @@ ${faq(faqsFor('home', 6))}
 ${finalCta()}
 `,
 });
-export const landingBook = landing({ path: '/baby-photography-book/', wpSlug: 'baby-photography-book', wpTitle: 'Book Your Baby Photography Session', title: 'Book Your Baby Photography Session | Adrisabel, McAllen TX' });
-export const landingSessions = landing({ path: '/baby-photography-sessions/', wpSlug: 'baby-photography-sessions', wpTitle: 'Newborn and Baby Photography Sessions in the RGV area', title: 'Newborn & Baby Photography Sessions in the RGV | Adrisabel' });
+export const landingBook = landing({ path: '/baby-photography-book/', wpSlug: 'baby-photography-book', wpTitle: 'Book Your Baby Photography Session', title: 'Book Your Baby Photography Session | Adrisabel, McAllen TX', description: 'Book a soft, timeless newborn or baby session in McAllen and the RGV — 15+ years, hundreds of babies, 5.0 ★ on Google. Request your date today.' });
+export const landingSessions = landing({ path: '/baby-photography-sessions/', wpSlug: 'baby-photography-sessions', wpTitle: 'Newborn and Baby Photography Sessions in the RGV area', title: 'Newborn & Baby Photography Sessions in the RGV | Adrisabel', description: 'Newborn, baby milestone and cake smash sessions across the Rio Grande Valley — 15+ years, hundreds of babies, 5.0 ★ on Google. Book your session today.' });
 
 /* ------------------------------------------------------------------ */
 export const privacy = {

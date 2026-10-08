@@ -6,3 +6,4 @@ site/.cache/
 site/dist/
 site/deploy/state.localhost*.json
 site/deploy/backups/localhost*/
+site/deploy/backups/**/rankmath-settings.json

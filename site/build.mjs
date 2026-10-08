@@ -30,11 +30,18 @@ const scriptTag = (code, id) => `<script${id ? ` id="${id}"` : ''} src="data:tex
 const media = createMedia(WP ? 'wp' : 'preview', deploy);
 const ctx = { media, wp: WP };
 
-// sanity: unique paths/slugs
+// sanity: unique paths/slugs, and unique SEO titles/descriptions on indexable pages
 const seen = new Set();
+const seo = { title: new Map(), description: new Map() };
 for (const p of PAGES) {
   if (seen.has(p.path)) throw new Error(`duplicate path ${p.path}`);
   seen.add(p.path);
+  if (p.seo.robots === 'noindex') continue;
+  for (const k of ['title', 'description']) {
+    const other = seo[k].get(p.seo[k]);
+    if (other) throw new Error(`duplicate SEO ${k} on ${other} and ${p.path}: ${p.seo[k]}`);
+    seo[k].set(p.seo[k], p.path);
+  }
 }
 
 fs.mkdirSync(DIST, { recursive: true });
@@ -65,8 +72,20 @@ if (!WP) {
   }
   console.log(`preview: ${PAGES.length} pages -> ${path.relative(process.cwd(), DIST)}`);
 } else {
+  // Rank Math's image sitemap lists every <img> in a page. Keep each photo once (the featured
+  // image is listed first by Rank Math itself) and leave the logo out; repeats are marked
+  // with Rank Math's data-sitemapexclude attribute.
+  const logo = media.logo();
+  const sitemapImages = (markup, featured) => {
+    const seen = new Set([logo.src, logo.png, featured].filter(Boolean));
+    return markup.replace(/<img\b[^>]*?\bsrc="([^"]+)"/g, (tag, src) => {
+      if (seen.has(src)) return tag.replace('<img', '<img data-sitemapexclude');
+      seen.add(src);
+      return tag;
+    });
+  };
   const pages = PAGES.map((page) => {
-    const parts = renderParts(ctx, page);
+    const parts = sitemapImages(renderParts(ctx, page), page.seo.image ? media.photo(page.seo.image).src : null);
     return {
       path: page.path,
       slug: page.wpSlug,
