@@ -3,7 +3,7 @@
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 const base = (process.argv[2] || 'http://127.0.0.1:8090').replace(/\/$/, '');
-const paths = ['/', '/pricing/', '/newborn-photography/', '/fast-online-booking/', '/contact/', '/newborn-photographer-mcallen-tx/', '/faq/', '/about/'];
+const paths = ['/', '/pricing/', '/newborn-photography/', '/fast-online-booking/', '/contact/', '/newborn-photographer-mcallen-tx/', '/faq/', '/about/', '/areas-we-serve/', '/newborn-photographer-sharyland-tx/', '/newborn-photographer-rio-grande-city-tx/', '/sitemap/'];
 const browser = await chromium.launch();
 let total = 0;
 for (const w of [390, 1440]) {
