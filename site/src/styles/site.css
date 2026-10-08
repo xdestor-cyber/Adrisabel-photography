@@ -640,7 +640,7 @@ body { background: #FFFAF7; }
 .adr-footer .f-near { display: grid; gap: 22px; margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, .12); }
 .adr-footer .f-near h2 { margin-bottom: 8px; }
 .adr-footer .f-areas { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86rem; }
-@media (min-width: 900px) { .adr-footer .f-near { grid-template-columns: 1fr 1fr .7fr; gap: 44px; } }
+@media (min-width: 900px) { .adr-footer .f-near { grid-template-columns: 1fr 1fr 1.2fr .7fr; gap: 40px; } }
 .adr-footer .f-bottom { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .12); display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; font-size: .8rem; color: rgba(255, 255, 255, .6); }
 .adr-footer .f-bottom a { color: rgba(255, 255, 255, .7); }
 @media (min-width: 900px) { .adr-footer { padding: 76px 0 40px; } .adr-footer .f-grid { grid-template-columns: 1.35fr 1fr 1fr 1.2fr; gap: 44px; } }
@@ -792,6 +792,7 @@ body { background: #FFFAF7; }
 .adr .smap-sub a { padding: 5px 11px; border-radius: 999px; background: var(--blush); font-size: .78rem; font-weight: 600; color: var(--rose-deep); transition: background .2s; }
 .adr .smap-sub a:hover { background: var(--blush-2); }
 .adr .smap-cols { display: grid; gap: 18px; }
+.adr .smap-col--wide { margin-top: 18px; }
 .adr .smap-col { padding: 22px 20px 12px; border-radius: 22px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
 .adr .smap-col h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-family: var(--f-display); font-size: 1.6rem; font-weight: 500; }
 .adr .smap-col h3 svg { width: 26px; height: 26px; flex: none; }
@@ -815,8 +816,33 @@ body { background: #FFFAF7; }
 @media (min-width: 700px) {
   .adr .smap-tiles, .adr .smap-info { grid-template-columns: 1fr 1fr; }
 }
-@media (min-width: 900px) { .adr .smap-cols { grid-template-columns: 1fr 1fr; gap: 24px; } }
+@media (min-width: 900px) {
+  .adr .smap-cols { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .adr .smap-col--wide { margin-top: 24px; }
+  .adr .smap-col--wide ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 36px; }
+  .adr .smap-col--wide li + li { border-top: 0; }
+  .adr .smap-col--wide li { border-bottom: 1px solid var(--line); }
+}
 @media (min-width: 1080px) {
   .adr .smap-tiles { grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .adr .smap-info { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ---------- service areas ---------- */
+.adr .areas--more { margin-top: 18px; }
+.adr .areas--more a { padding: 7px 13px; font-size: .8rem; }
+.adr .hoods { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.adr .hoods li { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: .86rem; color: var(--ink); }
+.adr .hoods svg { width: 14px; height: 14px; color: var(--rose); }
+.adr .area-grid { display: grid; gap: 14px; }
+.adr .area-card { display: flex; flex-direction: column; padding: 18px 18px 16px; border-radius: 20px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+.adr .area-card h3 { font-family: var(--f-display); font-size: 1.55rem; font-weight: 500; line-height: 1.1; }
+.adr .area-meta { margin-top: 2px; font-size: .78rem; font-weight: 600; letter-spacing: .04em; color: var(--rose-deep); }
+.adr .area-hoods { margin-top: 8px; font-size: .84rem; line-height: 1.55; color: var(--ink-2); }
+.adr .area-card .links { display: flex; flex-direction: column; gap: 4px; margin-top: auto; padding-top: 12px; font-size: .84rem; }
+.adr .area-card .links a { color: var(--rose-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(148, 80, 94, .3); }
+.adr .area-card .links a:hover { text-decoration-color: currentColor; }
+.adr .area-also { margin-top: 22px; text-align: center; font-size: .9rem; line-height: 1.7; color: var(--ink-2); }
+.adr .area-also b { color: var(--ink); }
+@media (min-width: 700px) { .adr .area-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1080px) { .adr .area-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }

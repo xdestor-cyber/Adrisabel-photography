@@ -5,6 +5,7 @@ import { img } from '../lib/media.mjs';
 import { pageHero, secHead, finalCta } from '../lib/components.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
+import { AREAS } from '../data/areas.mjs';
 import { BUSINESS as B, BOOK_URL } from '../data/business.mjs';
 
 const SESSIONS = [
@@ -47,6 +48,11 @@ const cityList = (kind) => {
 </div>`;
 };
 
+const moreCities = () => html`<div class="smap-col smap-col--wide reveal">
+<h3>${icon('family')}Newborn &amp; baby photographer in more RGV cities</h3>
+<ul>${AREAS.map((a) => html`<li><a href="/newborn-photographer-${a.slug}-tx/"><span class="smap-l">Newborn &amp; baby photographer in <b>${a.name}, TX</b><small>${a.county} · ${a.drive}</small></span>${ui.arrow}</a></li>`)}</ul>
+</div>`;
+
 export function sitemapPage(PAGES) {
   const page = {
     path: '/sitemap/',
@@ -83,6 +89,8 @@ ${secHead({ eyebrow: 'Photography sessions', title: 'Our <em>sessions</em>', led
 <div class="wrap">
 ${secHead({ eyebrow: 'Across the Rio Grande Valley', title: 'Find us near <em>you</em>', lede: `${B.studioLine} ${B.addressNote}`, id: 'sm-local-title' })}
 <div class="smap-cols">${cityList('newborn')}${cityList('baby')}</div>
+${moreCities()}
+<p class="center mt"><a class="arrow-link" href="/areas-we-serve/">All areas we serve, by county ${ui.arrow}</a></p>
 <p class="center mt"><a class="arrow-link" href="/south-padre-island-family-photography/">Family beach sessions on South Padre Island ${ui.arrow}</a></p>
 </div>
 </section>
