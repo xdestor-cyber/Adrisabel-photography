@@ -35,10 +35,10 @@ ${pageHero(ctx, {
 <section class="sec sec--tight" aria-label="Photo gallery" style="padding-top:10px">
 <div class="wrap">
 ${masonry(ctx, [
-  ['roses', 'Newborn · Sunshine'], ['momKissTeal', 'Newborn with mom'], ['moonClasped', 'Baby milestone'], ['familyFour', 'Family · Wonderland'],
+  ['roses', 'Newborn · Sunshine'], ['momKissTeal', 'Newborn with mom'], ['moonClasped', 'Baby milestone'], ['brotherSweater', 'Siblings'],
   ['cakeBlue', 'Cake Smash'], ['woodBowlLace', 'Newborn'], ['laceAwake', 'Newborn'], ['sister', 'Siblings'],
   ['beachLift', 'Seaside Beach'], ['heartBowl', 'Newborn'], ['dadKiss', 'Newborn with dad'], ['knitRomper', 'Baby milestone'],
-  ['bearBonnetMoon', 'Newborn'], ['cakePink', 'Cake Smash'], ['twins', 'Twins'], ['redRoseSwing', 'Newborn'],
+  ['bearBonnetMoon', 'Newborn'], ['cakeOne', 'Cake Smash'], ['twins', 'Twins'], ['redRoseSwing', 'Newborn'],
   ['parentsStanding', 'Newborn with parents'], ['basketSmile', 'Baby · Fairytale'], ['navySwing', 'Newborn'], ['beachToddler', 'Seaside Beach'],
   ['momOverheadRed', 'Newborn with mom'], ['pinkFloralBed', 'Newborn'], ['laceSmile', 'Baby'], ['santaMoonRed', 'Holiday newborn'],
   ['santaWreath', 'Holiday newborn'], ['brotherDino', 'Siblings'], ['tongueBonnet', 'Baby'], ['feetHands', 'Newborn details'],
@@ -315,7 +315,7 @@ ${ctaBand()}
 ${secHead({ eyebrow: 'Kind words', title: 'What parents are <em>saying</em>', id: 'lp-reviews' })}
 ${reviews()}
 </div></section>
-<section class="sec" aria-label="Meet Adrisabel"><div class="wrap">${aboutSplit(ctx, { photo: 'twins', more: false })}</div></section>
+<section class="sec" aria-label="Meet Adrisabel"><div class="wrap">${aboutSplit(ctx, { more: false })}</div></section>
 <section class="sec sec--blush" aria-labelledby="lp-areas"><div class="wrap center">
 ${secHead({ eyebrow: 'Serving the RGV', title: 'Families from all over <em>the Valley</em>', id: 'lp-areas' })}
 ${areas()}

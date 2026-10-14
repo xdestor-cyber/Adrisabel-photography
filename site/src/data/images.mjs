@@ -125,6 +125,21 @@ export const PHOTOS = {
     alt: 'One-year-old girl smashing a pink floral cake beside wooden ONE letters',
     focal: '45% 50%',
   },
+// ---- supplied by the studio, originals in site/assets/originals
+  cakeSmile: {
+    file: 'cake-smash-girl-frosting-smile-pearl-flower-crown',
+    src: 'local:cake-smash-girl-frosting-smile-pearl-flower-crown.jpg',
+    alt: 'Smiling one-year-old girl with frosting on her cheeks, in a pearl flower crown and floral tulle dress, beside her white first-birthday cake and white balloons on pink',
+    focal: '60% 38%',
+    category: 'cake-smash',
+  },
+  cakeOne: {
+    file: 'first-birthday-cake-smash-one-letters-pink-balloons',
+    src: 'local:first-birthday-cake-smash-one-letters-pink-balloons.jpg',
+    alt: 'One-year-old girl in a floral tulle dress and pearl flower crown reaching into her white cake beside big white ONE letters and balloons on a pink backdrop',
+    focal: '50% 52%',
+    category: 'cake-smash',
+  },
 // ---- from Instagram (@adrisabelx), originals in site/assets/originals
   beachLift: {
     file: 'mother-lifting-toddler-beach-blue-sky',

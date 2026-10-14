@@ -16,7 +16,7 @@ export const PACKAGES = [
   },
   {
     id: 'wonderland', roman: 'II', chapter: 'Chapter Two', name: 'Wonderland',
-    kicker: 'Newborn & family session', desc: 'Your newborn plus the people who love them most — sweet portraits with big brothers and sisters, mom and dad.', includes: ['15 edited photos', '2 outfits', '4 backdrops'], cardPhoto: 'brotherSweater',
+    kicker: 'Newborn & family session', desc: 'Your newborn plus the people who love them most — sweet portraits with big brothers and sisters, mom and dad.', includes: ['15 edited photos', '2 outfits', '4 backdrops'], cardPhoto: 'familyFour',
     price: 300, priceLabel: '$300', type: 'Newborn, Baby & Family Session',
     badge: { icon: 'family', text: 'Baby, siblings & parents' },
     headline: 'Welcome to the family.',
@@ -59,7 +59,7 @@ export const PACKAGES = [
   },
   {
     id: 'cake-smash', roman: 'V', chapter: 'Chapter Five', name: 'Cake Smash',
-    kicker: 'First birthday session', desc: 'Frosting, giggles and the sweetest mess — a timeless first-birthday session with the cake already taken care of.', includes: ['Cake included', '8 edited photos', '1 timeless backdrop'], cardPhoto: 'cake',
+    kicker: 'First birthday session', desc: 'Frosting, giggles and the sweetest mess — a timeless first-birthday session with the cake already taken care of.', includes: ['Cake included', '8 edited photos', '1 timeless backdrop'], cardPhoto: 'cakeSmile',
     price: 280, priceLabel: '$280', type: 'First Birthday Session',
     badge: { icon: 'cake', text: 'Cake included' },
     headline: 'Then comes the big ONE!',

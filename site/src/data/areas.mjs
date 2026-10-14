@@ -40,7 +40,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Alamo, TX | Adrisabel',
     description: 'Gentle newborn and baby photography for Alamo, TX: safe newborn posing, milestone and cake smash sessions, about 10–15 minutes west on Expressway 83.',
     focus: 'newborn photographer alamo tx',
-    photos: ['woodBowlCream', 'heartBasket', 'parentsStanding', 'cakePinkSit'],
+    photos: ['woodBowlCream', 'heartBasket', 'parentsStanding', 'cake'],
   },
   {
     slug: 'donna', name: 'Donna', county: 'Hidalgo County',
@@ -100,7 +100,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Hidalgo, TX | Adrisabel',
     description: 'Hidalgo, TX parents: gentle newborn and baby photography, from safe newborn posing to milestones and cake smash, 15–20 minutes up International Blvd.',
     focus: 'newborn photographer hidalgo tx',
-    photos: ['whiteLaceAlert', 'crown', 'familyFour', 'cakePink'],
+    photos: ['whiteLaceAlert', 'crown', 'brotherSweater', 'cakeBlue'],
   },
   {
     slug: 'sharyland', name: 'Sharyland', county: 'Hidalgo County',
@@ -160,7 +160,7 @@ export const AREAS = [
     title: 'Newborn & Baby Photographer Alton, TX | Adrisabel',
     description: 'Newborn and baby photography for Alton, TX, from Shary Estates to 5 Mile: soft newborn portraits, baby milestones and a first-birthday cake smash.',
     focus: 'newborn photographer alton tx',
-    photos: ['bearBonnetChair', 'redRoseSwing', 'familyFour', 'cakeBlue'],
+    photos: ['bearBonnetChair', 'redRoseSwing', 'momNavyKiss', 'cakeBlue'],
   },
   {
     slug: 'la-joya', name: 'La Joya', county: 'Hidalgo County',

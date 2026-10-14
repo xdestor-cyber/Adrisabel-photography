@@ -199,7 +199,7 @@ export const cake = {
     title: 'Cake Smash Photography McAllen, TX | Adrisabel',
     description: 'Celebrate the big ONE! First-birthday cake smash sessions in McAllen & the RGV — cake included, 8 edited photos and a timeless backdrop.',
     focus: 'cake smash photography mcallen',
-    image: 'cakePink',
+    image: 'cakeSmile',
   },
   body: (ctx) => html`
 ${pageHero(ctx, {
@@ -207,7 +207,7 @@ ${pageHero(ctx, {
   eyebrow: 'First birthday · Cake smash',
   title: 'Cake smash photography in <em>McAllen, TX</em>',
   lede: 'Then comes the big ONE! Frosting on the nose, giggles and the sweetest mess — a timeless first-birthday session with the cake already taken care of.',
-  photo: 'cakePink', photo2: 'cakeChoc', chip: googleChip,
+  photo: 'cakeOne', photo2: 'cakeChoc', chip: googleChip,
   ctaHref: bookHref('cake-smash'), ctaLabel: 'Reserve Cake Smash',
   trust: false,
 })}
@@ -233,7 +233,7 @@ ${eyebrow('How it works', 'eyebrow--left')}
 <section class="sec" aria-labelledby="cs-gallery">
 <div class="wrap">
 ${secHead({ eyebrow: 'Recent cake smash sessions', title: 'Frosting, giggles &amp; <em>the big ONE</em>', id: 'cs-gallery' })}
-${gallery(ctx, ['cakeBlue', 'cakePinkSit'], { cls: 'gallery--2', sizes: '(min-width:900px) 560px, 50vw' })}
+${gallery(ctx, ['cake', 'cakeBlue'], { cls: 'gallery--2', sizes: '(min-width:900px) 560px, 50vw' })}
 </div>
 </section>
 

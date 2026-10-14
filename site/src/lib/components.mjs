@@ -6,7 +6,7 @@ import { CITIES } from '../data/cities.mjs';
 import { AREAS } from '../data/areas.mjs';
 import { ART } from './art.generated.mjs';
 import { html, esc, attrs, icon, art, spark, ui, googleG, stars, when } from './html.mjs';
-import { img } from './media.mjs';
+import { img, video } from './media.mjs';
 
 const B = BUSINESS;
 export const bookHref = (id) => (id ? `${BOOK_URL}?session=${id}` : BOOK_URL);
@@ -91,7 +91,7 @@ export const ctaButtons = ({ label = 'Book your session', href = BOOK_URL, call 
 
 /* ---------------- heroes ---------------- */
 // hero reel: none of the session-card photos, so the home page shows more of her work
-const REEL = ['roses', 'dadKiss', 'heartBowl', 'tongueBonnet', 'bearBonnetMoon', 'cakeBlue', 'familyFour', 'whiteLaceAlert', 'laceSmile', 'crown'];
+const REEL = ['roses', 'dadKiss', 'heartBowl', 'tongueBonnet', 'bearBonnetMoon', 'cakeBlue', 'brotherSweater', 'whiteLaceAlert', 'laceSmile', 'crown'];
 export function reel(ctx, keys = REEL, { eager = 0, sizes = '170px' } = {}) {
   const half = Math.ceil(keys.length / 2);
   const track = (list, alt) => html`<div class="reel-track${alt ? ' alt' : ''}"${alt ? ' aria-hidden="true"' : ''}>${[...list, ...list].map((k, i) => html`<div class="reel-item"${!alt && i >= list.length ? ' aria-hidden="true"' : ''}>${img(ctx.media, k, { sizes, eager: !alt && i < eager, priority: !alt && eager > 0 && i === 0, alt: alt || i >= list.length ? '' : null })}</div>`)}</div>`;
@@ -103,7 +103,7 @@ export function homeHero(ctx) {
 <div class="hero-grid">
 <div class="hero-copy">
 <p class="hero-badge">${spark()}<span><strong>5.0 ★ on Google</strong> · 15+ years</span></p>
-<div class="hero-reel-mobile">${reel(ctx, ['roses', 'dadKiss', 'heartBowl', 'tongueBonnet', 'bearBonnetMoon', 'cakeBlue', 'familyFour', 'laceSmile'], { eager: 2 })}</div>
+<div class="hero-reel-mobile">${reel(ctx, ['roses', 'dadKiss', 'heartBowl', 'tongueBonnet', 'bearBonnetMoon', 'cakeBlue', 'brotherSweater', 'laceSmile'], { eager: 2 })}</div>
 <h1 class="h-hero" id="hero-title"><span class="kw">Newborn &amp; Baby Photographer in McAllen, TX</span>Soft, timeless portraits of your <em>tiny miracle</em></h1>
 <p class="lede">15+ years and hundreds of babies photographed with patience, safety and love. Newborn, baby and family sessions across the whole Rio Grande Valley — especially McAllen, Mission, Pharr and Brownsville.</p>
 <div class="btn-stack"><a class="btn" href="${BOOK_URL}">Book your session ${ui.arrow}</a><a class="btn btn--ghost" href="${B.phoneHref}">${ui.phone} Call or text</a></div>
@@ -228,9 +228,9 @@ export const NEWBORN_POOL = [
   'greenHat', 'handsFeet', 'woodBowlCream', 'bearBonnetChair', 'swingBoy', 'laceAwake', 'parentsStanding', 'feetRings',
   'momOverheadRed', 'sister', 'brotherDino', 'momNavyKiss', 'pinkHatSleep', 'family', 'familyFour',
 ];
-export const BABY_POOL = ['moonClasped', 'basketSmile', 'laceSmile', 'tongueBonnet', 'knitRomper', 'cakeBlue', 'momFloral', 'cakePink', 'holiday', 'cakeChoc', 'cakePinkSit'];
+export const BABY_POOL = ['moonClasped', 'basketSmile', 'laceSmile', 'tongueBonnet', 'knitRomper', 'cakeBlue', 'momFloral', 'cakePink', 'holiday', 'cakeChoc', 'cakePinkSit', 'brotherSweater', 'cake'];
 // Frames from the same set read as repeats on one page, so a page shows one of each pair.
-export const LOOKALIKE = [['cakePink', 'cakePinkSit'], ['cakeBlue', 'cakeChoc'], ['moonStars', 'moonClasped'], ['santa', 'santaMoonRed'], ['laceAwake', 'laceSmile'], ['roses', 'redRoseSwing']];
+export const LOOKALIKE = [['cakePink', 'cakePinkSit', 'cakeSmile', 'cakeOne'], ['cakeBlue', 'cakeChoc'], ['moonStars', 'moonClasped'], ['santa', 'santaMoonRed'], ['laceAwake', 'laceSmile'], ['roses', 'redRoseSwing']];
 const lookalikes = (k) => LOOKALIKE.find((g) => g.includes(k)) || [k];
 export function galleryPick(pool, shown, n, seed = 0) {
   const taken = new Set(shown.flatMap(lookalikes));
@@ -255,9 +255,10 @@ export function filmstrip(ctx, keys) {
 }
 
 /* ---------------- about split ---------------- */
-export function aboutSplit(ctx, { photo = 'momKissTeal', title = 'I don’t just photograph babies — <em>I adore them</em>', more = true, reverse = false } = {}) {
+// "Meet Adrisabel": her own behind-the-scenes reel, so the section shows her (not a client).
+export function aboutSplit(ctx, { title = 'I don’t just photograph babies — <em>I adore them</em>', more = true, reverse = false } = {}) {
   return html`<div class="split${reverse ? ' split--rev' : ''}">
-<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, photo, { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
+<div class="split-media reveal"><div class="frame-photo">${video(ctx.media, 'reel')}</div></div>
 <div class="split-body reveal d1">
 ${eyebrow('Meet Adrisabel', 'eyebrow--left')}
 <h2 class="h-sec">${title}</h2>

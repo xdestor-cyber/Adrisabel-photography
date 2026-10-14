@@ -11,6 +11,7 @@ import sharp from 'sharp';
 import { createMedia, IMG_MANIFEST, PREVIEW_WIDTHS } from './src/lib/media.mjs';
 import { renderParts, previewHead, fontLinks } from './src/lib/layout.mjs';
 import { PAGES } from './src/pages/index.mjs';
+import { VIDEOS } from './src/data/videos.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const WP = process.argv.includes('--wp');
@@ -63,6 +64,9 @@ if (!WP) {
       if (!fs.existsSync(out)) await sharp(src).resize({ width: w }).webp({ quality: 78 }).toFile(out);
     }
   }
+  const vidDir = path.join(DIST, 'video');
+  fs.mkdirSync(vidDir, { recursive: true });
+  for (const v of Object.values(VIDEOS)) for (const f of Object.values(v.files)) fs.copyFileSync(path.join(ROOT, 'assets/video', f), path.join(vidDir, f));
   for (const page of PAGES) {
     const parts = renderParts(ctx, page);
     const doc = `<!doctype html>\n<html lang="en-US">\n<head>\n${previewHead(ctx, page, css)}\n</head>\n<body>\n${parts}\n<script>${siteJs}</script>${page.booking ? `\n<script>${bookingJs}</script>` : ''}\n</body>\n</html>\n`;

@@ -26,6 +26,7 @@ import { IMG_MANIFEST } from './src/lib/media.mjs';
 import { PHOTOS, LOGO } from './src/data/images.mjs';
 import { BUSINESS } from './src/data/business.mjs';
 import { PAGES } from './src/pages/index.mjs';
+import { VIDEOS } from './src/data/videos.mjs';
 import { llmsContent } from './src/lib/llms.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -130,9 +131,15 @@ function mediaJobs() {
       jobs.push({ file: m.file, src: path.join(ROOT, 'assets/img', m.file), alt: p.alt, title: p.alt.split(/[,—]/)[0].trim(), caption: '', description: `${p.alt}. Photographed by ${BUSINESS.name}, newborn & baby photographer in McAllen, TX.` });
     }
   }
+  for (const v of Object.values(VIDEOS)) {
+    for (const [kind, f] of Object.entries(v.files)) {
+      jobs.push({ file: f, src: path.join(ROOT, 'assets/video', f), alt: kind === 'poster' ? v.label : '', title: v.title, description: `${v.label} ${BUSINESS.name}, newborn & baby photographer in McAllen, TX.` });
+    }
+  }
   return jobs;
 }
-const mime = (f) => (f.endsWith('.png') ? 'image/png' : f.endsWith('.webp') ? 'image/webp' : 'image/jpeg');
+const MIME = { png: 'image/png', webp: 'image/webp', mp4: 'video/mp4', webm: 'video/webm' };
+const mime = (f) => MIME[f.split('.').pop()] || 'image/jpeg';
 function record(file, d) {
   const sizes = Object.entries(d.media_details?.sizes || {}).filter(([k]) => k !== 'full')
     .map(([name, s]) => ({ name, w: s.width, h: s.height, url: s.source_url }));

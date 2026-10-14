@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PHOTOS } from '../data/images.mjs';
+import { VIDEOS } from '../data/videos.mjs';
 import { attrs } from './html.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -47,7 +48,23 @@ export function createMedia(mode, deploy = null) {
     const m = IMG_MANIFEST.logo;
     return { src: mode === 'wp' ? need(m.file).url : `/img/${m.file}`, png: mode === 'wp' ? need(m.png).url : `/img/${m.png}`, width: 256, height: 256 };
   };
-  return { mode, photo, file, logo };
+  const video = (key) => {
+    const v = VIDEOS[key];
+    if (!v) throw new Error(`unknown video ${key}`);
+    const url = (f) => (mode === 'wp' ? need(f).url : `/video/${f}`);
+    return { ...v, webm: url(v.files.webm), mp4: url(v.files.mp4), poster: url(v.files.poster) };
+  };
+  return { mode, photo, file, logo, video };
+}
+
+// Silent looping <video>: no file is fetched until site.js sees it near the viewport
+// (sources carry data-src), and reduced-motion / data-saver visitors keep the poster.
+export function video(media, key, { cls = null } = {}) {
+  const v = media.video(key);
+  return `<video${attrs({
+    class: cls, poster: v.poster, width: v.width, height: v.height, 'aria-label': v.label,
+    muted: true, loop: true, playsinline: true, preload: 'none', 'data-lazy-video': true,
+  })}><source data-src="${v.webm}" type="video/webm"><source data-src="${v.mp4}" type="video/mp4"></video>`;
 }
 
 // <img> with srcset, intrinsic size (no layout shift), soft placeholder color.

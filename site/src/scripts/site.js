@@ -58,6 +58,32 @@
     items.forEach(function (el) { el.classList.add('is-in'); });
   }
 
+  // Silent reels: fetch the file only when it nears the viewport, play while visible, pause when
+  // scrolled away. Visitors who prefer reduced motion or save data keep the poster still.
+  var reels = d.querySelectorAll('video[data-lazy-video]');
+  var still = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+    (navigator.connection && navigator.connection.saveData);
+  if (reels.length && !still && 'IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.getAttribute('data-loaded')) {
+            v.querySelectorAll('source[data-src]').forEach(function (s) { s.src = s.getAttribute('data-src'); });
+            v.setAttribute('data-loaded', '1');
+            v.muted = true;
+            v.load();
+          }
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        } else if (v.getAttribute('data-loaded')) {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    reels.forEach(function (v) { vio.observe(v); });
+  }
+
   // Only one FAQ open at a time within a group
   d.querySelectorAll('.adr .faq').forEach(function (group) {
     group.addEventListener('toggle', function (e) {

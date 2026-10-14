@@ -125,6 +125,20 @@
   "bytes": 44236,
   "color": "#f0f0e7"
  },
+ "cakeSmile": {
+  "file": "cake-smash-girl-frosting-smile-pearl-flower-crown.webp",
+  "width": 1600,
+  "height": 1097,
+  "bytes": 35936,
+  "color": "#f9e7e7"
+ },
+ "cakeOne": {
+  "file": "first-birthday-cake-smash-one-letters-pink-balloons.webp",
+  "width": 1600,
+  "height": 1066,
+  "bytes": 23296,
+  "color": "#f9e7e7"
+ },
  "beachLift": {
   "file": "mother-lifting-toddler-beach-blue-sky.webp",
   "width": 1440,

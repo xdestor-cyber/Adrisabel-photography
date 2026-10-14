@@ -38,7 +38,7 @@ export const CITIES = [
     baby: {
       intro: 'From gummy smiles to first steps, Edinburg babies change every month. Adrisabel’s baby and milestone sessions turn those little chapters into playful, beautiful portraits you’ll treasure for years.',
       why: 'Sessions are built around your baby’s mood — play breaks, snacks and silly songs included. With 15+ years of photographing little ones, we know how to get real smiles without the stress.',
-      photos: ['knitRomper', 'laceSmile', 'cakePink', 'basketSmile'],
+      photos: ['knitRomper', 'laceSmile', 'brotherSweater', 'basketSmile'],
     },
   },
   {
@@ -92,7 +92,7 @@ export const CITIES = [
     baby: {
       intro: 'After the newborn days come first smiles, sitting up and the big first birthday. Adrisabel’s baby sessions capture each of those milestones for Weslaco families, with playful setups and plenty of patience.',
       why: 'We know how to work with every baby temperament — the shy ones, the busy ones and the ones who want to taste every prop. 15+ years of experience means calm, happy sessions.',
-      photos: ['laceSmile', 'cakePink', 'knitRomper', 'holiday'],
+      photos: ['laceSmile', 'cake', 'knitRomper', 'holiday'],
     },
   },
   {
@@ -128,7 +128,7 @@ export const CITIES = [
     baby: {
       intro: 'Brownsville families: capture every chapter of your baby’s first year — smiles, sitting up, crawling and the big cake smash — with Adrisabel’s playful, beautifully styled baby sessions.',
       why: 'You’re also close to South Padre Island, home of our Seaside Beach family session — sandy toes, salty kisses and 15 edited photos of the whole family.',
-      photos: ['cakePinkSit', 'laceSmile', 'basketSmile', 'cakeChoc'],
+      photos: ['brotherSweater', 'laceSmile', 'basketSmile', 'cakeChoc'],
     },
   },
 ];
