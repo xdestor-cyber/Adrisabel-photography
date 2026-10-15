@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { PHOTOS, LOGO } from '../src/data/images.mjs';
+import { stamp, imageFiles } from './copyright.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE = path.join(ROOT, '.cache/src');
@@ -99,3 +100,6 @@ console.log('washes      ', WASHES.length);
 
 fs.writeFileSync(path.join(OUT, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n');
 console.log('manifest written');
+// author, copyright and usage rights in every photo and the logo (see tools/copyright.mjs)
+stamp(imageFiles().filter((f) => f.path.startsWith(OUT)));
+console.log('copyright metadata written');

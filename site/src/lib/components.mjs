@@ -73,7 +73,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <div><h2>More RGV cities</h2><p class="f-areas">${AREAS.map((a) => html`<a href="${areaHref(a)}">${a.name}</a>`)}<a href="/areas-we-serve/">All areas</a></p></div>
 <div><h2>Counties &amp; the coast</h2><p class="f-areas">${COUNTIES.map((k) => html`<a href="${countyHref(k.name)}">${k.name}</a>`)}<a href="/south-padre-island-family-photography/">South Padre Island</a></p></div>
 </div>
-<div class="f-bottom"><span>© ${year} ${B.name} · Newborn, baby &amp; family photographer in McAllen, TX</span><span><a href="/sitemap/">Site map</a> · <a href="/privacy-policy/">Privacy policy</a></span></div>
+<div class="f-bottom"><span>© ${year} ${B.name} · Newborn, baby &amp; family photographer in McAllen, TX</span><span><a href="/sitemap/">Site map</a> · <a href="/photo-copyright/">Photo copyright</a> · <a href="/privacy-policy/">Privacy policy</a></span></div>
 </div>
 ${when(sticky, html`<div class="sticky-cta" aria-label="Quick actions"><a class="call" href="${B.phoneHref}">${ui.phone}Call</a><a class="btn" href="${stickyHref}">${stickyLabel}</a></div>`)}
 </footer>`;

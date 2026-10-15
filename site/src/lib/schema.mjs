@@ -1,6 +1,7 @@
 // schema.org JSON-LD. Rank Math already outputs WebSite/WebPage/BreadcrumbList;
 // these add the local business, its services, and FAQs.
 import { BUSINESS, SITE_URL } from '../data/business.mjs';
+import { RIGHTS } from '../data/rights.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { AREAS, COUNTIES } from '../data/areas.mjs';
@@ -91,6 +92,8 @@ export function pageNodes(page) {
     description: page.seo.description,
     inLanguage: 'en-US',
     about: { '@id': BUSINESS_ID },
+    copyrightHolder: { '@id': BUSINESS_ID },
+    copyrightNotice: RIGHTS.notice,
     breadcrumb: { '@id': `${url}#breadcrumb` },
   }];
 }

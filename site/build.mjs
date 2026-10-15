@@ -8,7 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as esbuild from 'esbuild';
 import sharp from 'sharp';
-import { createMedia, IMG_MANIFEST, PREVIEW_WIDTHS } from './src/lib/media.mjs';
+import { createMedia, IMG_MANIFEST, PREVIEW_WIDTHS, wpName } from './src/lib/media.mjs';
 import { renderParts, previewHead, fontLinks } from './src/lib/layout.mjs';
 import { PAGES } from './src/pages/index.mjs';
 import { VIDEOS } from './src/data/videos.mjs';
@@ -61,7 +61,7 @@ if (!WP) {
     for (const w of PREVIEW_WIDTHS) {
       if (w >= m.width) continue;
       const out = path.join(imgDir, m.file.replace(/\.webp$/, `-${w}.webp`));
-      if (!fs.existsSync(out)) await sharp(src).resize({ width: w }).webp({ quality: 78 }).toFile(out);
+      if (!fs.existsSync(out) || fs.statSync(out).mtimeMs < fs.statSync(src).mtimeMs) await sharp(src).resize({ width: w }).keepMetadata().webp({ quality: 78 }).toFile(out);
     }
   }
   const vidDir = path.join(DIST, 'video');
@@ -108,7 +108,7 @@ if (!WP) {
         '<!-- wp:block {"ref":__SCRIPTS__} /-->',
       ].join('\n\n'),
       excerpt: page.seo.description,
-      featuredImage: page.seo.image ? IMG_MANIFEST[page.seo.image].file : null,
+      featuredImage: page.seo.image ? wpName(IMG_MANIFEST[page.seo.image].file) : null,
       seo: page.seo,
     };
   });

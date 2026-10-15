@@ -15,3 +15,11 @@
 - GitHub has a single branch, `main`. Cloud sessions start on a `claude/…` branch; when a session's
   work is done, merge it into `main`, push `main`, and delete the `claude/…` branch from GitHub and
   locally, so no branch name points back to the tool.
+
+## Photos
+
+- Every photo, logo and video the site shows carries Adrisabel's copyright, author and usage rights
+  in its metadata, written by `site/tools/copyright.mjs` (needs exiftool:
+  `apt-get install libimage-exiftool-perl`). `site/tools/images.mjs` stamps the masters it builds,
+  and `site/deploy.mjs` refuses to upload an unstamped file. After adding or replacing images, run
+  `node site/tools/copyright.mjs` and check with `--check`.

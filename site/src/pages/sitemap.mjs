@@ -117,7 +117,7 @@ ${ctx.wp ? postLoop('list') : html`<ul>${livePosts().map((p) => html`<li><a href
 <div class="wrap">
 ${secHead({ eyebrow: 'Good to know', title: 'The <em>studio</em>', id: 'sm-studio-title' })}
 <ul class="smap-info">${STUDIO.map((s, i) => html`<li class="reveal${i % 3 ? ' d' + (i % 3) : ''}"><a href="${s.path}"><span class="smap-ic">${icon(s.icon)}</span><span><b>${esc(s.name)}</b><small>${s.note}</small></span></a></li>`)}</ul>
-<p class="smap-tech"><a href="/privacy-policy/">Privacy policy</a> · For search engines: <a href="/sitemap_index.xml">XML sitemap</a></p>
+<p class="smap-tech"><a href="/photo-copyright/">Photo copyright</a> · <a href="/privacy-policy/">Privacy policy</a> · For search engines: <a href="/sitemap_index.xml">XML sitemap</a></p>
 </div>
 </section>
 

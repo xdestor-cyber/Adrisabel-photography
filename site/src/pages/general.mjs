@@ -7,6 +7,7 @@ import {
 } from '../lib/components.mjs';
 import { FAQS, faqsFor } from '../data/faqs.mjs';
 import { BUSINESS as B, BOOK_URL } from '../data/business.mjs';
+import { RIGHTS } from '../data/rights.mjs';
 import { REVIEWS } from '../data/reviews.mjs';
 import { faqNode } from '../lib/schema.mjs';
 
@@ -364,6 +365,39 @@ export const privacy = {
 <p>Our website is intended for parents and guardians. We do not knowingly collect personal information directly from children.</p>
 <h2>Changes</h2>
 <p>We may update this policy from time to time. The date above shows when it was last changed.</p>
+</div></section>
+`,
+  schemaBusiness: false,
+};
+
+/* ------------------------------------------------------------------ */
+// The "Web Statement of Rights" every photo file links to (see tools/copyright.mjs).
+export const photoCopyright = {
+  path: RIGHTS.path,
+  wpSlug: 'photo-copyright',
+  wpTitle: 'Photo Copyright',
+  isNew: true,
+  seo: {
+    title: 'Photo Copyright | Adrisabel Photography',
+    description: 'Every photograph on adrisabel.com is the original work of Adrisabel, protected by copyright with all rights reserved. Here is how to ask before using one.',
+    focus: 'photo copyright',
+    robots: 'noindex',
+    image: null,
+  },
+  body: () => html`
+<section class="page-hero page-hero--center" style="padding-bottom:20px"><div class="wrap wrap--narrow">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Photo Copyright</span></nav>
+<h1 class="h-page">Photo <em>copyright</em></h1>
+<p class="lede">Every photograph on this website is ${B.photographer}’s original work.</p>
+</div></section>
+<section class="sec" style="padding-top:20px"><div class="wrap wrap--text prose">
+<p>The photographs on adrisabel.com were created by ${B.photographer} of ${B.name}, who owns the copyright to each one. ${RIGHTS.notice}</p>
+<h2>Please ask first</h2>
+<p>Please don’t copy, download, screenshot, edit, print or post these photographs, or use them in ads or to train AI tools, without written permission from ${B.name}.</p>
+<h2>Her name travels with every photo</h2>
+<p>Each image file carries its credit in its metadata: the photographer’s name, the copyright notice, these terms and a link back to this page.</p>
+<h2>Want to use a photo?</h2>
+<p>Email <a href="mailto:${B.email}">${B.email}</a> or call or text ${B.phone}. Tell us which photo you’d like to use and how, and we’ll get back to you.</p>
 </div></section>
 `,
   schemaBusiness: false,

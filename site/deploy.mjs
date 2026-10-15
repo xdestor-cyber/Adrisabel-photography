@@ -8,6 +8,7 @@
 //   --dry-run        show what would change, write nothing
 //   --only a,b       only these page slugs (media/patterns still synced)
 //   --skip-media     don't upload/check media
+//   --prune-media    delete media this deploy no longer uses (once no page points to them)
 //   --no-flush       don't flush the GoDaddy cache at the end
 //   --no-backup      skip the backup of current page content
 //   --force          re-save pages even when nothing changed (bumps their sitemap lastmod)
@@ -22,7 +23,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { IMG_MANIFEST } from './src/lib/media.mjs';
+import sharp from 'sharp';
+import { IMG_MANIFEST, PREVIEW_WIDTHS, wpName } from './src/lib/media.mjs';
+import { isStamped } from './tools/copyright.mjs';
 import { PHOTOS, LOGO } from './src/data/images.mjs';
 import { BUSINESS } from './src/data/business.mjs';
 import { PAGES } from './src/pages/index.mjs';
@@ -118,22 +121,28 @@ if (!flag('--no-backup')) {
 }
 
 // ------------------------------------------------------------------ media
+// Her photos, logo and reel carry copyright metadata (tools/copyright.mjs). Each photo goes up in
+// the site's own widths, made here from the stamped master so they keep the stamp, and WordPress
+// is told not to make copies of its own (those lose it). The watercolor washes are only textures.
+const SIZED = path.join(ROOT, 'dist/wp-media');
 function mediaJobs() {
   const jobs = [];
   for (const [key, m] of Object.entries(IMG_MANIFEST)) {
     if (key === 'logo') {
-      jobs.push({ file: m.file, src: path.join(ROOT, 'assets/img', m.file), alt: LOGO.alt, title: 'Adrisabel Photography logo' });
-      jobs.push({ file: m.png, src: path.join(ROOT, 'assets/img', m.png), alt: LOGO.alt, title: 'Adrisabel Photography logo' });
+      for (const f of [m.file, m.png]) jobs.push({ file: wpName(f), src: path.join(ROOT, 'assets/img', f), alt: LOGO.alt, title: 'Adrisabel Photography logo', stamped: true });
     } else if (m.art) {
       jobs.push({ file: m.file, src: path.join(ROOT, 'assets/art', m.file), alt: '', title: `Watercolor wash (${key.replace('wash-', '')})` });
     } else {
       const p = PHOTOS[key];
-      jobs.push({ file: m.file, src: path.join(ROOT, 'assets/img', m.file), alt: p.alt, title: p.alt.split(/[,—]/)[0].trim(), caption: '', description: `${p.alt}. Photographed by ${BUSINESS.name}, newborn & baby photographer in McAllen, TX.` });
+      const master = path.join(ROOT, 'assets/img', m.file);
+      const info = { alt: p.alt, title: p.alt.split(/[,—]/)[0].trim(), caption: '', description: `${p.alt}. Photographed by ${BUSINESS.name}, newborn & baby photographer in McAllen, TX.`, stamped: true };
+      jobs.push({ file: wpName(m.file), src: master, ...info });
+      for (const w of PREVIEW_WIDTHS.filter((x) => x < m.width)) jobs.push({ file: wpName(m.file, w), src: path.join(SIZED, wpName(m.file, w)), from: master, width: w, ...info });
     }
   }
   for (const v of Object.values(VIDEOS)) {
     for (const [kind, f] of Object.entries(v.files)) {
-      jobs.push({ file: f, src: path.join(ROOT, 'assets/video', f), alt: kind === 'poster' ? v.label : '', title: v.title, description: `${v.label} ${BUSINESS.name}, newborn & baby photographer in McAllen, TX.` });
+      jobs.push({ file: wpName(f), src: path.join(ROOT, 'assets/video', f), alt: kind === 'poster' ? v.label : '', title: v.title, description: `${v.label} ${BUSINESS.name}, newborn & baby photographer in McAllen, TX.`, stamped: true });
     }
   }
   return jobs;
@@ -158,7 +167,12 @@ if (!flag('--skip-media')) {
       .find((d) => d.source_url.split('/').pop() === j.file);
     if (found) { record(j.file, found); kept++; continue; }
     if (DRY) { log(`  would upload ${j.file}`); continue; }
-    const { data } = await wp('POST', '/wp/v2/media', fs.readFileSync(j.src), {
+    if (j.from) {
+      fs.mkdirSync(SIZED, { recursive: true });
+      await sharp(j.from).resize({ width: j.width }).keepMetadata().webp({ quality: 78 }).toFile(j.src);
+    }
+    if (j.stamped && !isStamped(j.src)) throw new Error(`${j.file} has no copyright metadata: run node site/tools/copyright.mjs`);
+    const { data } = await wp('POST', '/wp/v2/media?generate_sub_sizes=false&convert_format=false', fs.readFileSync(j.src), {
       raw: true, headers: { 'Content-Type': mime(j.file), 'Content-Disposition': `attachment; filename="${j.file}"` },
     });
     const { data: upd } = await wp('POST', `/wp/v2/media/${data.id}`, { alt_text: j.alt, title: j.title, caption: j.caption || '', description: j.description || '' });
@@ -392,4 +406,25 @@ if (!DRY && !ONLY) {
   } catch { /* module off */ }
 
   log(problems.length ? `! sitemap/llms checks:\n  - ${problems.join('\n  - ')}` : '✓ sitemap, llms.txt and robots.txt verified');
+}
+
+// ------------------------------------------------------------------ retire replaced media (--prune-media)
+// Media this deploy no longer uploads (for example copies replaced by ones carrying the copyright
+// metadata) are deleted once no page uses them. Media used by site settings (icon, logo) stay.
+if (flag('--prune-media') && !DRY && !ONLY) {
+  const keep = new Set(mediaJobs().map((j) => j.file));
+  const { data: s } = await wp('GET', '/wp/v2/settings');
+  const pinned = new Set([s.site_icon, s.site_logo].filter(Boolean));
+  const used = built.map((p) => p.content).join('\n');
+  let gone = 0;
+  for (const [file, m] of Object.entries(state.media)) {
+    if (keep.has(file) || pinned.has(m.id)) continue;
+    if ([m.url, ...(m.sizes || []).map((x) => x.url)].some((u) => used.includes(u))) { log(`  ! kept ${file}: a page still uses it`); continue; }
+    await wp('DELETE', `/wp/v2/media/${m.id}?force=true`);
+    delete state.media[file];
+    gone++;
+    log(`  − ${file} (#${m.id})`);
+  }
+  saveState();
+  log(`✓ media: ${gone} replaced file(s) deleted`);
 }

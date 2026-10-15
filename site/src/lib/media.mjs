@@ -10,7 +10,12 @@ import { attrs } from './html.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const IMG_MANIFEST = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets/img/manifest.json'), 'utf8'));
-export const PREVIEW_WIDTHS = [480, 800, 1200];
+export const PREVIEW_WIDTHS = [480, 800, 1200]; // responsive widths, for the preview and for WordPress
+
+// WordPress strips the copyright metadata from the smaller copies it makes of an upload, so every
+// photo goes up in these widths, uploaded without WordPress sizes, and srcset uses those files.
+// The uploaded names credit her too.
+export const wpName = (file, w = null) => file.replace(/^adrisabel-/, '').replace(/(\.\w+)$/, `-by-adrisabel${w ? `-${w}` : ''}$1`);
 
 export function createMedia(mode, deploy = null) {
   const wpMedia = deploy?.media || {};
@@ -25,12 +30,9 @@ export function createMedia(mode, deploy = null) {
     if (!p || !m) throw new Error(`unknown photo ${key}`);
     let src, srcset;
     if (mode === 'wp') {
-      const w = need(m.file);
-      src = w.url;
-      const list = [...(w.sizes || []), { w: w.width, url: w.url }]
-        .filter((s, i, a) => s.w >= 300 && a.findIndex((x) => x.w === s.w) === i)
-        .sort((a, b) => a.w - b.w);
-      srcset = list.map((s) => `${s.url} ${s.w}w`).join(', ');
+      const full = need(wpName(m.file));
+      src = full.url;
+      srcset = PREVIEW_WIDTHS.filter((w) => w < m.width).map((w) => `${need(wpName(m.file, w)).url} ${w}w`).concat(`${full.url} ${m.width}w`).join(', ');
     } else {
       const base = m.file.replace(/\.webp$/, '');
       src = `/img/${m.file}`;
@@ -41,17 +43,17 @@ export function createMedia(mode, deploy = null) {
   const file = (name) => {
     const m = IMG_MANIFEST[name];
     if (!m) throw new Error(`unknown asset ${name}`);
-    if (mode === 'wp') return need(m.file).url;
+    if (mode === 'wp') return need(m.art ? m.file : wpName(m.file)).url;
     return m.art ? `/art/${m.file}` : `/img/${m.file}`;
   };
   const logo = () => {
     const m = IMG_MANIFEST.logo;
-    return { src: mode === 'wp' ? need(m.file).url : `/img/${m.file}`, png: mode === 'wp' ? need(m.png).url : `/img/${m.png}`, width: 256, height: 256 };
+    return { src: mode === 'wp' ? need(wpName(m.file)).url : `/img/${m.file}`, png: mode === 'wp' ? need(wpName(m.png)).url : `/img/${m.png}`, width: 256, height: 256 };
   };
   const video = (key) => {
     const v = VIDEOS[key];
     if (!v) throw new Error(`unknown video ${key}`);
-    const url = (f) => (mode === 'wp' ? need(f).url : `/video/${f}`);
+    const url = (f) => (mode === 'wp' ? need(wpName(f)).url : `/video/${f}`);
     return { ...v, webm: url(v.files.webm), mp4: url(v.files.mp4), poster: url(v.files.poster) };
   };
   return { mode, photo, file, logo, video };

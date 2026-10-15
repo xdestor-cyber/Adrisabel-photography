@@ -1,6 +1,7 @@
 // llms.txt content (served by Rank Math's "LLMS Txt" module): a curated,
 // plain-text map of the site for AI assistants, built from the same page data.
 import { BUSINESS as B, BOOK_URL } from '../data/business.mjs';
+import { RIGHTS } from '../data/rights.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { AREAS, COUNTIES } from '../data/areas.mjs';
@@ -29,6 +30,7 @@ export function llmsContent(pages, base) {
     `- Contact: call or text ${B.phone} · ${B.email} · Instagram ${B.instagram.handle} (${B.instagram.url})`,
     `- Hours: ${B.hours}`,
     `- Book online: ${base}${BOOK_URL}`,
+    `- Photos: every photograph on the site is the original work of ${B.photographer}. ${RIGHTS.notice} Terms: ${RIGHTS.url}`,
     '',
     '## Sessions',
     link('/newborn-photography/'),
