@@ -15,7 +15,7 @@ export const FAQS = [
   },
   {
     q: 'When should I book my newborn session?',
-    a: 'Reach out during your second or third trimester so we can save a spot around your due date. Newborn portraits are best taken <b>5–14 days after birth</b>, when babies are sleepiest and most comfortable in those soft, curled-up poses.',
+    a: 'Reach out during your second or third trimester so we can save a spot around your due date. Newborn portraits are best taken <b>5–14 days after birth</b>, when babies are sleepiest and most comfortable in those soft, curled-up poses. Many families book <a href="/maternity-photography/">maternity portraits</a> at the same time.',
     tags: ['home', 'newborn', 'city-newborn', 'booking'], group: 'Booking & pricing',
   },
   {

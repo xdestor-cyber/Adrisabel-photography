@@ -246,29 +246,91 @@ export const AREAS = [
 
 // Counties for the /areas-we-serve/ hub. `towns` are smaller places we serve that
 // don't have their own page (counties verified against the Texas municipality list).
+// County pages (/newborn-photographer-<id>-tx/) and the "by county" sections of /areas-we-serve/.
+// Drive times come from the verified town data above; the county seats are public record.
 export const COUNTIES = [
   {
-    id: 'hidalgo-county', name: 'Hidalgo County', eyebrow: 'Hidalgo County',
+    id: 'hidalgo-county', name: 'Hidalgo County', seat: 'Edinburg', eyebrow: 'Hidalgo County',
     title: 'McAllen, Mission, Pharr <em>&amp; the mid-Valley</em>',
     lede: 'The heart of the Valley — and the shortest drive to our private studio in the McAllen area.',
     towns: ['Palmhurst', 'Peñitas', 'Sullivan City', 'Granjeno', 'Progreso', 'Elsa', 'Edcouch'],
+    drive: 'just minutes to about half an hour',
+    intro: 'Hidalgo County is home to most of the Valley’s biggest cities — McAllen, Edinburg (the county seat), Mission, Pharr and Weslaco — and to our private studio in the McAllen area. For most families here the drive takes anywhere from a few minutes to about half an hour, an easy first outing for a brand-new baby.',
+    about: [
+      'With 15+ years behind the camera and hundreds of babies photographed, Adrisabel has welcomed families from every corner of the county, from Sharyland and Palmview in the west to Donna and Mercedes in the east. Newborn portraits are best 5–14 days after birth, so a short drive matters: you can feed right before you leave and again when you arrive.',
+      'The studio is warm and quiet, and everything is ready before you walk in — wraps, bonnets, headbands, little beds, baskets and backdrops. Come back through the first year for milestone portraits, and finish with a first-birthday Cake Smash, cake included.',
+    ],
+    faq: [
+      { q: 'How far is the studio from my part of Hidalgo County?', a: 'Just minutes from McAllen and Pharr; about 10–15 minutes from San Juan, Alamo and Sharyland; about 10–20 minutes from Mission; about 15–20 minutes from Edinburg, Donna, Hidalgo and Palmview; about 20–25 minutes from Weslaco, Alton and La Joya; and about 25–30 minutes from Mercedes. The exact session location is shared after booking.' },
+      { q: 'We live in a smaller Hidalgo County town. Can we still book?', a: 'Of course — Palmhurst, Peñitas, Sullivan City, Granjeno, Progreso, Elsa, Edcouch and every town in between are welcome. Send a booking request or call/text (409) 354-3075 and we’ll plan the session around your baby’s schedule.' },
+      { q: 'Can we book maternity and newborn sessions together?', a: 'Yes. Many Hidalgo County families book maternity portraits during pregnancy and reserve the newborn session at the same time, so we can plan around your due date. See <a href="/maternity-photography/">maternity photography</a>.' },
+    ],
+    seoTitle: 'Newborn & Baby Photographer Hidalgo County, TX | Adrisabel',
+    description: 'Newborn, baby milestone and cake smash photos for Hidalgo County families — McAllen, Edinburg, Mission, Pharr, Weslaco and every town in between.',
+    focus: 'newborn photographer hidalgo county',
+    photos: ['heartBasket', 'momNavyKiss', 'parentsStanding'],
   },
   {
-    id: 'cameron-county', name: 'Cameron County', eyebrow: 'Cameron County',
+    id: 'cameron-county', name: 'Cameron County', seat: 'Brownsville', eyebrow: 'Cameron County',
     title: 'Harlingen, Brownsville <em>&amp; the coast</em>',
     lede: 'From Harlingen to Brownsville and out to the coast — and home to our Seaside Beach family sessions on South Padre Island.',
     towns: ['La Feria', 'Santa Rosa', 'Combes', 'Primera', 'Palm Valley', 'Rio Hondo', 'Olmito', 'Laguna Vista', 'Port Isabel'],
+    drive: 'about 40 to 70 minutes',
+    intro: 'From Harlingen and San Benito to Brownsville, the county seat, Cameron County families make the trip to our private studio in the McAllen area for newborn, baby and first-birthday portraits — about 40 to 70 minutes, depending on where you start. Cameron County is also where our Seaside Beach family sessions happen, on the sand at South Padre Island.',
+    about: [
+      'A longer drive with a newborn is easier than it sounds. We set the session time around your baby’s feeds, the studio is ready before you arrive, and there’s no rush once you’re here — sessions take about 2–3 hours and move at your baby’s pace, with pauses for feeding, cuddles and diaper changes.',
+      'Adrisabel has photographed hundreds of babies over 15+ years, and she photographs every session herself — so the same friendly face greets your little one for newborn portraits, milestone months and the big ONE.',
+    ],
+    faq: [
+      { q: 'How long is the drive from Harlingen or Brownsville?', a: 'About 40–45 minutes from Harlingen, about 40–50 minutes from San Benito, about 55–65 minutes from Los Fresnos and about 60–70 minutes from Brownsville. We schedule newborn sessions around feeds, so you can feed right before you leave and again when you arrive.' },
+      { q: 'Where do Seaside Beach sessions take place?', a: 'On South Padre Island. We plan the date and time with you for the softest light of the day and share the exact meeting spot when you book. The session includes 15 edited photos — see <a href="/south-padre-island-family-photography/">family beach sessions</a>.' },
+      { q: 'Do you serve Port Isabel, Laguna Vista and the smaller Cameron County towns?', a: 'Yes — La Feria, Santa Rosa, Combes, Primera, Palm Valley, Rio Hondo, Olmito, Laguna Vista, Port Isabel and the rest of the county are all welcome. Send a booking request or call/text (409) 354-3075.' },
+    ],
+    seoTitle: 'Newborn & Baby Photographer Cameron County, TX | Adrisabel',
+    description: 'Newborn, baby and cake smash portraits for Harlingen, Brownsville, San Benito and Los Fresnos families — plus family beach sessions on South Padre Island.',
+    focus: 'newborn photographer cameron county',
+    photos: ['beachLift', 'navySwing', 'dadKiss'],
   },
   {
-    id: 'starr-county', name: 'Starr County', eyebrow: 'Starr County',
+    id: 'starr-county', name: 'Starr County', seat: 'Rio Grande City', eyebrow: 'Starr County',
     title: 'Rio Grande City <em>&amp; the western Valley</em>',
     lede: 'Coming from the western end of the Valley? It’s a straight drive east along US-83 to our private studio in the McAllen area.',
     towns: ['La Grulla', 'Escobares', 'Roma'],
+    drive: 'about 45–50 minutes from Rio Grande City',
+    intro: 'Starr County families — from Rio Grande City, the county seat, to Roma, La Grulla and Escobares — head east along US-83 to our private studio in the McAllen area. From Rio Grande City it’s about 45–50 minutes, so we plan newborn sessions around feeds and give you plenty of time to settle in when you arrive.',
+    about: [
+      'Newborn portraits are best 5–14 days after birth, while babies are sleepy and curl up easily. Reach out during your second or third trimester and we’ll save a spot around your due date; when your little one arrives, just send a message and we’ll set the session.',
+      'Every pose is gently supported and a parent is always close by. Wraps, outfits, bonnets, little beds and backdrops are all provided, so the only things to pack are feeding supplies, a pacifier if your baby uses one, and extra diapers.',
+    ],
+    faq: [
+      { q: 'How long is the drive from Rio Grande City?', a: 'About 45–50 minutes east along US-83 to our private studio in the McAllen area, a little longer from Roma. The exact session location is shared after booking.' },
+      { q: 'Do you photograph families from Roma, La Grulla and Escobares?', a: 'Yes — all of Starr County is welcome. Send a booking request or call/text (409) 354-3075 and we’ll find a session time that works with your drive.' },
+      { q: 'Can we come back for milestone photos through the first year?', a: 'Yes. The Pixie Dust plan includes five milestone sessions during baby’s first year, with siblings and parents included, and the first-birthday Cake Smash is booked separately. See <a href="/baby-milestone-photography/">baby &amp; milestone photography</a>.' },
+    ],
+    seoTitle: 'Newborn & Baby Photographer Starr County, TX | Adrisabel',
+    description: 'Gentle newborn, baby milestone and cake smash portraits for Rio Grande City, Roma, La Grulla and Escobares families — a straight drive east on US-83.',
+    focus: 'newborn photographer starr county',
+    photos: ['redRoseSwing', 'tongueBonnet', 'momKissTeal'],
   },
   {
-    id: 'willacy-county', name: 'Willacy County', eyebrow: 'Willacy County',
+    id: 'willacy-county', name: 'Willacy County', seat: 'Raymondville', eyebrow: 'Willacy County',
     title: 'Raymondville <em>&amp; the northern Valley</em>',
     lede: 'North of Harlingen, Willacy County families are welcome too — send a booking request and we’ll help you plan the drive.',
     towns: ['Raymondville', 'Lyford', 'San Perlita'],
+    drive: 'about an hour',
+    intro: 'Families from Raymondville, the county seat, Lyford and San Perlita are welcome at our private studio in the McAllen area. The drive from Willacy County is about an hour, so we build newborn sessions around your baby’s feeds and have everything ready before you arrive — wraps, outfits, little beds and backdrops.',
+    about: [
+      'Adrisabel has spent 15+ years photographing hundreds of babies across the Rio Grande Valley, and she’s trained in safe newborn posing. Sessions are calm and unhurried: about 2–3 hours, with time to feed, cuddle and change whenever your baby needs.',
+      'At the end of the session we sit together and help you choose your favorite images, so there’s no proof gallery to sort through at home, and your edited photos arrive within one week.',
+    ],
+    faq: [
+      { q: 'How long is the drive from Raymondville?', a: 'About an hour to our private studio in the McAllen area. We set the session time around your baby’s feeds so the drive is as easy as possible. The exact session location is shared after booking.' },
+      { q: 'Do you serve Lyford and San Perlita?', a: 'Yes — every Willacy County family is welcome. Send a booking request or call/text (409) 354-3075.' },
+      { q: 'What should we bring to a newborn session?', a: 'Just your baby, feeding supplies, a pacifier if your baby uses one, and extra diapers. Wraps, outfits, bonnets, headbands, little beds, baskets and backdrops are all provided.' },
+    ],
+    seoTitle: 'Newborn & Baby Photographer Willacy County, TX | Adrisabel',
+    description: 'Newborn, baby milestone and first-birthday cake smash portraits for Raymondville, Lyford and San Perlita families — about an hour to the studio.',
+    focus: 'newborn photographer willacy county',
+    photos: ['whiteLaceAlert', 'bearBonnetChair', 'brotherDino'],
   },
 ];

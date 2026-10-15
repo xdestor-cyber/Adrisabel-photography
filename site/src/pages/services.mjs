@@ -3,8 +3,9 @@ import { html, ui, icon, art } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
 import {
   pageHero, secHead, chapters, chapterCard, pixieCard, gallery, reviews, areas, faq, finalCta, ctaBand,
-  trustBadges, infoCards, facts, bookHref, ctaButtons, eyebrow, schedules, packages,
+  trustBadges, infoCards, facts, bookHref, ctaButtons, eyebrow, schedules, packages, countyLinks,
 } from '../lib/components.mjs';
+import { blogStrip } from './blog.mjs';
 import { faqsFor, FAQS } from '../data/faqs.mjs';
 import { byId, ADDONS } from '../data/packages.mjs';
 import { faqNode, serviceNode } from '../lib/schema.mjs';
@@ -83,6 +84,7 @@ ${reviews()}
 <section class="sec" aria-labelledby="nb-areas"><div class="wrap center">
 ${secHead({ eyebrow: 'Newborn photographer near you', title: 'Serving families across <em>the RGV</em>', id: 'nb-areas' })}
 ${areas({ kind: 'newborn' })}
+${countyLinks()}
 </div></section>
 
 <section class="sec sec--paper" aria-labelledby="nb-faq"><div class="wrap">
@@ -90,6 +92,7 @@ ${secHead({ eyebrow: 'Newborn questions', title: 'Frequently <em>asked</em>', id
 ${faq(NEWBORN_FAQ)}
 </div></section>
 
+${blogStrip(ctx, { categories: ['newborn', 'maternity'], id: 'newborn-blog' })}
 ${finalCta()}
 `,
   schema: () => [
@@ -174,6 +177,7 @@ ${reviews()}
 <section class="sec" aria-labelledby="bb-areas"><div class="wrap center">
 ${secHead({ eyebrow: 'Baby photographer near you', title: 'Serving families across <em>the RGV</em>', id: 'bb-areas' })}
 ${areas({ kind: 'baby' })}
+${countyLinks()}
 </div></section>
 
 <section class="sec sec--paper" aria-labelledby="bb-faq"><div class="wrap">
@@ -181,6 +185,7 @@ ${secHead({ eyebrow: 'Baby session questions', title: 'Frequently <em>asked</em>
 ${faq(BABY_FAQ)}
 </div></section>
 
+${blogStrip(ctx, { categories: ['baby', 'cake'], id: 'baby-blog' })}
 ${finalCta()}
 `,
   schema: () => [
@@ -254,6 +259,13 @@ ${secHead({ eyebrow: 'Cake smash questions', title: 'Frequently <em>asked</em>',
 ${faq(CAKE_FAQ)}
 </div></section>
 
+<section class="sec" aria-labelledby="cs-areas"><div class="wrap center">
+${secHead({ eyebrow: 'Cake smash near you', title: 'First birthdays across <em>the RGV</em>', id: 'cs-areas' })}
+${areas({ kind: 'baby' })}
+${countyLinks()}
+</div></section>
+
+${blogStrip(ctx, { categories: ['cake', 'baby'], id: 'cake-blog' })}
 ${finalCta({ title: 'Then comes <em>the big ONE!</em>', text: 'First birthdays only happen once. Reserve your Cake Smash date today and let’s make it sweet.' })}
 `,
   schema: () => [
@@ -313,6 +325,13 @@ ${secHead({ eyebrow: 'Maternity questions', title: 'Frequently <em>asked</em>', 
 ${faq(MAT_FAQ)}
 </div></section>
 
+<section class="sec" aria-labelledby="mt-areas"><div class="wrap center">
+${secHead({ eyebrow: 'Maternity photographer near you', title: 'Expecting families across <em>the RGV</em>', id: 'mt-areas' })}
+${areas({ kind: 'newborn' })}
+${countyLinks()}
+</div></section>
+
+${blogStrip(ctx, { categories: ['maternity', 'newborn'], id: 'maternity-blog' })}
 ${finalCta({ title: 'Your baby’s story <em>begins now</em>', text: 'Send us a message about maternity portraits and we’ll share details, availability and everything you need to plan.' })}
 `,
   schema: () => [
@@ -381,6 +400,13 @@ ${secHead({ eyebrow: 'Beach session questions', title: 'Frequently <em>asked</em
 ${faq(BEACH_FAQ)}
 </div></section>
 
+<section class="sec" aria-labelledby="bc-areas"><div class="wrap center">
+${secHead({ eyebrow: 'Families from across the Valley', title: 'Coming to the island <em>from home</em>', id: 'bc-areas' })}
+${areas({ kind: 'newborn' })}
+${countyLinks()}
+</div></section>
+
+${blogStrip(ctx, { categories: ['beach', 'newborn'], id: 'beach-blog' })}
 ${finalCta({ title: 'Sandy toes &amp; <em>salty kisses</em>', text: 'Reserve your Seaside Beach session and let’s plan a sweet evening by the ocean with your whole family.' })}
 `,
   schema: () => [

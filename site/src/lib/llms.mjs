@@ -3,7 +3,8 @@
 import { BUSINESS as B, BOOK_URL } from '../data/business.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
-import { AREAS } from '../data/areas.mjs';
+import { AREAS, COUNTIES } from '../data/areas.mjs';
+import { livePosts, postHref } from '../data/posts.mjs';
 import { faqsFor } from '../data/faqs.mjs';
 
 const text = (h) => h.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
@@ -49,7 +50,14 @@ export function llmsContent(pages, base) {
     '',
     '## Newborn & baby photographer in more Rio Grande Valley cities',
     ...AREAS.map((a) => link(`/newborn-photographer-${a.slug}-tx/`, `Newborn & baby photographer in ${a.name}, TX`)),
+    '',
+    '## Newborn & baby photographer by county',
+    ...COUNTIES.map((k) => link(`/newborn-photographer-${k.id}-tx/`, `Newborn & baby photographer in ${k.name}, TX`)),
     link('/areas-we-serve/', 'All areas we serve, by county'),
+    '',
+    '## Blog: guides for Rio Grande Valley parents',
+    link('/blog/', 'All guides on the blog'),
+    ...livePosts().map((p) => link(postHref(p), p.h1.replace(/<[^>]+>/g, ''))),
     '',
     '## About, reviews and booking',
     link('/about/', 'About Adrisabel'),

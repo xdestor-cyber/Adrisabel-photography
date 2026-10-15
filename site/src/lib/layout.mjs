@@ -4,6 +4,7 @@ import { SITE_URL, BUSINESS } from '../data/business.mjs';
 import { header, footer, setCurrentPage } from './components.mjs';
 import { jsonLd, businessNode, pageNodes } from './schema.mjs';
 import { esc } from './html.mjs';
+import { resolveDeferred } from '../pages/blog.mjs';
 
 export const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300..700&family=Great+Vibes&display=swap';
 
@@ -13,7 +14,7 @@ export const fontLinks = () =>
 
 export function renderParts(ctx, page) {
   setCurrentPage(page);
-  const body = page.body(ctx);
+  const body = resolveDeferred(ctx, page.body(ctx));
   const nodes = [page.schemaBusiness === false ? null : businessNode(ctx), ...pageNodes(page), ...(page.schema ? page.schema(ctx) : [])];
   return [
     // mark JS early so scroll-reveal styles apply before first paint

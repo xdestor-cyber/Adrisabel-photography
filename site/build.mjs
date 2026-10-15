@@ -95,11 +95,16 @@ if (!WP) {
       slug: page.wpSlug,
       title: page.wpTitle,
       parent: 0,
+      parentPath: page.wpParent || null,
+      publishAt: page.publishAt || null,
       front: page.path === '/',
-      // wp:html blocks are output as-is (no wpautop); the shared CSS/JS live in synced patterns
+      // wp:html blocks are output as-is (no wpautop); the shared CSS/JS live in synced patterns.
+      // Live WordPress blocks (the blog Query Loop) sit between <!--ADR:BLOCK--> markers and are
+      // emitted as real blocks between html blocks.
       content: [
         '<!-- wp:block {"ref":__STYLES__} /-->',
-        `<!-- wp:html -->\n${parts}${page.booking ? `\n${scriptTag(bookingJs, 'adr-booking-js')}` : ''}\n<!-- /wp:html -->`,
+        ...`${parts}${page.booking ? `\n${scriptTag(bookingJs, 'adr-booking-js')}` : ''}`.split('<!--ADR:BLOCK-->')
+          .map((seg, i) => (i % 2 ? seg.trim() : `<!-- wp:html -->\n${seg}\n<!-- /wp:html -->`)),
         '<!-- wp:block {"ref":__SCRIPTS__} /-->',
       ].join('\n\n'),
       excerpt: page.seo.description,

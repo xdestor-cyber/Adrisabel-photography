@@ -20,7 +20,7 @@ export const BUSINESS = {
     url: 'https://www.google.com/maps/place/?q=place_id:ChIJOX6_IvsJZYYRew3eA1_pSmE',
     writeReview: 'https://search.google.com/local/writereview?placeid=ChIJOX6_IvsJZYYRew3eA1_pSmE',
     rating: '5.0',
-    count: 8,
+    count: 10,
   },
   // Adrisabel serves the whole Rio Grande Valley — especially McAllen,
   // Mission, Pharr, Edinburg and Brownsville.
@@ -46,6 +46,7 @@ export const NAV = [
   ] },
   { href: '/pricing/', label: 'Packages' },
   { href: '/portfolio/', label: 'Portfolio' },
+  { href: '/blog/', label: 'Blog' },
   { href: '/about/', label: 'About' },
   { href: '/reviews/', label: 'Reviews', mobileOnly: true },
   { href: '/areas-we-serve/', label: 'Areas we serve', mobileOnly: true },

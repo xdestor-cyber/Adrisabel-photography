@@ -5,8 +5,10 @@ import { img } from '../lib/media.mjs';
 import { pageHero, secHead, finalCta } from '../lib/components.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
-import { AREAS } from '../data/areas.mjs';
+import { AREAS, COUNTIES } from '../data/areas.mjs';
 import { BUSINESS as B, BOOK_URL } from '../data/business.mjs';
+import { livePosts, isLive, postHref, postDate } from '../data/posts.mjs';
+import { postLoop } from './blog.mjs';
 
 const SESSIONS = [
   { path: '/newborn-photography/', name: 'Newborn Photography', photo: 'roses', note: 'Sleepy, curled-up portraits in the first 5–14 days, posed safely and gently.' },
@@ -48,6 +50,11 @@ const cityList = (kind) => {
 </div>`;
 };
 
+const countyList = () => html`<div class="smap-col smap-col--wide reveal">
+<h3>${ui.pin}Newborn &amp; baby photographer by county</h3>
+<ul>${COUNTIES.map((k) => html`<li><a href="/newborn-photographer-${k.id}-tx/"><span class="smap-l">Newborn &amp; baby photographer in <b>${k.name}, TX</b><small>County seat: ${k.seat} · ${k.drive}</small></span>${ui.arrow}</a></li>`)}</ul>
+</div>`;
+
 const moreCities = () => html`<div class="smap-col smap-col--wide reveal">
 <h3>${icon('family')}Newborn &amp; baby photographer in more RGV cities</h3>
 <ul>${AREAS.map((a) => html`<li><a href="/newborn-photographer-${a.slug}-tx/"><span class="smap-l">Newborn &amp; baby photographer in <b>${a.name}, TX</b><small>${a.county} · ${a.drive}</small></span>${ui.arrow}</a></li>`)}</ul>
@@ -60,7 +67,7 @@ export function sitemapPage(PAGES) {
     wpTitle: 'Site Map',
     seo: {
       title: 'Site Map | Adrisabel Newborn & Baby Photography, McAllen TX',
-      description: 'Every page on adrisabel.com: newborn, baby milestone, cake smash, maternity and beach sessions, local pages for 7 Rio Grande Valley cities, and booking.',
+      description: 'Every page on adrisabel.com: newborn, baby milestone, cake smash, maternity and beach sessions, local pages for 19 Rio Grande Valley cities and 4 counties, the blog, and booking.',
       focus: 'adrisabel photography site map',
       image: 'roses',
     },
@@ -75,7 +82,7 @@ ${pageHero(ctx, {
   trust: false,
 })}
 <nav class="sec sec--tight smap-jump" aria-label="Site map sections" style="padding-top:0"><div class="wrap"><div class="areas">
-<a href="#sm-sessions">${icon('camera')}Sessions</a><a href="#sm-local">${ui.pin}Local pages</a><a href="#sm-studio">${icon('heart')}The studio</a><a href="${BOOK_URL}">${icon('calendar')}Book</a>
+<a href="#sm-sessions">${icon('camera')}Sessions</a><a href="#sm-local">${ui.pin}Local pages</a><a href="#sm-blog">${icon('sparkle')}Blog</a><a href="#sm-studio">${icon('heart')}The studio</a><a href="${BOOK_URL}">${icon('calendar')}Book</a>
 </div></div></nav>
 
 <section class="sec sec--blush" id="sm-sessions" aria-labelledby="sm-sessions-title">
@@ -90,8 +97,19 @@ ${secHead({ eyebrow: 'Photography sessions', title: 'Our <em>sessions</em>', led
 ${secHead({ eyebrow: 'Across the Rio Grande Valley', title: 'Find us near <em>you</em>', lede: `${B.studioLine} ${B.addressNote}`, id: 'sm-local-title' })}
 <div class="smap-cols">${cityList('newborn')}${cityList('baby')}</div>
 ${moreCities()}
+${countyList()}
 <p class="center mt"><a class="arrow-link" href="/areas-we-serve/">All areas we serve, by county ${ui.arrow}</a></p>
 <p class="center mt"><a class="arrow-link" href="/south-padre-island-family-photography/">Family beach sessions on South Padre Island ${ui.arrow}</a></p>
+</div>
+</section>
+
+<section class="sec sec--blush" id="sm-blog" aria-labelledby="sm-blog-title">
+<div class="wrap">
+${secHead({ eyebrow: 'Guides for RGV parents', title: 'The <em>blog</em>', id: 'sm-blog-title' })}
+<div class="smap-col smap-col--wide reveal">
+<h3>${icon('sparkle')}<a href="/blog/">All guides on the blog</a></h3>
+${ctx.wp ? postLoop('list') : html`<ul>${livePosts().map((p) => html`<li><a href="${postHref(p)}"><span class="smap-l"><b>${esc(p.h1.replace(/<[^>]+>/g, ''))}</b><small>${postDate(p)}</small></span>${ui.arrow}</a></li>`)}</ul>`}
+</div>
 </div>
 </section>
 
@@ -106,7 +124,8 @@ ${secHead({ eyebrow: 'Good to know', title: 'The <em>studio</em>', id: 'sm-studi
 ${finalCta()}
 `;
       // every indexable page must be reachable from here
-      const missing = PAGES.filter((p) => p.seo.robots !== 'noindex' && p.path !== page.path && p.path !== '/' && !out.includes(`href="${p.path}"`));
+      // (posts: on WordPress the blog list is a live Query Loop; scheduled posts aren't linked until they're live)
+      const missing = PAGES.filter((p) => p.seo.robots !== 'noindex' && p.path !== page.path && p.path !== '/' && !(p.isPost && (ctx.wp || !isLive(p))) && !out.includes(`href="${p.path}"`));
       if (missing.length) throw new Error(`/sitemap/ is missing: ${missing.map((p) => p.path).join(', ')}`);
       return out;
     },

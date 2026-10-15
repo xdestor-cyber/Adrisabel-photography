@@ -1,7 +1,7 @@
 // 14 local landing pages (newborn + baby photographer × 7 RGV cities).
 import { html, ui, icon } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
-import { pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref, hoods, moreAreas, galleryPick, fullRows, cardPhotos, NEWBORN_POOL, BABY_POOL } from '../lib/components.mjs';
+import { pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref, hoods, moreAreas, galleryPick, fullRows, cardPhotos, NEWBORN_POOL, BABY_POOL, mapBlock, countyHref } from '../lib/components.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { byId } from '../data/packages.mjs';
 import { BUSINESS as B } from '../data/business.mjs';
@@ -121,6 +121,17 @@ ${cityGrid(c.slug)}
 ${moreAreas()}
 <div class="center mt">${ctaButtons({ label: nb ? 'Reserve your newborn session' : 'Reserve your baby session', href: bookHref(nb ? 'sunshine' : 'fairytale'), center: true })}</div>
 </div></section>
+
+${mapBlock({
+  key: c.slug,
+  title: `Families in <em>${c.name}, TX</em>`,
+  text: `Our private studio in the McAllen area is ${c.drive === 'just minutes' ? `just minutes from anywhere in ${c.name}` : `${c.drive} from ${c.name}`}. ${B.addressNote}`,
+  links: [
+    nb ? [`/baby-photographer-${c.slug}-tx/`, `Baby &amp; milestone photos in ${c.name}`] : [`/newborn-photographer-${c.slug}-tx/`, `Newborn photos in ${c.name}`],
+    nb ? ['/maternity-photography/', 'Expecting? Maternity portraits'] : ['/cake-smash-photography/', 'First-birthday cake smash'],
+    [countyHref(c.county), `More in ${c.county}`],
+  ],
+})}
 
 ${finalCta()}
 `,

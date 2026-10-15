@@ -3,6 +3,7 @@ import {
   homeHero, ribbon, trustBadges, secHead, chapters, gallery, steps, aboutSplit, reviews,
   areas, faq, ctaBand, finalCta, ctaButtons, addons, orn,
 } from '../lib/components.mjs';
+import { blogStrip } from './blog.mjs';
 import { faqsFor } from '../data/faqs.mjs';
 import { faqNode, serviceNode } from '../lib/schema.mjs';
 
@@ -81,6 +82,7 @@ ${faq(FAQ)}
 </div>
 </section>
 
+${blogStrip(ctx, { id: 'home-blog' })}
 ${finalCta()}
 `,
   schema: () => [

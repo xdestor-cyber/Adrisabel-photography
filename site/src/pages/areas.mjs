@@ -4,7 +4,7 @@ import { html, ui, icon, esc } from '../lib/html.mjs';
 import { img } from '../lib/media.mjs';
 import {
   pageHero, secHead, packages, gallery, reviews, faq, finalCta, infoCards, cityGrid, eyebrow, ctaButtons, bookHref, hoods, moreAreas, areaHref,
-  galleryPick, fullRows, cardPhotos, NEWBORN_POOL, BABY_POOL,
+  galleryPick, fullRows, cardPhotos, NEWBORN_POOL, BABY_POOL, mapBlock, countyHref, countyLinks,
 } from '../lib/components.mjs';
 import { CITIES } from '../data/cities.mjs';
 import { AREAS, COUNTIES } from '../data/areas.mjs';
@@ -130,6 +130,13 @@ ${moreAreas(a.slug)}
 <div class="center mt">${ctaButtons({ label: 'Reserve your session', href: bookHref('sunshine'), center: true })}</div>
 </div></section>
 
+${mapBlock({
+  key: a.slug,
+  title: `Families in <em>${a.name}, TX</em>`,
+  text: `Our private studio in the McAllen area is ${a.drive} from ${a.name}. ${B.addressNote}`,
+  links: [[countyHref(a.county), `More in ${a.county}`], ['/areas-we-serve/', 'All areas we serve']],
+})}
+
 ${finalCta()}
 `,
     schema: () => [
@@ -140,6 +147,121 @@ ${finalCta()}
 }
 
 export const AREA_PAGES = AREAS.map(areaPage);
+
+/* ------------------------------------------------------------------ counties */
+const COUNTY_GENERAL = () => [...faqsFor('city-newborn'), ...faqsFor('city-baby')]
+  .filter((f, i, all) => all.indexOf(f) === i && /safe|early or late|receive my photos/i.test(f.q));
+
+function countyPage(k, i) {
+  const path = countyHref(k.name);
+  const FAQ = [...k.faq, ...COUNTY_GENERAL()];
+  const [p0, p1, p2] = k.photos;
+  const pk = k.id === 'cameron-county' ? [...AREA_PACKAGES, 'seaside-beach'] : AREA_PACKAGES;
+  const local = [...CITIES.map((c) => ({ ...c })), ...AREAS.map((a) => ({ ...a, page: areaHref(a) }))].filter((c) => c.county === k.name);
+  const shown = [p0, p1, p2, ...cardPhotos(pk)];
+  const seed = CITIES.length + AREAS.length + i;
+  const baby = galleryPick(BABY_POOL, shown, 2, seed);
+  const pics = fullRows([...galleryPick(NEWBORN_POOL, [...shown, ...baby], 6, seed), ...baby]);
+  return {
+    path,
+    wpSlug: path.replace(/\//g, ''),
+    wpTitle: `Newborn & Baby Photographer ${k.name} TX`,
+    seo: { title: k.seoTitle, description: k.description, focus: k.focus, image: p0 },
+    body: (ctx) => html`
+${pageHero(ctx, {
+  crumbs: [{ label: 'Areas we serve', href: '/areas-we-serve/' }, { label: `${k.name}, TX` }],
+  eyebrow: `Newborn &amp; baby photographer · ${k.name}, TX`,
+  title: `Newborn &amp; baby photographer in <em>${k.name}, TX</em>`,
+  lede: k.intro,
+  photo: p0, photo2: p1, chip: googleChip,
+  ctaHref: bookHref('sunshine'),
+  trust: [`<a href="${B.google.url}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true">★★★★★</span> <b>5.0</b>&nbsp;on Google</a>`, '15+ years', `County seat: ${k.seat}`],
+})}
+
+<section class="sec sec--blush" aria-labelledby="towns-title">
+<div class="wrap">
+${secHead({ eyebrow: `Towns we serve in ${k.name}`, title: k.title, lede: k.lede, id: 'towns-title' })}
+${local.length ? html`<div class="area-grid">${local.map(cityCard)}</div>` : ''}
+${k.towns?.length ? html`<p class="area-also"><b>${local.length ? 'Also serving' : 'Serving'}:</b> ${k.towns.join(' · ')}</p>` : ''}
+</div>
+</section>
+
+<section class="sec" aria-labelledby="ab-title">
+<div class="wrap">
+<div class="split">
+<div class="split-media reveal"><div class="frame-photo">${img(ctx.media, p2, { sizes: '(min-width:900px) 520px, 92vw' })}</div></div>
+<div class="split-body reveal d1">
+${eyebrow(`Gentle sessions for ${k.name} families`, 'eyebrow--left')}
+<h2 class="h-sec" id="ab-title">Worth the drive, <em>every time</em></h2>
+<div class="prose">${k.about.map((t) => html`<p>${t}</p>`)}</div>
+<ul class="checks">${['Trained in safe newborn posing and handling', 'Wraps, outfits, props and backdrops provided', 'Choose your favorite images before you leave', 'Edited photos delivered within one week'].map((t) => html`<li>${icon('heart')}<span>${t}</span></li>`)}</ul>
+<div class="mt">${ctaButtons({ label: 'Reserve your session', href: bookHref('sunshine') })}</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec sec--paper" aria-labelledby="pk-title">
+<div class="wrap">
+${secHead({ eyebrow: `Sessions for ${k.name} families`, title: 'Choose your <em>chapter</em>', id: 'pk-title' })}
+${packages(ctx, pk)}
+<p class="center mt"><span class="note" style="display:inline-block"><b>Twins?</b> Twin sessions can be added to any newborn package — includes 4 extra photos.</span></p>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="plan-title">
+<div class="wrap">
+${secHead({ eyebrow: 'Planning your session', title: `From ${k.name} to <em>the studio</em>`, id: 'plan-title' })}
+${infoCards([
+  { icon: 'pin', title: 'The drive', text: `From ${k.name}, the drive to our private studio in the McAllen area is ${k.drive}. ${B.addressNote}` },
+  { icon: 'calendar', title: 'Scheduling', text: `${B.hours}. Book in your second or third trimester — newborn sessions happen 5–14 days after birth.` },
+  { icon: 'heart', title: 'At your baby’s pace', text: 'Sessions take about 2–3 hours, with pauses for feeding, cuddles and diaper changes whenever your baby needs.' },
+  { icon: 'gift', title: 'Your photos', text: 'We help you choose your favorites at the end of the session. Every image is hand-edited and delivered within one week.' },
+], 'info-grid--4')}
+</div>
+</section>
+
+<section class="sec sec--paper" aria-labelledby="gal-title">
+<div class="wrap">
+${secHead({ eyebrow: 'Recent sessions', title: 'So tiny, so <em>fleeting</em>', id: 'gal-title' })}
+${gallery(ctx, pics)}
+</div>
+</section>
+
+<section class="sec sec--blush" aria-labelledby="rv-title"><div class="wrap">
+${secHead({ eyebrow: 'Kind words', title: 'What parents are <em>saying</em>', id: 'rv-title' })}
+${reviews()}
+</div></section>
+
+<section class="sec" aria-labelledby="faq-title"><div class="wrap">
+${secHead({ eyebrow: `${k.name} newborn &amp; baby photography`, title: 'Frequently <em>asked</em>', id: 'faq-title' })}
+${faq(FAQ)}
+</div></section>
+
+<section class="sec sec--paper" aria-labelledby="near-title"><div class="wrap">
+${secHead({ eyebrow: 'Also serving', title: 'Across the <em>Rio Grande Valley</em>', id: 'near-title' })}
+${countyLinks({ exclude: k.name })}
+${cityGrid()}
+<p class="center mt"><a class="arrow-link" href="/areas-we-serve/">All areas we serve ${ui.arrow}</a></p>
+</div></section>
+
+${mapBlock({
+  key: k.id,
+  title: `Families across <em>${k.name}</em>`,
+  text: `${k.intro.split('. ')[0]}. ${B.addressNote}`,
+  links: [['/areas-we-serve/', 'All areas we serve'], [bookHref(), 'Book your session']],
+})}
+
+${finalCta()}
+`,
+    schema: () => [
+      serviceNode({ path, name: `Newborn & baby photographer in ${k.name}, TX`, serviceType: 'Newborn photography', description: k.intro, packages: pk, area: `${k.name}, TX`, areaType: 'AdministrativeArea' }),
+      faqNode(path, FAQ),
+    ],
+  };
+}
+
+export const COUNTY_PAGES = COUNTIES.map(countyPage);
 
 /* ------------------------------------------------------------------ hub */
 const HUB_FAQ = [
@@ -189,6 +311,7 @@ ${COUNTIES.map((k, i) => {
 ${secHead({ eyebrow: k.eyebrow, title: k.title, lede: k.lede, id: `${k.id}-title` })}
 ${list.length ? html`<div class="area-grid">${list.map(cityCard)}</div>` : ''}
 ${k.towns?.length ? html`<p class="area-also"><b>Also serving:</b> ${k.towns.join(' · ')}</p>` : ''}
+<p class="center mt"><a class="arrow-link" href="${countyHref(k.name)}">Newborn &amp; baby photographer in ${k.name} ${ui.arrow}</a></p>
 </div>
 </section>`;
 })}

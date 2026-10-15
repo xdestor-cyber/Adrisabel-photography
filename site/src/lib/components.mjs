@@ -3,7 +3,8 @@ import { BUSINESS, NAV, BOOK_URL } from '../data/business.mjs';
 import { PACKAGES, ADDONS, HOW, byId } from '../data/packages.mjs';
 import { REVIEWS } from '../data/reviews.mjs';
 import { CITIES } from '../data/cities.mjs';
-import { AREAS } from '../data/areas.mjs';
+import { AREAS, COUNTIES } from '../data/areas.mjs';
+import { MAPS } from '../data/maps.mjs';
 import { ART } from './art.generated.mjs';
 import { html, esc, attrs, icon, art, spark, ui, googleG, stars, when } from './html.mjs';
 import { img, video } from './media.mjs';
@@ -31,7 +32,7 @@ ${brand}
 ${navLinks.map((n) => html`<a href="${n.href}"${isCur(n.href)}>${esc(n.label)}</a>`)}
 </nav>
 <div class="header-actions">
-<a class="header-phone" href="${B.phoneHref}">${ui.phone}${B.phone}</a>
+<a class="header-phone" href="${B.phoneHref}">${ui.phone}<span>${B.phone}</span></a>
 <a class="btn header-cta" href="${BOOK_URL}">Book Now</a>
 <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span class="bars"><span></span><span></span><span></span></span></button>
 </div>
@@ -57,7 +58,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <div class="f-social"><a href="${B.instagram.url}" target="_blank" rel="noopener" aria-label="Instagram ${B.instagram.handle}">${ui.instagram}</a><a href="${B.google.url}" target="_blank" rel="noopener" aria-label="Google reviews">${googleG}</a><a href="${B.phoneHref}" aria-label="Call ${B.phone}">${ui.phone}</a></div>
 </div>
 <div><h2>Sessions</h2><ul>${NAV[0].children.map((s) => html`<li><a href="${s.href}">${esc(s.label)}</a></li>`)}<li><a href="/pricing/">All sessions &amp; packages</a></li></ul></div>
-<div><h2>Studio</h2><ul><li><a href="/about/">About Adrisabel</a></li><li><a href="/portfolio/">Portfolio</a></li><li><a href="/reviews/">Reviews</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li><li><a href="/areas-we-serve/">Areas we serve</a></li><li><a href="${BOOK_URL}">Book online</a></li></ul></div>
+<div><h2>Studio</h2><ul><li><a href="/about/">About Adrisabel</a></li><li><a href="/portfolio/">Portfolio</a></li><li><a href="/blog/">Blog</a></li><li><a href="/reviews/">Reviews</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li><li><a href="/areas-we-serve/">Areas we serve</a></li><li><a href="${BOOK_URL}">Book online</a></li></ul></div>
 <div><h2>Contact</h2><ul class="f-contact">
 <li>${ui.phone}<a href="${B.phoneHref}">${B.phone}</a> · <a href="${B.sms}">text</a></li>
 <li>${ui.mail}<a href="mailto:${B.email}">${B.email}</a></li>
@@ -70,7 +71,7 @@ export function footer(ctx, { sticky = true, stickyLabel = 'Book your session', 
 <div><h2>Newborn photographer</h2><p class="f-areas">${CITIES.map((c) => html`<a href="/newborn-photographer-${c.slug}-tx/">${c.name}</a>`)}</p></div>
 <div><h2>Baby photographer</h2><p class="f-areas">${CITIES.map((c) => html`<a href="/baby-photographer-${c.slug}-tx/">${c.name}</a>`)}</p></div>
 <div><h2>More RGV cities</h2><p class="f-areas">${AREAS.map((a) => html`<a href="${areaHref(a)}">${a.name}</a>`)}<a href="/areas-we-serve/">All areas</a></p></div>
-<div><h2>Family beach sessions</h2><p class="f-areas"><a href="/south-padre-island-family-photography/">South Padre Island</a></p></div>
+<div><h2>Counties &amp; the coast</h2><p class="f-areas">${COUNTIES.map((k) => html`<a href="${countyHref(k.name)}">${k.name}</a>`)}<a href="/south-padre-island-family-photography/">South Padre Island</a></p></div>
 </div>
 <div class="f-bottom"><span>© ${year} ${B.name} · Newborn, baby &amp; family photographer in McAllen, TX</span><span><a href="/sitemap/">Site map</a> · <a href="/privacy-policy/">Privacy policy</a></span></div>
 </div>
@@ -311,6 +312,24 @@ export function moreAreas(exclude = null) {
 export const hoods = (list = []) => (list.length ? html`<ul class="hoods reveal">${list.map((n) => html`<li>${ui.pin}${esc(n)}</li>`)}</ul>` : '');
 export function cityGrid(exclude = null) {
   return html`<div class="city-grid">${CITIES.filter((c) => c.slug !== exclude).map((c) => html`<div class="city-card"><h3>${c.name}</h3><p>${c.county} · ${c.drive}</p><p class="links"><a href="/newborn-photographer-${c.slug}-tx/">Newborn photographer</a><a href="/baby-photographer-${c.slug}-tx/">Baby photographer</a></p></div>`)}</div>`;
+}
+
+/* ---------------- counties + maps ---------------- */
+export const countyHref = (name) => `/newborn-photographer-${name.toLowerCase().replace(/\s+/g, '-')}-tx/`;
+export function countyLinks({ exclude = null } = {}) {
+  return html`<div class="areas areas--more reveal">${COUNTIES.filter((k) => k.name !== exclude).map((k) => html`<a href="${countyHref(k.name)}">${ui.pin}${k.name}</a>`)}</div>`;
+}
+// The place's own Google map (Google Maps → Share → Embed a map), in a small section near the end
+// of each local page. loading="lazy": the map only downloads when a visitor scrolls close to it.
+export function mapBlock({ key, title, text, links = [] }) {
+  const m = MAPS[key];
+  if (!m) throw new Error(`no Google map embed for ${key}`);
+  return html`<section class="sec sec--tight map-sec" aria-labelledby="map-title"><div class="wrap"><div class="map-block reveal">
+<div class="map-copy">${eyebrow('Proudly serving', 'eyebrow--left')}<h2 class="h-sec" id="map-title">${title}</h2><p>${text}</p>
+${links.length ? html`<ul class="map-links">${links.map(([href, label]) => html`<li><a class="arrow-link" href="${href}">${label} ${ui.arrow}</a></li>`)}</ul>` : ''}
+</div>
+<div class="map-frame"><iframe src="${m.src}" title="Google map of ${esc(m.label)}" width="600" height="360" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+</div></div></section>`;
 }
 
 /* ---------------- FAQ ---------------- */

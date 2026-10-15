@@ -258,25 +258,41 @@ const KADENCE = {
   _kad_post_header: true, _kad_post_footer: true,
 };
 const results = [];
+// The blog's live post lists (Query Loop) need the /blog/ page id: reserve the page first if it's new.
+if (!DRY && built.some((p) => p.content.includes('__BLOG_PARENT__')) && !bySlug.blog) {
+  const { data } = await wp('POST', '/wp/v2/pages', { title: 'Blog', slug: 'blog', status: 'draft', content: '' });
+  bySlug.blog = { ...data, content: { raw: '' }, title: { raw: '' } };
+  log(`  + reserved /blog/ #${data.id}`);
+}
+if (bySlug.blog) state.pages['/blog/'] = bySlug.blog.id;
+const NOW = new Date();
+const wpDate = (iso) => iso.replace(/\.\d+Z$|Z$/, '').slice(0, 19);
 for (const p of built) {
   if (ONLY && !ONLY.includes(p.slug)) continue;
-  const content = p.content.replace('__STYLES__', state.patterns.styles).replace('__SCRIPTS__', state.patterns.scripts);
+  const content = p.content.replace('__STYLES__', state.patterns.styles).replace('__SCRIPTS__', state.patterns.scripts)
+    .replaceAll('__BLOG_PARENT__', String(state.pages['/blog/'] || 0));
   const cur = bySlug[p.slug];
+  // blog posts are child pages of /blog/; future ones are scheduled ("future") and WordPress
+  // publishes them on their date without another deploy
+  const future = p.publishAt && new Date(p.publishAt) > NOW;
+  const parent = p.parentPath ? state.pages[p.parentPath] || 0 : 0;
   const body = {
-    title: p.title, slug: p.slug, status: 'publish', content, excerpt: p.excerpt,
+    title: p.title, slug: p.slug, status: future ? 'future' : 'publish', content, excerpt: p.excerpt, parent,
     meta: KADENCE, featured_media: p.featuredImage && state.media[p.featuredImage] ? state.media[p.featuredImage].id : 0,
     comment_status: 'closed', ping_status: 'closed',
   };
+  if (p.publishAt) body.date_gmt = wpDate(p.publishAt);
   // Untouched pages aren't re-saved, so their "last modified" (the sitemap <lastmod>) stays
   // honest and IndexNow is only pinged for pages that really changed.
-  const unchanged = cur && !flag('--force') && cur.status === 'publish' && cur.content.raw === content && cur.title.raw === body.title
-    && cur.featured_media === body.featured_media && Object.entries(KADENCE).every(([k, v]) => cur.meta?.[k] === v);
+  const unchanged = cur && !flag('--force') && cur.status === body.status && cur.content.raw === content && cur.title.raw === body.title
+    && cur.featured_media === body.featured_media && (cur.parent || 0) === parent && (!p.publishAt || (cur.date_gmt || '').slice(0, 16) === body.date_gmt.slice(0, 16))
+    && Object.entries(KADENCE).every(([k, v]) => cur.meta?.[k] === v);
   if (DRY) { log(`  would ${unchanged ? 'keep' : cur ? 'update' : 'create'} ${p.path} (${(content.length / 1024).toFixed(0)} KB)`); continue; }
   const data = unchanged ? cur : (cur ? await wp('POST', `/wp/v2/pages/${cur.id}`, body) : await wp('POST', '/wp/v2/pages', body)).data;
   state.pages[p.path] = data.id;
   await rankMathSet(data.id, p.seo, p.featuredImage);
-  results.push({ path: p.path, id: data.id, link: data.link, created: !cur, changed: !unchanged, index: p.seo.robots !== 'noindex' });
-  log(`  ${unchanged ? '=' : cur ? '↻' : '+'} ${p.path} #${data.id}`);
+  results.push({ path: p.path, id: data.id, link: data.link, created: !cur, changed: !unchanged, index: p.seo.robots !== 'noindex', future });
+  log(`  ${unchanged ? '=' : cur ? '↻' : '+'} ${p.path} #${data.id}${future ? ` (scheduled ${p.publishAt.slice(0, 10)})` : ''}`);
 }
 saveState();
 log(`✓ pages: ${results.filter((r) => r.changed).length} updated, ${results.filter((r) => !r.changed).length} unchanged`);
@@ -317,7 +333,7 @@ if (!DRY && !flag('--no-flush')) {
 }
 if (!DRY) {
   let bad = 0;
-  for (const r of results) {
+  for (const r of results.filter((x) => !x.future)) {
     const url = `${r.link}${r.link.includes('?') ? '&' : '?'}v=${Date.now()}`;
     const res = await fetch(url, { headers: { 'Cache-Control': 'no-cache' } });
     const html = await res.text();
@@ -326,7 +342,8 @@ if (!DRY) {
     const h1 = (html.match(/<h1[\s>]/g) || []).length;
     if (res.status !== 200 || !okCss || !okMain || h1 !== 1) { bad++; log(`  ✗ ${r.path} status=${res.status} css=${okCss} main=${okMain} h1=${h1}`); }
   }
-  log(bad ? `! ${bad} page(s) need attention` : `✓ verified ${results.length} live pages`);
+  const sched = results.filter((x) => x.future);
+  log(bad ? `! ${bad} page(s) need attention` : `✓ verified ${results.length - sched.length} live pages${sched.length ? ` · ${sched.length} post(s) scheduled: ${sched.map((x) => x.path).join(', ')}` : ''}`);
 }
 
 // ------------------------------------------------------------------ verify sitemap, llms.txt, robots.txt
@@ -345,7 +362,7 @@ if (!DRY && !ONLY) {
       images += (u[1].match(/<image:image>/g) || []).length;
     }
   }
-  const expected = built.filter((p) => p.seo.robots !== 'noindex').map((p) => BASE + p.path);
+  const expected = built.filter((p) => p.seo.robots !== 'noindex' && !(p.publishAt && new Date(p.publishAt) > new Date())).map((p) => BASE + p.path);
   const missing = expected.filter((u) => !urls.has(u));
   const extra = [...urls.keys()].filter((u) => !expected.includes(u));
   if (missing.length) problems.push(`missing from sitemap: ${missing.join(', ')}`);
@@ -368,7 +385,7 @@ if (!DRY && !ONLY) {
   try {
     const { data } = await wp('POST', '/rankmath/v1/in/getLog', { filter: 'all' });
     // newest first; one entry per changed, indexable page saved above
-    const recent = (data?.data || []).slice(0, results.filter((r) => r.changed && r.index).length);
+    const recent = (data?.data || []).slice(0, results.filter((r) => r.changed && r.index && !r.future).length);
     const by = recent.reduce((o, e) => ({ ...o, [e.status]: (o[e.status] || 0) + 1 }), {});
     const okAll = recent.every((e) => e.status === 200 || e.status === 202);
     if (recent.length) log(`${okAll ? '✓' : '!'} IndexNow: ${recent.length} recent submission(s), HTTP status ${Object.entries(by).map(([s, n]) => `${s}×${n}`).join(', ')}`);

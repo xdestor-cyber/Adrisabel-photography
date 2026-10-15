@@ -3,7 +3,7 @@
 import { BUSINESS, SITE_URL } from '../data/business.mjs';
 import { PACKAGES } from '../data/packages.mjs';
 import { CITIES } from '../data/cities.mjs';
-import { AREAS } from '../data/areas.mjs';
+import { AREAS, COUNTIES } from '../data/areas.mjs';
 
 const B = BUSINESS;
 export const BUSINESS_ID = `${SITE_URL}/#business`;
@@ -24,7 +24,7 @@ export function businessNode(ctx) {
     logo: abs(ctx.media.logo().png),
     image: photos,
     address: { '@type': 'PostalAddress', addressLocality: B.locality, addressRegion: B.region, addressCountry: B.country },
-    areaServed: [...[...CITIES, ...AREAS].map((c) => ({ '@type': 'City', name: `${c.name}, TX` })), { '@type': 'City', name: 'South Padre Island, TX' }, { '@type': 'AdministrativeArea', name: 'Rio Grande Valley, Texas' }],
+    areaServed: [...[...CITIES, ...AREAS].map((c) => ({ '@type': 'City', name: `${c.name}, TX` })), { '@type': 'City', name: 'South Padre Island, TX' }, ...COUNTIES.map((k) => ({ '@type': 'AdministrativeArea', name: `${k.name}, Texas` })), { '@type': 'AdministrativeArea', name: 'Rio Grande Valley, Texas' }],
     hasMap: B.google.url,
     sameAs: [B.instagram.url, B.google.url],
     founder: { '@type': 'Person', name: B.photographer, jobTitle: 'Newborn & baby photographer' },
@@ -47,7 +47,7 @@ export function offer(p) {
   };
 }
 
-export function serviceNode({ path, name, serviceType, description, packages = [], area = null }) {
+export function serviceNode({ path, name, serviceType, description, packages = [], area = null, areaType = 'City' }) {
   const node = {
     '@type': 'Service',
     '@id': `${SITE_URL}${path}#service`,
@@ -56,7 +56,7 @@ export function serviceNode({ path, name, serviceType, description, packages = [
     description,
     url: `${SITE_URL}${path}`,
     provider: { '@id': BUSINESS_ID },
-    areaServed: area ? { '@type': 'City', name: area } : { '@type': 'AdministrativeArea', name: 'Rio Grande Valley, Texas' },
+    areaServed: area ? { '@type': areaType, name: area } : { '@type': 'AdministrativeArea', name: 'Rio Grande Valley, Texas' },
   };
   if (packages.length) node.offers = packages.map((id) => offer(PACKAGES.find((p) => p.id === id)));
   return node;
