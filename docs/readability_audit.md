@@ -42,11 +42,6 @@ Safe area checked: y 240–1480px, x 60–1020px on the 1080×1920 canvas (clear
 | fairytale | Fairytale | 1 | 8.9s | 44.6s | 0.11 | 150,783,930,948 | ✓ |
 | cake | Cake Smash | 2 | 8.5s | 81.5s | 0.24 | 104,784,976,939 | ✓ |
 | seaside | Seaside Beach | 2 | 6.2s | 93.1s | 0.32 | 105,787,975,915 | ✓ |
-| sunshine | $230 | 1 | 7.9s | 22.1s | 0.13 | 441,919,639,1045 | ✓ |
-| wonderland | $300 | 1 | 7.9s | 33.7s | 0.13 | 438,919,642,1045 | ✓ |
-| fairytale | $230 | 1 | 8.3s | 45.2s | 0.12 | 441,919,639,1045 | ✓ |
-| cake | $280 | 1 | 7.9s | 82.1s | 0.13 | 438,919,642,1045 | ✓ |
-| seaside | $370 | 1 | 5.6s | 93.7s | 0.18 | 442,919,638,1045 | ✓ |
 | sunshine | Newborn Session | 2 | 7.2s | 22.8s | 0.28 | 352,1050,728,1096 | ✓ |
 | wonderland | Newborn, Baby & Family Session | 5 | 7.2s | 34.4s | 0.69 | 197,1050,883,1096 | ✓ |
 | fairytale | Baby Session | 2 | 7.6s | 45.9s | 0.26 | 402,1050,678,1096 | ✓ |
@@ -80,8 +75,8 @@ Safe area checked: y 240–1480px, x 60–1020px on the 1080×1920 canvas (clear
 | pixie | Pixie DustMilestone Package | 3 | 17.4s | 61.5s | 0.17 | 260,245,820,402 | ✓ |
 | pixie | 5sessions for babyin baby’s first year | 6 | 6.1s | 61.7s | 0.98 | 250,468,830,771 | ✓ |
 | pixie | Choose one schedule | 3 | 10.5s | 68.4s | 0.29 | 266,452,814,498 | ✓ |
-| pixie | Option A $1,000total 13579MONTHS | 4 | 10.4s | 68.5s | 0.38 | 152,516,930,785 | ✓ |
-| pixie | Option B $1,000total 246810MONTHS | 4 | 8.1s | 70.8s | 0.49 | 152,896,930,1165 | ✓ |
+| pixie | Option A 5sessions 13579MONTHS | 4 | 10.4s | 68.5s | 0.38 | 152,516,930,785 | ✓ |
+| pixie | Option B 5sessions 246810MONTHS | 4 | 8.1s | 70.8s | 0.49 | 152,896,930,1165 | ✓ |
 | pixie | or | 1 | 8.2s | 70.7s | 0.12 | 517,808,563,880 | ✓ |
 | pixie | 5 sessions total · for babies 1–11 months old | 9 | 5.3s | 73.6s | 1.7 | 193,1296,887,1346 | ✓ |
 | pixie | Cake Smash (1-year session) not included | 6 | 4.1s | 74.8s | 1.46 | 220,1347,860,1397 | ✓ |
@@ -89,8 +84,8 @@ Safe area checked: y 240–1480px, x 60–1020px on the 1080×1920 canvas (clear
 | extras | Can’t choose just a few? | 5 | 3.8s | 102.4s | 1.32 | 233,972,847,1011 | ✓ |
 | extras | Double the love! | 3 | 6.4s | 99.8s | 0.47 | 263,289,817,406 | ✓ |
 | extras | Extra photos | 2 | 3.7s | 102.5s | 0.54 | 322,1009,758,1126 | ✓ |
-| extras | Add $100 to any package | 5 | 5.7s | 100.5s | 0.88 | 233,770,847,862 | ✓ |
-| extras | $30 each | 2 | 3.1s | 103.1s | 0.65 | 424,1370,656,1462 | ✓ |
+| extras | Add twins to any package | 5 | 5.7s | 100.5s | 0.88 | 210,770,870,862 | ✓ |
+| extras | Add them to any session | 5 | 3.1s | 103.1s | 1.61 | 229,1370,851,1462 | ✓ |
 | extras | Includes 4 extra photos | 4 | 5.2s | 101s | 0.77 | 345,862,735,917 | ✓ |
 | how | How the magichappens | 3 | 11.6s | 106.7s | 0.26 | 272,307,809,528 | ✓ |
 | how | Reserve your date50% deposit via Zelle to book —the balance is due on session day | 15 | 10.7s | 107.6s | 1.4 | 258,573,767,742 | ✓ |
@@ -103,4 +98,4 @@ Safe area checked: y 240–1480px, x 60–1020px on the 1080×1920 canvas (clear
 | closing | Instagram: @Adrisabelx | 2 | 7.4s | 121.5s | 0.27 | 310,1226,770,1290 | ✓ |
 | closing | Phone: (409) 354-3075 | 3 | 6.7s | 122.2s | 0.45 | 341,1296,739,1351 | ✓ |
 
-**Elements:** 97 · **highest pace:** 2.73 words/sec · **outside safe area:** 0
+**Elements:** 92 · **highest pace:** 2.73 words/sec · **outside safe area:** 0

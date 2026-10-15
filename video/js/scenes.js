@@ -27,7 +27,7 @@ const CHAPTERS = [
     id: 'sunshine', num: 'Chapter One', art: 'sunshine',
     washes: [['butter', 60, 380, 980, 1.0], ['peach-b', 300, 1100, 900, 0.55]],
     headline: 'Hello, little<br>sunshine.',
-    name: 'Sunshine', price: '$230',
+    name: 'Sunshine',
     type: 'Newborn Session', badge: { icon: 'heart', text: 'Baby only' },
     stats: [['camera', '8', 'edited photos'], ['hanger', '2', 'wardrobe changes'], ['backdrop', '2', 'backdrops']],
   },
@@ -35,7 +35,7 @@ const CHAPTERS = [
     id: 'wonderland', num: 'Chapter Two', art: 'wonderland',
     washes: [['lavender', 40, 420, 1000, 0.9], ['blush-b', 320, 1080, 900, 0.55]],
     headline: 'Welcome to<br>the family.',
-    name: 'Wonderland', price: '$300',
+    name: 'Wonderland',
     type: 'Newborn, Baby & Family Session', badge: { icon: 'family', text: 'Baby, siblings & parents' },
     stats: [['camera', '15', 'edited photos'], ['hanger', '2', 'wardrobe changes'], ['backdrop', '4', 'backdrops']],
   },
@@ -43,7 +43,7 @@ const CHAPTERS = [
     id: 'fairytale', num: 'Chapter Three', art: 'fairytale',
     washes: [['sky', 40, 400, 1000, 0.95], ['lavender-b', 260, 1090, 900, 0.55]],
     headline: 'Look who’s<br>smiling now!',
-    name: 'Fairytale', price: '$230',
+    name: 'Fairytale',
     type: 'Baby Session', badge: { icon: 'star', text: 'Babies 2–11 months old' },
     stats: [['camera', '8', 'edited photos'], ['hanger', '2', 'wardrobe changes'], ['backdrop', '2', 'backdrops']],
   },
@@ -51,7 +51,7 @@ const CHAPTERS = [
     id: 'cake', num: 'Chapter Five', art: 'cake',
     washes: [['strawberry', 40, 400, 1000, 0.85], ['butter-b', 260, 1090, 900, 0.5]],
     headline: 'Then comes<br>the big ONE!',
-    name: 'Cake Smash', price: '$280',
+    name: 'Cake Smash',
     type: 'First Birthday Session', badge: { icon: 'cake', text: 'Cake included' },
     stats: [['cake', '1', 'timeless cake'], ['camera', '8', 'edited photos'], ['backdrop', '1', 'timeless backdrop']],
   },
@@ -59,7 +59,7 @@ const CHAPTERS = [
     id: 'seaside', num: 'Chapter Six', art: 'seaside',
     washes: [['aqua', 40, 400, 1000, 0.9], ['sand-b', 260, 1090, 900, 0.6]],
     headline: 'Sandy toes &<br>salty kisses.',
-    name: 'Seaside Beach', price: '$370',
+    name: 'Seaside Beach',
     type: 'Family Session', badge: { icon: 'pin', text: 'South Padre Island' },
     stats: [['camera', '15', 'edited photos']],
   },
@@ -75,15 +75,15 @@ const PIXIE = {
   stats: [['camera', '8', 'edited images<br><em>per session</em>'], ['hanger', '1', 'outfit<br><em>per session</em>'], ['backdrop', '1', 'backdrop<br><em>per session</em>']],
   choose: 'Choose one schedule',
   options: [
-    { label: 'Option A', months: [1, 3, 5, 7, 9], price: '$1,000', unit: 'total' },
-    { label: 'Option B', months: [2, 4, 6, 8, 10], price: '$1,000', unit: 'total' },
+    { label: 'Option A', months: [1, 3, 5, 7, 9], count: '5', unit: 'sessions' },
+    { label: 'Option B', months: [2, 4, 6, 8, 10], count: '5', unit: 'sessions' },
   ],
   fine: ['5 sessions total · for babies <b>1–11 months</b> old', 'Cake Smash (1-year session) <b>not included</b>'],
 };
 
 const EXTRAS = {
-  twins: { kick: 'Twins?', h: 'Double the love!', l1: 'Add <b>$100</b> to any package', l2: 'Includes 4 extra photos' },
-  more: { kick: 'Can’t choose just a few?', h: 'Extra photos', l1: '<b>$30</b> each' },
+  twins: { kick: 'Twins?', h: 'Double the love!', l1: 'Add twins to <b>any package</b>', l2: 'Includes 4 extra photos' },
+  more: { kick: 'Can’t choose just a few?', h: 'Extra photos', l1: 'Add them to <b>any session</b>' },
 };
 
 const HOW = {
@@ -147,7 +147,7 @@ const SCENES = (() => {
       `<div class="abs cx serif ital headline">${c.headline}</div>` +
       `<div class="abs artbox">${ART[c.art]}</div>` +
       `<div class="abs cx serif caps name foil">${c.name}</div>` +
-      `<div class="abs cx price"><span class="rule"></span><span class="amt">${c.price}</span><span class="rule r"></span></div>` +
+      `<div class="abs cx price"><span class="rule"></span><svg class="amt orn" viewBox="0 0 60 60"><path d="${ART.spark(30, 30, 27)}"/></svg><span class="rule r"></span></div>` +
       `<div class="abs cx sans caps type">${c.type}</div>` +
       `<div class="abs cx badge"><span class="pill sans">${ART.ICONS[c.badge.icon]}${c.badge.text}</span></div>` +
       `<div class="abs cx stats">${stats}</div>` +
@@ -164,7 +164,7 @@ const SCENES = (() => {
         `<text class="mlabel" x="${64 + k * 128}" y="160">${m}</text>`).join('');
       return `<div class="abs opt opt${i}" style="top:${i ? 890 : 510}px">
         <div class="olabel sans caps">${o.label}</div>
-        <div class="oprice"><span class="a">${o.price}</span><span class="b sans caps">${o.unit}</span></div>
+        <div class="oprice"><span class="a">${o.count}</span><span class="b sans caps">${o.unit}</span></div>
         <svg class="moons" viewBox="0 0 800 190">${moons}<text class="munit" x="642" y="158">MONTHS</text></svg></div>`;
     };
     const stats = P.stats.map(([ic, n, l]) => `<div class="stat">${ART.ICONS[ic]}<div class="num">${n}</div><div class="lbl sans">${l}</div></div>`).join('');

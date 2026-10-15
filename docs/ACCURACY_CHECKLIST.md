@@ -23,11 +23,11 @@ Timestamps refer to `output/Adrisabel_Promo_1080x1920.mp4` (128.8 s). All on-scr
 
 | Package | Brief | On screen | ✓ |
 |---|---|---|:-:|
-| **Sunshine** | $230 · Newborn Session — Baby Only · 8 edited photos · 2 wardrobe changes · 2 backdrops | SUNSHINE · **$230** · NEWBORN SESSION · badge **"Baby only"** · 8 edited photos · 2 wardrobe changes · 2 backdrops. The illustration shows the baby alone. | ✓ |
-| **Wonderland** | $300 · Newborn, Baby & Family Session · baby, siblings & parents · 15 edited photos · 2 wardrobe changes · 4 backdrops | WONDERLAND · **$300** · NEWBORN, BABY & FAMILY SESSION · badge **"Baby, siblings & parents"** · 15 edited photos · 2 wardrobe changes · 4 backdrops. The illustration shows the whole family. | ✓ |
-| **Fairytale** | $230 · Babies 2–11 months old · 8 edited photos · 2 wardrobe changes · 2 backdrops | FAIRYTALE · **$230** · BABY SESSION · badge **"Babies 2–11 months old"** · 8 edited photos · 2 wardrobe changes · 2 backdrops | ✓ ¹ |
-| **Cake Smash** | $280 · a timeless cake · 8 edited photos · 1 timeless backdrop (cake included; no wardrobe changes or extra backdrops) | CAKE SMASH · **$280** · FIRST BIRTHDAY SESSION · badge **"Cake included"** · 1 timeless cake · 8 edited photos · 1 timeless backdrop. No wardrobe or extra backdrops shown. | ✓ ² |
-| **Seaside Beach** | $370 · Family Session · South Padre Island · 15 edited photos (no invented duration, wardrobe or locations) | SEASIDE BEACH · **$370** · FAMILY SESSION · badge **"South Padre Island"** · 15 edited photos | ✓ |
+| **Sunshine** | Newborn Session — Baby Only · 8 edited photos · 2 wardrobe changes · 2 backdrops | SUNSHINE · ✦ · NEWBORN SESSION · badge **"Baby only"** · 8 edited photos · 2 wardrobe changes · 2 backdrops. The illustration shows the baby alone. | ✓ |
+| **Wonderland** | Newborn, Baby & Family Session · baby, siblings & parents · 15 edited photos · 2 wardrobe changes · 4 backdrops | WONDERLAND · ✦ · NEWBORN, BABY & FAMILY SESSION · badge **"Baby, siblings & parents"** · 15 edited photos · 2 wardrobe changes · 4 backdrops. The illustration shows the whole family. | ✓ |
+| **Fairytale** | Babies 2–11 months old · 8 edited photos · 2 wardrobe changes · 2 backdrops | FAIRYTALE · ✦ · BABY SESSION · badge **"Babies 2–11 months old"** · 8 edited photos · 2 wardrobe changes · 2 backdrops | ✓ ¹ |
+| **Cake Smash** | a timeless cake · 8 edited photos · 1 timeless backdrop (cake included; no wardrobe changes or extra backdrops) | CAKE SMASH · ✦ · FIRST BIRTHDAY SESSION · badge **"Cake included"** · 1 timeless cake · 8 edited photos · 1 timeless backdrop. No wardrobe or extra backdrops shown. | ✓ ² |
+| **Seaside Beach** | Family Session · South Padre Island · 15 edited photos (no invented duration, wardrobe or locations) | SEASIDE BEACH · ✦ · FAMILY SESSION · badge **"South Padre Island"** · 15 edited photos | ✓ |
 
 ¹ "Baby Session" is a descriptive label I added under the name, alongside the brief's exact age range.
 ² "First Birthday Session" rephrases the brief's own description of Cake Smash as "the 1-year-old session". It's easy to remove if you'd rather not use it.
@@ -44,18 +44,18 @@ Timestamps refer to `output/Adrisabel_Promo_1080x1920.mp4` (128.8 s). All on-scr
 | 1 outfit **per session** (not "wardrobe changes") | "1 outfit **per session**" | ✓ |
 | 1 backdrop **per session** | "1 backdrop **per session**" | ✓ |
 | Choose ONE option (alternatives, not combined) | Header "CHOOSE ONE SCHEDULE", two separate cards joined by "or" | ✓ |
-| Option A: 1, 3, 5, 7, 9 months, $1,000 total | OPTION A · moons labelled 1 3 5 7 9 MONTHS · **$1,000 TOTAL** | ✓ |
-| Option B: 2, 4, 6, 8, 10 months, $1,000 total | OPTION B · moons labelled 2 4 6 8 10 MONTHS · **$1,000 TOTAL** | ✓ |
-| $1,000 is for the complete package, not per session | Each card reads "$1,000 TOTAL"; fine print "5 sessions total" | ✓ |
+| Option A: 1, 3, 5, 7, 9 months | OPTION A · moons labelled 1 3 5 7 9 MONTHS · **5 SESSIONS** | ✓ |
+| Option B: 2, 4, 6, 8, 10 months | OPTION B · moons labelled 2 4 6 8 10 MONTHS · **5 SESSIONS** | ✓ |
+| Pixie Dust is one package of 5 sessions | Each card reads "5 SESSIONS"; fine print "5 sessions total" | ✓ |
 | For babies 1–11 months old | "5 sessions total · for babies **1–11 months** old" | ✓ |
-| Cake Smash / 1-year session NOT included | "Cake Smash (1-year session) **not included**". The next chapter is Cake Smash as its own package with its own price. | ✓ |
+| Cake Smash / 1-year session NOT included | "Cake Smash (1-year session) **not included**". The next chapter is Cake Smash as its own package. | ✓ |
 
 ## Add-ons, booking & delivery
 
 | Brief | On screen | ✓ |
 |---|---|:-:|
-| Twins: add $100 to any package, includes 4 extra photos (not per session) | "Twins? Double the love!" · "Add **$100** to any package" · "Includes 4 extra photos" | ✓ |
-| Additional images $30 each | "Can't choose just a few? Extra photos **$30** each" | ✓ |
+| Twins can be added to any package, includes 4 extra photos (not per session) | "Twins? Double the love!" · "Add twins to **any package**" · "Includes 4 extra photos" | ✓ |
+| Extra edited images can be added to any session | "Can't choose just a few? Extra photos" · "Add them to **any session**" | ✓ |
 | 50% deposit via Zelle to book | "**50% deposit via Zelle** to book —" | ✓ |
 | Remaining balance due on session date | "the balance is due on session day" | ✓ |
 | Photographer helps choose favorites at the end of the session | "At the end of your session, we help you pick the images for editing" | ✓ |
@@ -78,7 +78,7 @@ Timestamps refer to `output/Adrisabel_Promo_1080x1920.mp4` (128.8 s). All on-scr
 
 The automated audit in [`readability_audit.md`](readability_audit.md) (`node tools/audit.mjs`) samples every text element every 0.1 s:
 
-- **97 text elements**. The fastest required reading pace is **2.73 words/second** (the hook line "and a love that changed everything."). Every package name, price, inclusion, age range, and exclusion reads at ≤ 1.0 word/second.
+- **92 text elements**. The fastest required reading pace is **2.73 words/second** (the hook line "and a love that changed everything."). Every package name, inclusion, age range, and exclusion reads at ≤ 1.0 word/second; the extra-photos line ("Add them to any session") reads at 1.6.
 - **0 elements outside the safe area** (y 240–1480 px, x 60–1020 px). The top status/UI band and the bottom caption/CTA band hold only decoration.
-- Contrast (WCAG ratios, measured against the lightest background each text can sit on): body ink on cream 12.9:1 · secondary text 6.5:1 · prices 7.0:1 · badges 6.7:1 · night-sky text 13.6:1 · gold on night 7.6:1 · "adrisabel.com" on its pill 10.5:1 · Instagram line 5.2:1 · phone line 5.0:1. Gold-foil package names (≥ 3.5:1) appear only at 90–150 px display sizes, where 3:1 is the large-text threshold.
+- Contrast (WCAG ratios, measured against the lightest background each text can sit on): body ink on cream 12.9:1 · secondary text 6.5:1 · rose accents 7.0:1 · badges 6.7:1 · night-sky text 13.6:1 · gold on night 7.6:1 · "adrisabel.com" on its pill 10.5:1 · Instagram line 5.2:1 · phone line 5.0:1. Gold-foil package names (≥ 3.5:1) appear only at 90–150 px display sizes, where 3:1 is the large-text threshold.
 - The story, every offer, and the call to action are all carried by on-screen text, so the video works with the sound off.

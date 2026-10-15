@@ -130,6 +130,7 @@ body.preview #stage { transform-origin: top center; }
 .chapter .price .amt { font-family: 'Cormorant Garamond'; font-variant-numeric: lining-nums; font-weight: 700; font-size: 104px; line-height: 1; color: var(--rose); }
 .chapter .price .rule { width: 140px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold)); }
 .chapter .price .rule.r { transform: scaleX(-1); }
+.chapter .price .orn { width: 58px; height: 58px; margin: 23px 0; fill: var(--gold); }
 .chapter .type { top: 1050px; width: 960px; font-size: 32px; font-weight: 500; letter-spacing: .14em; color: var(--ink2); }
 .chapter .badge { top: 1102px; display: flex; justify-content: center; }
 .badge .pill { display: inline-flex; align-items: center; gap: 14px; background: var(--rose); color: var(--onrose); font-size: 34px; font-weight: 600; letter-spacing: .06em; padding: 10px 34px 12px; border-radius: 60px; box-shadow: 0 6px 18px rgba(94, 47, 60, .18); }

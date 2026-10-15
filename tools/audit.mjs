@@ -15,7 +15,7 @@ const rows = await page.evaluate((SAFE) => {
   const sel = [
     '.hook-title span', '.cap', '.cover .brand', '.cover .sub', '.cover .tagline', '.cover .proof',
     '#s-invite .big', '#s-invite .q', '#s-invite .toc li',
-    '.kicker', '.headline', '.name', '.price .amt', '.type', '.badge .pill', '.stat',
+    '.kicker', '.headline', '.name', '.type', '.badge .pill', '.stat',
     '.pixie .pname', '.pixie .ptype', '.pixie .pline', '.pixie .hdr', '.pixie .five', '.pixie .choose', '.opt', '.pixie .or', '.pixie .fine div',
     '.extras .kick2', '.extras .h', '.extras .line1', '.extras .line2',
     '.how .h', '.how .step', '.how .cta',

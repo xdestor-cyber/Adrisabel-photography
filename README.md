@@ -13,12 +13,12 @@ A 2-minute vertical promotional video for **Adrisabel · Newborn, Baby & Family 
 
 *Once upon a tiny time…* ten little toes, one sleepy yawn, a love that changed everything. The storybook opens: *Every baby is a story. Which chapter will you treasure forever?*
 
-- **I · Sunshine** ($230): baby-only newborn session
-- **II · Wonderland** ($300): newborn, baby & family session
-- **III · Fairytale** ($230): babies 2–11 months
-- **IV · Pixie Dust** ($1,000 total): five milestone sessions across the first year, with two schedules drawn as waxing moons
-- **V · Cake Smash** ($280): cake included
-- **VI · Seaside Beach** ($370): family session at South Padre Island
+- **I · Sunshine**: baby-only newborn session
+- **II · Wonderland**: newborn, baby & family session
+- **III · Fairytale**: babies 2–11 months
+- **IV · Pixie Dust**: five milestone sessions across the first year, with two schedules drawn as waxing moons
+- **V · Cake Smash**: cake included
+- **VI · Seaside Beach**: family session at South Padre Island
 
 Then twins and extra photos, how booking works, and the book closes: *Your once upon a time starts here.* **Visit adrisabel.com**, with Instagram @Adrisabelx and phone (409) 354-3075 below it.
 
@@ -41,7 +41,7 @@ The preview has play/pause and a scrubber, and plays the soundtrack in sync.
 
 | To change… | Edit |
 |---|---|
-| Any on-screen copy, prices, inclusions, contact details | `video/js/scenes.js` (`COPY`, `CHAPTERS`, `PIXIE`, `EXTRAS`, `HOW`, `CLOSING`) |
+| Any on-screen copy, inclusions, contact details | `video/js/scenes.js` (`COPY`, `CHAPTERS`, `PIXIE`, `EXTRAS`, `HOW`, `CLOSING`) |
 | Scene order / length (in musical bars) | `video/js/config.js` → `SCENE_BARS` (the score follows automatically) |
 | Choreography | `video/js/timeline.js` |
 | Colors, type, layout | `video/css/styles.css` |
