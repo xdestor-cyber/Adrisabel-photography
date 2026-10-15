@@ -1,6 +1,7 @@
 // Resolves photos/art to URLs for the two build targets:
 //  - preview: local files under dist/preview/img (+ generated widths)
 //  - wp:      WordPress media library URLs recorded by deploy.mjs
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,8 +15,18 @@ export const PREVIEW_WIDTHS = [480, 800, 1200]; // responsive widths, for the pr
 
 // WordPress strips the copyright metadata from the smaller copies it makes of an upload, so every
 // photo goes up in these widths, uploaded without WordPress sizes, and srcset uses those files.
-// The uploaded names credit her too.
-export const wpName = (file, w = null) => file.replace(/^adrisabel-/, '').replace(/(\.\w+)$/, `-by-adrisabel${w ? `-${w}` : ''}$1`);
+// The uploaded names credit her too, and end in a short fingerprint of the file, so a file that
+// changes (a new watermark, new metadata) goes up under a new URL that no cache has an old copy of.
+const prints = new Map();
+const fingerprint = (file) => {
+  if (!prints.has(file)) {
+    const at = ['assets/img', 'assets/video'].map((d) => path.join(ROOT, d, file)).find((f) => fs.existsSync(f));
+    if (!at) throw new Error(`no such media file: ${file}`);
+    prints.set(file, crypto.createHash('sha256').update(fs.readFileSync(at)).digest('hex').slice(0, 6));
+  }
+  return prints.get(file);
+};
+export const wpName = (file, w = null) => file.replace(/^adrisabel-/, '').replace(/(\.\w+)$/, `-by-adrisabel-${fingerprint(file)}${w ? `-${w}` : ''}$1`);
 
 export function createMedia(mode, deploy = null) {
   const wpMedia = deploy?.media || {};

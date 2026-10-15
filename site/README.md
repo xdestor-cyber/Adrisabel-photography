@@ -9,9 +9,10 @@ site/
   src/lib/         components, layout, JSON-LD schema, llms.txt content, image resolver, generated SVG art
   src/styles/      site.css (design system, everything scoped under .adr)
   src/scripts/     site.js (menu, reveal, FAQ) · booking.js (booking request → Formspree + GTM)
-  assets/img/      optimized WebP photo masters + manifest.json   (made by tools/images.mjs)
+  assets/img/      optimized WebP photo masters + manifest.json   (made by tools/images.mjs, watermarked)
   assets/art/      watercolor washes from the video
-  tools/           images.mjs · extract-art.mjs · qa.mjs · a11y.mjs · test-booking.mjs · local-wp.sh
+  assets/fonts/    DM Sans Medium for the watermark (SIL Open Font License, OFL.txt)
+  tools/           images.mjs · watermark.mjs · crop-zones.mjs · copyright.mjs · extract-art.mjs · qa.mjs · a11y.mjs · test-booking.mjs · local-wp.sh
   deploy/          state.<host>.json (uploaded media/page IDs) · backups/ (page content before each deploy)
   build.mjs        → dist/preview (standalone pages) or dist/wp (WordPress payloads)
   deploy.mjs       → pushes media, CSS/JS patterns, pages, SEO meta, sitemap + llms.txt settings; verifies
@@ -43,7 +44,8 @@ WP_URL=https://adrisabel.com WP_USER=<user> WP_APP_PASSWORD='…' node site/depl
 | Reviews (quoted from Google) | `src/data/reviews.mjs` |
 | FAQs (and which pages show them) | `src/data/faqs.mjs` |
 | City pages copy | `src/data/cities.mjs` |
-| Photos: add to `src/data/images.mjs`, then `node site/tools/images.mjs` | |
+| Photos: add to `src/data/images.mjs`, then `node site/tools/images.mjs` (watermark + copyright metadata), then deploy with `--prune-media` | |
+| Watermark corner for one photo: `watermark: 'tl'` (`tr`, `bl`, `br`, `bc`) on it in `src/data/images.mjs` | |
 | SEO titles/descriptions | the `seo` block at the top of each page in `src/pages/` |
 
 ## How it sits in WordPress

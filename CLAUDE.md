@@ -23,3 +23,12 @@
   `apt-get install libimage-exiftool-perl`). `site/tools/images.mjs` stamps the masters it builds,
   and `site/deploy.mjs` refuses to upload an unstamped file. After adding or replacing images, run
   `node site/tools/copyright.mjs` and check with `--check`.
+- Every photo also carries a small, toned-down "adrisabel.com" watermark, drawn by
+  `site/tools/watermark.mjs` while `images.mjs` builds the masters. It goes in the calmest corner of
+  the part of the photo that every crop on the site keeps (`site/assets/img/crop-zones.json`,
+  measured by `site/tools/crop-zones.mjs` against the preview; re-run it after layout changes, then
+  `images.mjs`), away from the baby. A photo can pin its corner with `watermark: 'tl'` (`tr`, `bl`,
+  `br`, `bc`) in `site/src/data/images.mjs`; check new photos by eye.
+- Uploaded file names end in a short fingerprint of the file, so a changed photo goes up under a new
+  URL that no cache holds. Deploy with `--prune-media` once pages show the new files; it deletes the
+  replaced copies and keeps anything a live page still shows.

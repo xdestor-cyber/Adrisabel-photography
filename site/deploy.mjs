@@ -345,12 +345,14 @@ if (!DRY && !flag('--no-flush')) {
   try { await wp('POST', '/wpaas/v1/flush-cache', {}); log('✓ host cache flushed (wpaas)'); }
   catch (e) { log(`  (no host cache flush: ${e.message.split(' -> ')[1] || e.message})`); }
 }
+const liveHtml = [];
 if (!DRY) {
   let bad = 0;
   for (const r of results.filter((x) => !x.future)) {
     const url = `${r.link}${r.link.includes('?') ? '&' : '?'}v=${Date.now()}`;
     const res = await fetch(url, { headers: { 'Cache-Control': 'no-cache' } });
     const html = await res.text();
+    liveHtml.push(html);
     const okCss = html.includes('id="adr-css"');
     const okMain = html.includes('id="adr-main"');
     const h1 = (html.match(/<h1[\s>]/g) || []).length;
@@ -409,13 +411,14 @@ if (!DRY && !ONLY) {
 }
 
 // ------------------------------------------------------------------ retire replaced media (--prune-media)
-// Media this deploy no longer uploads (for example copies replaced by ones carrying the copyright
-// metadata) are deleted once no page uses them. Media used by site settings (icon, logo) stay.
+// Media this deploy no longer uploads (for example copies replaced by watermarked ones under new
+// names) are deleted once no page uses them. Media used by site settings (icon, logo) stay, and so
+// does anything a live page still shows outside its content (Rank Math's schema logo, social image).
 if (flag('--prune-media') && !DRY && !ONLY) {
   const keep = new Set(mediaJobs().map((j) => j.file));
   const { data: s } = await wp('GET', '/wp/v2/settings');
   const pinned = new Set([s.site_icon, s.site_logo].filter(Boolean));
-  const used = built.map((p) => p.content).join('\n');
+  const used = [...built.map((p) => p.content), ...liveHtml].join('\n').replace(/\\\//g, '/');
   let gone = 0;
   for (const [file, m] of Object.entries(state.media)) {
     if (keep.has(file) || pinned.has(m.id)) continue;

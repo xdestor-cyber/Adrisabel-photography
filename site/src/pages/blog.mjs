@@ -17,12 +17,14 @@ const plain = (h) => h.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\
 const anchor = (t) => plain(t).toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 // WordPress Query Loop: published child pages of /blog/, newest first. __BLOG_PARENT__ is
-// replaced with the /blog/ page id by deploy.mjs.
+// replaced with the /blog/ page id by deploy.mjs. The "--" in the block's className is written
+// the way WordPress stores it (\u002d\u002d), so the saved page matches the build and deploys
+// don't re-save an unchanged page.
 export const postLoop = (variant) => {
   const inner = variant === 'list'
     ? '<!-- wp:post-title {"isLink":true,"level":3,"fontSize":"medium"} /-->'
     : '<!-- wp:post-featured-image {"isLink":true,"sizeSlug":"medium_large"} /-->\n<!-- wp:post-date /-->\n<!-- wp:post-title {"isLink":true,"level":3} /-->\n<!-- wp:read-more {"content":"Read the guide →"} /-->';
-  return `<!--ADR:BLOCK-->\n<!-- wp:query {"queryId":${variant === 'list' ? 2 : 1},"query":{"perPage":100,"pages":0,"offset":0,"postType":"page","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[__BLOG_PARENT__]},"className":"post-loop post-loop--${variant}"} -->\n<div class="wp-block-query post-loop post-loop--${variant}"><!-- wp:post-template -->\n${inner}\n<!-- /wp:post-template --></div>\n<!-- /wp:query -->\n<!--ADR:BLOCK-->`;
+  return `<!--ADR:BLOCK-->\n<!-- wp:query {"queryId":${variant === 'list' ? 2 : 1},"query":{"perPage":100,"pages":0,"offset":0,"postType":"page","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[__BLOG_PARENT__]},"className":"post-loop post-loop\\u002d\\u002d${variant}"} -->\n<div class="wp-block-query post-loop post-loop--${variant}"><!-- wp:post-template -->\n${inner}\n<!-- /wp:post-template --></div>\n<!-- /wp:query -->\n<!--ADR:BLOCK-->`;
 };
 
 // photo keys whose image files appear in a chunk of rendered HTML

@@ -22,6 +22,7 @@ export const PHOTOS = {
     fallback: WP + '/2026/03/baby-with-crown-sleeping-and-holding-mom-and-dad-hand.webp',
     alt: 'Sleeping newborn wearing a tiny gold crown while mom and dad hold her hands',
     focal: '45% 40%',
+    watermark: 'br', // corner picked by hand: the automatic one sits on a person or a prop
   },
   moonStars: {
     file: 'baby-moon-and-stars-milestone-photos',
@@ -64,6 +65,7 @@ export const PHOTOS = {
     src: GBP + 'AHRPTWkbeFfbCn551Gg7ekrB9qw9zEE0f8O-q7qyWPlRod2WORg5Sq3hrmsV_dWVh3ta6lNZ5HYwTFKzg0HlD6ii4SNdkMkVahWJ2fpwOf63_wFLkk2-IupP0D_mlL02vQStNot4HE1cQ0PM8MLv=w2400-h2400-k-no',
     alt: 'Newborn in a knit bear bonnet asleep on a white bed next to a crochet dinosaur',
     focal: '45% 40%',
+    watermark: 'bc', // corner picked by hand: the automatic one sits on a person or a prop
   },
   moonPink: {
     file: 'newborn-girl-moon-pillow-pink-backdrop',
@@ -106,6 +108,7 @@ export const PHOTOS = {
     src: WP + '/2026/03/baby-and-big-sister-closeup-layed-down.webp',
     alt: 'Big sister lying head-to-head with her newborn sibling on a white blanket',
     focal: '50% 40%',
+    watermark: 'tr', // corner picked by hand: the automatic one sits on a person or a prop
   },
   holiday: {
     file: 'one-year-old-holiday-portrait-lights',
@@ -153,6 +156,7 @@ export const PHOTOS = {
     src: 'local:mom-hugging-toddler-red-polo-beach.jpg', // instagram.com/p/DX15sARDu-i/
     alt: 'Mom in a white eyelet dress and pearls hugs her toddler in a red polo cheek to cheek on a sunny, sandy beach.',
     focal: '51% 42%',
+    watermark: 'tr', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'beach-family',
   },
   beachToddler: {
@@ -188,6 +192,7 @@ export const PHOTOS = {
     src: 'local:first-birthday-baby-fish-print-balloon-aqua.jpg', // instagram.com/p/DbvqvuxDq6J/
     alt: 'A grinning one-year-old in a blue fish-print outfit hugs a white balloon next to white ONE letters on an aqua backdrop.',
     focal: '87% 33%',
+    watermark: 'tl', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'cake-smash',
   },
   brotherSweater: {
@@ -195,6 +200,7 @@ export const PHOTOS = {
     src: 'local:baby-and-big-brother-holding-hands-white-rug.jpg', // instagram.com/p/Db3D5XSO1-t/
     alt: 'A smiling boy in a cream cable-knit sweater holds hands with his baby brother in hedgehog overalls as they lie on a white rug.',
     focal: '50% 37%',
+    watermark: 'tl', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'family-studio',
   },
   dadKiss: {
@@ -202,6 +208,7 @@ export const PHOTOS = {
     src: 'local:father-kissing-newborn-forehead-lace-headband.jpg', // instagram.com/p/Db4QJCsjuRZ/
     alt: 'A father in a cream polo gently kisses the forehead of his sleeping newborn, who wears a lace outfit and headband, in soft white light.',
     focal: '44% 50%',
+    watermark: 'tl', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'newborn-with-parents',
   },
   momWhite: {
@@ -230,6 +237,7 @@ export const PHOTOS = {
     src: 'local:mother-kissing-newborn-forehead-teal-blouse.jpg', // instagram.com/p/Da_mRQiOsfS/
     alt: 'A mother with long dark curls in a teal blouse kisses the forehead of her wide-eyed baby, who wears white lace and a flower headband.',
     focal: '60% 45%',
+    watermark: 'bl', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'newborn-with-parents',
   },
   brotherDino: {
@@ -293,6 +301,7 @@ export const PHOTOS = {
     src: 'local:mom-and-baby-pampas-roses-backdrop.jpg', // instagram.com/p/DYBDxcYiUcK/
     alt: 'Smiling mom in a blue floral dress holds her grinning baby on a woven bench framed by pampas grass and blush roses.',
     focal: '50% 35%',
+    watermark: 'tl', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'mom-and-baby',
   },
   bearBonnetMoon: {
@@ -328,6 +337,7 @@ export const PHOTOS = {
     src: 'local:baby-and-adult-hands-ring-detail.jpg', // instagram.com/p/DWkcuEqDu1k/
     alt: 'Close-up of a baby’s small hand resting with two adult hands, one wearing a rose-gold halo ring, on white ruffled fabric.',
     focal: '60% 50%',
+    watermark: 'bl', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'details',
   },
   redRoseSwing: {
@@ -370,6 +380,7 @@ export const PHOTOS = {
     src: 'local:mother-kissing-baby-green-knit-hat.jpg', // instagram.com/p/DVXgFAcDrYb/
     alt: 'A mother kisses the forehead of her wide-eyed baby, who wears a green knit hat and lies on a soft white blanket.',
     focal: '57% 58%',
+    watermark: 'br', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'newborn-with-parents',
   },
   greenHat: {
@@ -426,6 +437,7 @@ export const PHOTOS = {
     src: 'local:newborn-heart-bowl-dusty-rose-wrap.jpg', // instagram.com/p/DQ4yV9RjjsX/
     alt: 'Newborn asleep with arms up in a wooden heart-shaped bowl, wrapped in a dusty rose knit wrap on cream fur over a brown rug.',
     focal: '40% 32%',
+    watermark: 'tr', // corner picked by hand: the automatic one sits on a person or a prop
     category: 'newborn',
   },
 };

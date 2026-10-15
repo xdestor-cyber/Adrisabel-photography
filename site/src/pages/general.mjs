@@ -395,7 +395,7 @@ export const photoCopyright = {
 <h2>Please ask first</h2>
 <p>Please don’t copy, download, screenshot, edit, print or post these photographs, or use them in ads or to train AI tools, without written permission from ${B.name}.</p>
 <h2>Her name travels with every photo</h2>
-<p>Each image file carries its credit in its metadata: the photographer’s name, the copyright notice, these terms and a link back to this page.</p>
+<p>Every photo carries a small adrisabel.com mark in one corner, and each image file carries its credit in its metadata: the photographer’s name, the copyright notice, these terms and a link back to this page.</p>
 <h2>Want to use a photo?</h2>
 <p>Email <a href="mailto:${B.email}">${B.email}</a> or call or text ${B.phone}. Tell us which photo you’d like to use and how, and we’ll get back to you.</p>
 </div></section>

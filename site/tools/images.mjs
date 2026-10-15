@@ -2,7 +2,9 @@
 // Builds the optimized photo masters in site/assets/img from the originals
 // (WordPress media library, the higher-resolution Google Business Profile copies,
 // and Instagram originals kept in site/assets/originals). Downloads are cached in
-// site/.cache/src. Run: node site/tools/images.mjs
+// site/.cache/src. Each photo gets its small "adrisabel.com" watermark (tools/watermark.mjs)
+// before its only encode, then the copyright metadata (tools/copyright.mjs).
+// Run: node site/tools/images.mjs
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { PHOTOS, LOGO } from '../src/data/images.mjs';
 import { stamp, imageFiles } from './copyright.mjs';
+import { watermark } from './watermark.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE = path.join(ROOT, '.cache/src');
@@ -60,9 +63,14 @@ for (const [key, p] of Object.entries(PHOTOS)) {
       width: Math.round(w * meta.width), height: Math.round(h * meta.height),
     });
   }
-  const buf = await img
+  const raw = await img
     .resize({ width: MAX, height: MAX, fit: 'inside', withoutEnlargement: true })
     .toColorspace('srgb')
+    .flatten({ background: '#ffffff' })
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const marked = await watermark(raw, { key, focal: p.focal, pin: p.watermark });
+  const buf = await sharp(marked.raw.data, { raw: marked.raw.info })
     .webp({ quality: 80, effort: 6, smartSubsample: true })
     .toBuffer({ resolveWithObject: true });
   const out = path.join(OUT, `${p.file}.webp`);
@@ -71,7 +79,7 @@ for (const [key, p] of Object.entries(PHOTOS)) {
     file: `${p.file}.webp`, width: buf.info.width, height: buf.info.height,
     bytes: buf.data.length, color: await dominant(buf.data),
   };
-  console.log(`${key.padEnd(12)} ${buf.info.width}x${buf.info.height} ${(buf.data.length / 1024).toFixed(0)} KB  ${p.file}.webp`);
+  console.log(`${key.padEnd(12)} ${buf.info.width}x${buf.info.height} ${(buf.data.length / 1024).toFixed(0)} KB  ${p.file}.webp  (mark ${marked.spot.name})`);
 }
 
 // Logo: transparent heart isotype, small WebP for the header plus a PNG for schema.
